@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Satisfy');
+
+
+.dinnerPlannerHeader{
+
+	background-image: linear-gradient(to right, #a79b8d , #c1ad97);  
+	box-shadow: 0 3px 2px 0px grey;
+}
+
+.App-title {
+	font-family: 'Satisfy', cursive;
+	margin-left: 5%;
+	text-shadow: 1px 1px 2px white;
+}

@@ -1,0 +1,17 @@
+#searchBar {
+	border-bottom: 1px solid black;
+	background-color: #ddac73;
+	margin-top: -0.4%; 
+
+}
+
+input {
+	margin-top: 0.4%; 
+	margin-left: -12%;
+	margin-right: 2%;
+	margin-bottom: 1%;
+}
+
+#searchButton {
+	margin-left: 2%;
+}
