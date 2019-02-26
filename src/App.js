@@ -11,7 +11,7 @@ import "./App.css";
 // import Dish from "./Dish/Dish";
 import modelInstance from "./data/Model";
 import Welcome from "./Welcome/Welcome";
-import NextScreen from "./NextScreen/NextScreen";
+import SearchScreen from "./SearchScreen/SearchScreen";
 
 class App extends Component {
   constructor(props) {
@@ -35,8 +35,8 @@ class App extends Component {
           <Route exact path="/" component={Welcome} />   
           
           <Route 
-            path = "/NextScreen" 
-            render = {() => <NextScreen model = {modelInstance}/>}
+            path = "/SearchScreen" 
+            render = {() => <SearchScreen model = {modelInstance}/>}
           />
         </header>
       </div>

@@ -1,0 +1,12 @@
+td{
+	border:1px solid black;
+	padding:1%;
+}
+
+tr{
+	border: 1px solid black;
+}
+img{
+	height: auto;
+	width: auto;
+}

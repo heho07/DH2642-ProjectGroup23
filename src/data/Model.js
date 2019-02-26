@@ -12,8 +12,9 @@ class Model extends ObservableModel{
 
 	// the Model inherits everything from the ObservableModel file (from Lab4) so that we easily can add obsevers to the model
 	constructor(){
+		// super(); needs to be called before we define attributes to the class. This is due to the way JS inheritance works. 
+		// super(); means the Model inherits stuff from ObservableModel (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)
 		super();
-		
 	}
 
 	// Returns the promise of a JSON object containing the results from the search
@@ -32,6 +33,5 @@ class Model extends ObservableModel{
 	    throw response;
   	}
 }
-
 const modelInstance = new Model();
 export default modelInstance;

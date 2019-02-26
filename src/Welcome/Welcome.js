@@ -10,7 +10,7 @@ class Welcome extends Component {
         <center>
           <p>This is the start screen for our project</p>
 
-          <Link to="/NextScreen">
+          <Link to="/SearchScreen">
             <button>This button can link us to the next view</button>
           </Link>
         </center>
