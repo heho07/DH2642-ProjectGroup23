@@ -15,6 +15,26 @@ class Model extends ObservableModel{
 		// super(); needs to be called before we define attributes to the class. This is due to the way JS inheritance works. 
 		// super(); means the Model inherits stuff from ObservableModel (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)
 		super();
+		this.usersCards = [];
+	}
+
+	// Checks if the card is already in the usersCards array
+	// otherwise adds it
+	// This method is very likely subject to change, more or less a copy from the dinnerPlanner methods
+	// Could possibly be used to add to cart, or something. Adding to the users selection should probably be done via blockchain 
+	addCardToUsersCards(obj){
+		let cards = this.getUsersCards();
+		for (var i = cards.length - 1; i >= 0; i--) {
+			if (cards[i].cardId === obj.cardId) {
+				return false;
+			}
+		}
+		this.usersCards.push(obj);
+		this.notifyObservers();
+	}
+
+	getUsersCards(){
+		return this.usersCards;
 	}
 
 	// Returns the promise of a JSON object containing the results from the search
