@@ -60,8 +60,9 @@ class SearchResults extends Component {
             {this.state.searchResult.map((item, i) => {
               // Due to the webserver needing a secure (https://) source we parse the insecure (http) image from
               // our API into a webserver which returns a secure link to the image
+              let img =null;
               if (item.img != null){
-                let img = "https://images.weserv.nl/?url=" + item.img.replace("http://", "");
+                img = "https://images.weserv.nl/?url=" + item.img.replace("http://", "");
               }              return(
                 <tr key = {item.cardId} onClick = {() => this.handleClickOnCard(item)}>
                   <td><img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/></td>
