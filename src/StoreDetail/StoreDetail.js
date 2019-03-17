@@ -5,7 +5,7 @@ class StoreDetail extends Component{
 	render(){
 		return
 
-
+		/*Test */
 	}
 }
 
