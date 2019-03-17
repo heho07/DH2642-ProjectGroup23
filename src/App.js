@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
 
-
-// See below for examples of how to import components into our app:
-// import modelInstance from "./data/DinnerModel";
-// import SelectDish from "./SelectDish/SelectDish";
-// import Overview from "./Overview/Overview";
 import StoreDetail from "./StoreDetail/StoreDetail";
 import MyCollection from "./MyCollection/MyCollection";
 import modelInstance from "./data/Model";
@@ -17,7 +12,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "Project group 23 DH2642"
+      title: "BlockStone"
     };
   }
   
@@ -27,9 +22,19 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <div className="dinnerPlannerHeader">
-            <h1 className="App-title">{this.state.title}</h1>
-          </div>
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">BlockStone</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="/MyCollection">MyCollection</a>
+          <a class="nav-item nav-link" href="#">Store</a>
+      </div>
+    </div>
+</nav>
           
           {/* We rended diffrent component based on the path */}
           <Route exact path="/" component={Welcome} />   
