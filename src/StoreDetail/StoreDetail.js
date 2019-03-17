@@ -6,6 +6,7 @@ class StoreDetail extends Component{
 		return
 
 		/*Test */
+				/*Test */
 	}
 }
 
