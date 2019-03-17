@@ -7,8 +7,8 @@ import "./App.css";
 // import modelInstance from "./data/DinnerModel";
 // import SelectDish from "./SelectDish/SelectDish";
 // import Overview from "./Overview/Overview";
-// import Printout from "./Printout/Printout";
-// import Dish from "./Dish/Dish";
+import StoreDetail from "./StoreDetail/StoreDetail";
+import MyCollection from "./MyCollection/MyCollection";
 import modelInstance from "./data/Model";
 import Welcome from "./Welcome/Welcome";
 import SearchScreen from "./SearchScreen/SearchScreen";
@@ -34,10 +34,22 @@ class App extends Component {
           {/* We rended diffrent component based on the path */}
           <Route exact path="/" component={Welcome} />   
           
+          {/* Search*/}
           <Route 
             path = "/SearchScreen" 
             render = {() => <SearchScreen model = {modelInstance}/>}
           />
+
+          <Route 
+            path ="/MyCollection"
+            render = { () => <MyCollection/> }
+          /> 
+        {/* This will be de screen for a specific card, to purchase*/}
+          <Route 
+            path ="/StoreDetail"
+            render = { () => <StoreDetail/> }
+          /> 
+
         </header>
       </div>
     );
