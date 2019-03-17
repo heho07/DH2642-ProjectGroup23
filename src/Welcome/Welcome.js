@@ -8,8 +8,26 @@ class Welcome extends Component {
       <div className="Welcome">
         <br/>
         <center>
-          <p>This is the start screen for our project</p>
-
+          <div className = "row">
+            <div className = "col-sm-4 teststyle">
+              <center>Add image here</center>
+              <br />
+              <h4><center>My Collection</center></h4>
+            </div> 
+            <div className = "col-sm-4 teststyle">
+              <center>Add image here</center>  
+              <br />            
+              <h4><center>VS Mode</center></h4>
+            </div> 
+            <div className = "col-sm-4 teststyle">
+              <center>Add image here</center>
+              <br />
+              <h4><center>Store</center></h4>
+            </div> 
+          </div>
+          <br />
+          <br />
+          <br />
           <Link to="/SearchScreen">
             <button>This button can link us to the next view</button>
           </Link>
