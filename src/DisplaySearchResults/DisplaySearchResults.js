@@ -45,9 +45,13 @@ class SearchResults extends Component {
   }
 
   
-  handleClickOnCard(obj){
-    modelInstance.addCardToUsersCards(obj);
+  handleClickOnCard(obj, destination){
+    console.log("adding card to " + destination);
+    modelInstance.addCardToDeck(obj, destination);
+    console.log("users cards:");
     console.log(modelInstance.getUsersCards());
+    console.log("opponents cards:");
+    console.log(modelInstance.getOpponentsCards());
   }
 
 
@@ -64,7 +68,7 @@ class SearchResults extends Component {
               if (item.img != null){
                 img = "https://images.weserv.nl/?url=" + item.img.replace("http://", "");
               }              return(
-                <tr key = {item.cardId} onClick = {() => this.handleClickOnCard(item)}>
+                <tr key = {item.cardId}>
                   <td><img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/></td>
                   <td>{"name: " + item.name}</td>
                   <td>{"id: " + item.cardId}</td>
@@ -72,6 +76,8 @@ class SearchResults extends Component {
                   <td>{"cost: " + item.cost}</td>
                   <td>{"attack: " + item.attack}</td>
                   <td>{"health: " + item.health}</td>
+                  <td><button onClick = {() => this.handleClickOnCard(item, "user")}>Add to user</button></td>
+                  <td><button onClick = {() => this.handleClickOnCard(item, "opponent")}>Add to opponent</button></td>
                 </tr>
               );
             })}
