@@ -14,7 +14,6 @@ class VersusMode extends Component{
 		};
 	}
 
-	//test
 
 	cardInfo(obj){
 		let img =null;
