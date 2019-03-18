@@ -43,7 +43,6 @@ class Model extends ObservableModel{
 		}
 		cards.push(obj);
 		this.notifyObservers();
-		console.log(this.usersCards);
 	}
 
 	getUsersCards(){

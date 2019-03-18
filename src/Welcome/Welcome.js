@@ -17,7 +17,9 @@ class Welcome extends Component {
             <div className = "col-sm-4 teststyle">
               <center>Add image here</center>  
               <br />            
-              <h4><center>VS Mode</center></h4>
+              <h4><center> 
+                <Link to = "/VersusMode"><button>VS Mode</button></Link>
+              </center></h4>
             </div> 
             <div className = "col-sm-4 teststyle">
               <center>Add image here</center>

@@ -7,6 +7,7 @@ import MyCollection from "./MyCollection/MyCollection";
 import modelInstance from "./data/Model";
 import Welcome from "./Welcome/Welcome";
 import SearchScreen from "./SearchScreen/SearchScreen";
+import VersusMode from "./VersusMode/VersusMode";
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +55,12 @@ class App extends Component {
             path ="/StoreDetail"
             render = { () => <StoreDetail/> }
           /> 
+
+        {/*A place to try out the vs mode*/}
+          <Route
+            path = "/VersusMode"
+            render = {() => <VersusMode/>}
+          />
 
         </header>
       </div>

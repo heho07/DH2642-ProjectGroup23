@@ -46,16 +46,12 @@ class SearchResults extends Component {
 
   
   handleClickOnCard(obj, destination){
-    console.log("adding card to " + destination);
     modelInstance.addCardToDeck(obj, destination);
-    console.log("users cards:");
-    console.log(modelInstance.getUsersCards());
-    console.log("opponents cards:");
-    console.log(modelInstance.getOpponentsCards());
   }
 
 
 // Creates HTML containing information about the cards found in the search
+// This function could be generalized into it's own class so that it can more easily be used elsewhere
   showCard(){
     return(
       <div>
@@ -67,7 +63,8 @@ class SearchResults extends Component {
               let img =null;
               if (item.img != null){
                 img = "https://images.weserv.nl/?url=" + item.img.replace("http://", "");
-              }              return(
+              }              
+              return(
                 <tr key = {item.cardId}>
                   <td><img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/></td>
                   <td>{"name: " + item.name}</td>
