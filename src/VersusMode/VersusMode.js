@@ -6,11 +6,15 @@ import { Link } from "react-router-dom";
 // currently only displays the cards in the users and the AI opponents decks
 class VersusMode extends Component{
 	
+	// To make sure we don't delete stuff from the users collection when the cards die
+	// we need to use a copy of the cards, not a reference.
+	// Therefore we use the JSON.parse(JSON.stringify(array))
+	// credit goes to https://stackoverflow.com/questions/9885821/copying-of-an-array-of-objects-to-another-array-without-object-reference-in-java 
 	constructor(props){
 		super(props);
 		this.state = {
-			usersCards:modelInstance.getUsersCards(),
-			opponentsCards:modelInstance.getOpponentsCards(),
+			usersCards:JSON.parse(JSON.stringify(modelInstance.getUsersCards())),
+			opponentsCards:JSON.parse(JSON.stringify(modelInstance.getOpponentsCards())),
 		};
 	}
 
