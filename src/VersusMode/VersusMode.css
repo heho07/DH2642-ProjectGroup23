@@ -1,0 +1,18 @@
+#gameResult{
+	overflow:scroll;
+	height:250px;
+}
+
+#cardInfo{
+	overflow-y:scroll;
+	border:1px solid black;
+	height:500px;
+}
+
+tr {
+	border:1px solid black;
+}
+
+#opponentsCards{
+	float:right;
+}

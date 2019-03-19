@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import modelInstance from "../data/Model.js";
 import { Link } from "react-router-dom";
+import "./VersusMode.css";
 
 // A place to try out the gaming stuff
 // currently only displays the cards in the users and the AI opponents decks
@@ -15,12 +16,13 @@ class VersusMode extends Component{
 		this.state = {
 			usersCards:JSON.parse(JSON.stringify(modelInstance.getUsersCards())),
 			opponentsCards:JSON.parse(JSON.stringify(modelInstance.getOpponentsCards())),
+			history:[],
 		};
 	}
 
 
 	cardInfo(obj){
-		let img =null;
+		let img = null;
       	if (obj.img != null){
         	img = "https://images.weserv.nl/?url=" + obj.img.replace("http://", "");
       	}
@@ -45,6 +47,7 @@ class VersusMode extends Component{
 			);
 	}
 
+	//TODO: make it so that the table is created here instead of in this.cardInfo()
 	displayAllCards(owner){
 		let cards = null;
 		if (owner == "user") {
@@ -76,25 +79,28 @@ class VersusMode extends Component{
 	fight(){
 		let usersCards = this.state.usersCards;
 		let opponentsCards = this.state.opponentsCards;
-
+		let history = this.state.history;
 		if (usersCards != undefined & opponentsCards != undefined & usersCards.length>0 & opponentsCards.length>0 ) {
 			let usersCurrent = usersCards[0];
 			let opponentsCurrent = opponentsCards[0];
 			usersCurrent.health -= opponentsCurrent.attack;
 			opponentsCurrent.health -= usersCurrent.attack;
-			console.log("users " + usersCurrent.name + " attacked " + opponentsCurrent.name + " for " + usersCurrent.attack + " damage" );
-			console.log("opponents " + opponentsCurrent.name + " attacked " + usersCurrent.name + " for " + opponentsCurrent.attack + " damage");
+			let userInfo = "users " + usersCurrent.name + " attacked " + opponentsCurrent.name + " for " + usersCurrent.attack + " damage";
+			let opponentInfo = "opponents " + opponentsCurrent.name + " attacked " + usersCurrent.name + " for " + opponentsCurrent.attack + " damage";
+			history.push(userInfo);
+			history.push(opponentInfo);
 			if (usersCurrent.health <= 0) {
 				usersCards.shift();
-				console.log("users " + usersCurrent.name + " died!");
+				history.push("users " + usersCurrent.name + " died!");
 			}
 			if (opponentsCurrent.health <= 0) {
 				opponentsCards.shift();
-				console.log("opponents " + opponentsCurrent.name + " died!");
+				history.push("opponents " + opponentsCurrent.name + " died!");
 			}
 			this.setState({
 				usersCards:usersCards,
 				opponentsCards:opponentsCards,
+				history:history,
 			});
 		}
 	}
@@ -103,18 +109,32 @@ class VersusMode extends Component{
 		return (
 				<div>
 					<Link to = "/"><button>Go back</button></Link>
-					<div className = "row">
-						<div className = "col-sm-5">
-							<h1>Users cards </h1>
-							{this.displayAllCards("user")}
-						</div>
-						<div className = "col-sm-5">
-							<h1>AI opponents cards</h1>
-							{this.displayAllCards("opponent")}
-						</div>
-					</div>
+					<button onClick = {() => this.fight()}>Fight</button>	
 					<div>
-						<button onClick = {() => this.fight()}>Fight</button>
+						{/* I want this to take up more height even when it is empty. idk how though, at least without using px */}
+						<div className = "row" id = "cardInfo">
+							<div className = "col-sm-5">
+								<h1>Users cards </h1>
+								{this.displayAllCards("user")}
+							</div>
+							<div className = "col-sm-5" id = "opponentsCards">
+								<h1>AI opponents cards</h1>
+								{this.displayAllCards("opponent")}
+							</div>
+						</div>
+						<hr/>
+
+					{/* This will be made scrollable via css
+						need to make it so that the scrollbar is focused to the bottom automatically. implement:
+						https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up/21067431
+					 */}
+						<div id = "gameResult">
+								{this.state.history.map((item, i)=> {
+							
+								return <p>{item}</p>}
+							)}
+							
+						</div>
 					</div>
 				</div>
 			);
