@@ -33,6 +33,10 @@ class Welcome extends Component {
           <Link to="/SearchScreen">
             <button>This button can link us to the next view</button>
           </Link>
+
+          <Link to="/MyCollection">
+            <button>This button can link us to the Collection</button>
+          </Link>
         </center>
       </div>
     );
