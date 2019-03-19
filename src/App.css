@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Satisfy');
 
 
+.bg-light {
+	background-color: #f8f9fa !important;
+}
+
 .dinnerPlannerHeader{
 
 	background-image: linear-gradient(to right, #a79b8d , #c1ad97);  
