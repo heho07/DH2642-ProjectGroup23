@@ -67,7 +67,7 @@ class VersusMode extends Component{
 	// Checks for what cards the user and opponent has
 	// takes the first card from each deck and pits them against each other
 	// basically subtracts the attack no. from the health attribute and updates the object
-	// If a card is detected as dead (<0 hp) it is removed from the deck permanently
+	// If a card is detected as dead (<0 hp) it is removed from the deck
 	// maybe have this in the model instead? idk
 	fight(){
 		let usersCards = this.state.usersCards;
