@@ -1,4 +1,4 @@
-td{
+/*td{
 	border:1px solid black;
 	padding:1%;
 }
@@ -6,7 +6,10 @@ td{
 tr{
 	border: 1px solid black;
 }
+*/
 img{
 	height: auto;
 	width: auto;
+	max-width: 307px;
+	max-height: 465px;
 }
