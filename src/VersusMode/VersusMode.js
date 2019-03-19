@@ -26,7 +26,7 @@ class VersusMode extends Component{
 					<tbody>
 						<tr>
 							<td>
-								<img src = {img} alt = {img}/>
+								{/*<img src = {img} alt = {img}/>*/}
 								<p>{obj.name}</p>
 							</td>
 							<td>
@@ -62,7 +62,32 @@ class VersusMode extends Component{
 					})}
 				</div>
 			);
+	}
 
+	fight(){
+		let usersCards = this.state.usersCards;
+		let opponentsCards = this.state.opponentsCards;
+
+		if (usersCards != undefined & opponentsCards != undefined & usersCards.length>0 & opponentsCards.length>0 ) {
+			let usersCurrent = usersCards[0];
+			let opponentsCurrent = opponentsCards[0];
+			usersCurrent.health -= opponentsCurrent.attack;
+			opponentsCurrent.health -= usersCurrent.attack;
+			console.log("users " + usersCurrent.name + " attacked " + opponentsCurrent.name + " for " + usersCurrent.attack + " damage" );
+			console.log("opponents " + opponentsCurrent.name + " attacked " + usersCurrent.name + " for " + opponentsCurrent.attack + " damage");
+			if (usersCurrent.health <= 0) {
+				usersCards.shift();
+				console.log("users " + usersCurrent.name + " died!");
+			}
+			if (opponentsCurrent.health <= 0) {
+				opponentsCards.shift();
+				console.log("opponents " + opponentsCurrent.name + " died!");
+			}
+			this.setState({
+				usersCards:usersCards,
+				opponentsCards:opponentsCards,
+			});
+		}
 	}
 
 	render(){
@@ -78,6 +103,9 @@ class VersusMode extends Component{
 							<h1>AI opponents cards</h1>
 							{this.displayAllCards("opponent")}
 						</div>
+					</div>
+					<div>
+						<button onClick = {() => this.fight()}>Fight</button>
 					</div>
 				</div>
 			);
