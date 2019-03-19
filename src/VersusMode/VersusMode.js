@@ -127,6 +127,7 @@ class VersusMode extends Component{
 					{/* This will be made scrollable via css
 						need to make it so that the scrollbar is focused to the bottom automatically. implement:
 						https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up/21067431
+						or this https://stackoverflow.com/questions/40336311/how-can-i-make-a-scrollable-component-that-scrolls-to-the-latest-children-compon
 					 */}
 						<div id = "gameResult">
 								{this.state.history.map((item, i)=> {
