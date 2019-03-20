@@ -25,6 +25,7 @@ class Welcome extends Component {
             <div className = "col-sm-4 teststyle">
               <center>Add image here</center>
               <center>Image should be clickable</center>
+              
               <br />            
               <h4><center> 
               <Link to = "/VersusMode">

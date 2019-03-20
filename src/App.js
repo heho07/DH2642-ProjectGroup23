@@ -35,8 +35,8 @@ class App extends Component {
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
               <Link to = "/"> <a class="nav-item nav-link" >Home <span class="sr-only">(current)</span></a></Link>
-               <Link to = "/VersusMode"> <a class="nav-item nav-link"> Vs Mode</a></Link>
-               <Link to = "/MyCollection">  <a class="nav-item nav-link">MyCollection</a></Link>
+               <Link to = "/VersusMode"> <a class="nav-item nav-link"> VSmode</a></Link>
+               <Link to = "/MyCollection">  <a class="nav-item nav-link">My Collection</a></Link>
                <Link to = "/searchScreen"><a class="nav-item nav-link" href="#">Store</a></Link>
               </div>
             </div>

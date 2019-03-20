@@ -21,7 +21,7 @@ class SearchScreen extends Component{
 	render(){
 		return(
 			<div>
-				<p>This is the second screen</p>
+			<br />
 				<SearchBar search = {filter => this.setState({filter:filter})}/>
 				{	/* passing the attribute "key" to the component makes it uniquely identifiable
 					by React. As such React will notice when the key has changed and re-render the component.

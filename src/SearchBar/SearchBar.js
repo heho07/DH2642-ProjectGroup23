@@ -36,17 +36,16 @@ class SearchBar extends Component{
 
 	render(){
 		return(
+			<center>
 			<div className="row">
 				<div className="header col-sm-12 searchbar view" id="searchBar">
-					<Link to = "/">
-						<button>This button will take us back to the welcome-screen</button>
-					</Link>
 					<form onSubmit = {(event) => this.handleSubmit(event)} >
 						<input id = "filter" type = "text" value = {this.state.filter} onChange = {(event) => this.handleChangeOfInput(event)}/>
 						<input type = "submit"></input>
 					</form>
 				</div>
 			</div>
+		</center>
 		);
 	}
 }
