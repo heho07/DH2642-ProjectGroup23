@@ -16,7 +16,8 @@ class Welcome extends Component {
               <h4>
               <center>
               <Link to="/MyCollection">
-                <button>My Collection</button>
+                <button type="button" className="btn btn-dark">My Collection</button>
+
               </Link>
               </center>
               </h4>
@@ -26,7 +27,9 @@ class Welcome extends Component {
               <center>Image should be clickable</center>
               <br />            
               <h4><center> 
-                <Link to = "/VersusMode"><button>VS Mode</button></Link>
+              <Link to = "/VersusMode">
+                <button type="button" className="btn btn-dark">VS mode</button>
+               </Link>
               </center></h4>
             </div> 
             <div className = "col-sm-4 teststyle">
@@ -35,7 +38,7 @@ class Welcome extends Component {
               <br />
               <h4><center>
               <Link to="/SearchScreen">
-                <button>Store</button>
+                <button type="button" className="btn btn-dark">Store</button>
               </Link>
               </center></h4>
             </div> 
@@ -43,13 +46,7 @@ class Welcome extends Component {
           <br />
           <br />
           <br />
-          <Link to="/SearchScreen">
-            <button>This button can link us to the next view</button>
-          </Link>
 
-          <Link to="/MyCollection">
-            <button>This button can link us to the Collection</button>
-          </Link>
         </center>
       </div>
     );
