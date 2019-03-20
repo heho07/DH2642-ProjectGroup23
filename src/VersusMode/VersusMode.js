@@ -28,7 +28,7 @@ class VersusMode extends Component{
       	}
 		return (
 			<div key = {obj.id}>
-				<table>
+				<table class = " table table-bordered "> 
 					<tbody>
 						<tr>
 							<td>
@@ -112,7 +112,7 @@ class VersusMode extends Component{
 					<button onClick = {() => this.fight()}>Fight</button>	
 					<div>
 						{/* I want this to take up more height even when it is empty. idk how though, at least without using px */}
-						<div className = "row" id = "cardInfo">
+						<div className = "row border border-dark " id = "cardInfo">
 							<div className = "col-sm-5">
 								<h1>Users cards </h1>
 								{this.displayAllCards("user")}
