@@ -49,7 +49,9 @@ class SearchResults extends Component {
     modelInstance.addCardToDeck(obj, destination);
   }
 
-
+  handleStoreCard(obj){
+    modelInstance.storeCard(obj);
+  }
 // Creates HTML containing information about the cards found in the search
 // This function could be generalized into it's own class so that it can more easily be used elsewhere
   showCard(){
@@ -77,6 +79,7 @@ class SearchResults extends Component {
                     <td class="align-middle">{"health: " + item.health}</td>
                     <td class="align-middle"><button onClick = {() => this.handleClickOnCard(item, "user")}>Add to user</button></td>
                     <td class="align-middle"><button onClick = {() => this.handleClickOnCard(item, "opponent")}>Add to opponent</button></td>
+                    <td class="align-middle"><Link to = "/storeDetail"><button onClick = {() => this.handleStoreCard(item)}>View this card</button></Link></td>
                   </tr>
                 );
               }
