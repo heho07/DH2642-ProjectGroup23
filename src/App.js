@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
+import { Link } from "react-router-dom";
+
 
 import StoreDetail from "./StoreDetail/StoreDetail";
 import MyCollection from "./MyCollection/MyCollection";
@@ -30,9 +32,10 @@ class App extends Component {
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="/MyCollection">MyCollection</a>
-                <a class="nav-item nav-link" href="#">Store</a>
+              <Link to = "/"> <a class="nav-item nav-link" >Home <span class="sr-only">(current)</span></a></Link>
+               <Link to = "/VersusMode"> <a class="nav-item nav-link"> Vs Mode</a></Link>
+               <Link to = "/MyCollection">  <a class="nav-item nav-link">MyCollection</a></Link>
+               <Link to = "/searchScreen"><a class="nav-item nav-link" href="#">Store</a></Link>
               </div>
             </div>
           </nav>
