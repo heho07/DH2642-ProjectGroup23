@@ -17,6 +17,7 @@ class Model extends ObservableModel{
 		super();
 		this.usersCards = [];
 		this.opponentsCards = [];
+		this.storedCards = {};
 	}
 
 	// Checks if the card is already in the usersCards array
@@ -67,7 +68,17 @@ class Model extends ObservableModel{
 	      return response.json();
 	    }
 	    throw response;
-  	}
+	  }
+
+	storeCard(object) {
+		console.log(object);
+		this.storedCard = object;
+	}
+	getCard(id) {
+		return this.storedCard;
+	}
+	  
+
 }
 const modelInstance = new Model();
 export default modelInstance;
