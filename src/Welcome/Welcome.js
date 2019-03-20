@@ -11,11 +11,19 @@ class Welcome extends Component {
           <div className = "row">
             <div className = "col-sm-4 teststyle">
               <center>Add image here</center>
+              <center>Image should be clickable</center>
               <br />
-              <h4><center>My Collection</center></h4>
+              <h4>
+              <center>
+              <Link to="/MyCollection">
+                <button>My Collection</button>
+              </Link>
+              </center>
+              </h4>
             </div> 
             <div className = "col-sm-4 teststyle">
-              <center>Add image here</center>  
+              <center>Add image here</center>
+              <center>Image should be clickable</center>
               <br />            
               <h4><center> 
                 <Link to = "/VersusMode"><button>VS Mode</button></Link>
@@ -23,8 +31,13 @@ class Welcome extends Component {
             </div> 
             <div className = "col-sm-4 teststyle">
               <center>Add image here</center>
+              <center>Image should be clickable</center>
               <br />
-              <h4><center>Store</center></h4>
+              <h4><center>
+              <Link to="/SearchScreen">
+                <button>Store</button>
+              </Link>
+              </center></h4>
             </div> 
           </div>
           <br />
