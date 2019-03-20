@@ -2,13 +2,16 @@
 	overflow:scroll;
 	height:250px;
 }
-/*
 #cardInfo{
 	overflow-y:scroll;
-	border:1px solid black;
 	height:500px;
 }
 
+#opponentHeader{
+	float:right;
+}
+
+/*
 .tr-versus {
 	border:1px solid black;
 }

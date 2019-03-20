@@ -118,7 +118,7 @@ class VersusMode extends Component{
 								{this.displayAllCards("user")}
 							</div>
 							<div className = "col-sm-5" id = "opponentsCards">
-								<h1>AI opponents cards</h1>
+								<h1 id = "opponentHeader">AI opponents cards</h1>
 								{this.displayAllCards("opponent")}
 							</div>
 						</div>
