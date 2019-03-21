@@ -23,7 +23,7 @@ class App extends Component {
   // The render function will use Routers to check what URL the user is at and render stuff accordingly
   render() {
     return (
-      <div className="App">
+        <div className="App">
         <header className="App-header">
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
              <Link to ="/"><a class="navbar-brand" href="#">BlockStone</a></Link>

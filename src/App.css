@@ -10,9 +10,21 @@
     color: rgba(197,197,197,.5);
 }
 
+.navbar-light .navbar-nav .nav-link:hover {
+	text-decoration: none !important; 
+	color: white;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 .navbar-light .navbar-brand {
 	font-family: 'Cookie', cursive;
     color: rgb(222, 222, 222);
+    font-size: 160%;
 }
 
 .dinnerPlannerHeader{
