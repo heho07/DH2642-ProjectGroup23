@@ -3,11 +3,14 @@ The git repository for project group 23 in the course DH2642 at KTH VT19
 
 ## YOU NEED TO RUN "npm install" in the main folder before running. This is due to the folder "node_modules" being ignored by git to save space on git.
 
-## How to run:
-- clone the repository
-- make sure you have npm installed on your computer 
-- run "npm install" in the root folder (npm will in turn look at the "package.json" file to see which dependencies it needs to install)
-- run "npm start" to deploy
+## Browsing the page
+There are a few things to consider when testing the webpage in its current state, considering lack of local storage and proper backend implementation.
+
+In order for the VS mode and the collection to be viable, cards has to be added to the user from the store. In the store, in order to display cards, some keywords must be searched, since currently the API-calls are done exclusively from the form. 
+(Example keywords to search for are: Ysera, Knight, Man. OBS! If you search for a single letter, i.e. “h”, you will get loads of results which might cause your browser to lag).
+
+When the cards are properly displayed there is an option to add the card to the user. Subsequently, by navigating to the collection screen or to the vs mode, the user cards can be displayed. If the webpage is reloaded at any stage this information is lost since storage is not yet implemented.
+
 
 ## Short description of the project
 
