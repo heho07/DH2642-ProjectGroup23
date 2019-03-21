@@ -3,6 +3,12 @@
 }
 
 .btn{
-
+	
 	width: 60%;
+}
+
+.imageParagraph {
+	font-style: italic;
+	color: brown;
+	text-decoration: underline;
 }
