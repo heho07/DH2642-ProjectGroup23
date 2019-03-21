@@ -1,7 +1,6 @@
 # DH2642_VT19_PG23
 The git repository for project group 23 in the course DH2642 at KTH VT19
 
-## YOU NEED TO RUN "npm install" in the main folder before running. This is due to the folder "node_modules" being ignored by git to save space on git.
 
 ## Browsing the page
 There are a few things to consider when testing the webpage in its current state, considering lack of local storage and proper backend implementation.
