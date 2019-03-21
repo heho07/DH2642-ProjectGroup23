@@ -54,6 +54,64 @@ class Model extends ObservableModel{
 		return this.opponentsCards;
 	}
 
+	clearUsersCards(){
+		this.usersCards = [];
+		this.notifyObservers();
+	}
+
+	clearOpponentsCards(){
+		this.opponentsCards = [];
+		this.notifyObservers();
+	}
+
+	// Receives an array of JSON objects containing lots of different cards
+	// this function searches the array for cards that are valid (i.e. it has values for attack, health, and a name)
+	// this search continues until ten cards have been found or until the search has looped 1000 times (to avoid eternal loop)
+	selectRandomCardsForOpponent(objectArray){
+		let toRet = [];
+		let currentObject = null;
+		let counter = 0;
+		let addBoolean = true;
+		while(toRet.length < 10){
+			currentObject = objectArray[Math.floor(Math.random()*objectArray.length)]; 
+			try{
+				if ( currentObject.attack !== undefined && currentObject.health !== undefined  && currentObject.name !== undefined ) {
+					if (toRet.length === 0) {
+						toRet.push(currentObject);
+					}
+					else{
+						for (var i = toRet.length - 1; i >= 0; i--) {
+							if(toRet[i].cardId === currentObject.cardId){
+								addBoolean = false;
+							}
+						}
+						if (addBoolean) {
+							toRet.push(currentObject);
+							addBoolean = false;
+						}
+					}
+				}
+				addBoolean = true;
+			}
+			catch (error) {
+				console.log(error);	
+			}
+			counter++;
+			if (counter > 1000) {
+				//just a failsafe so this doesn't loop forever
+				break;
+			}
+		}
+		return toRet;
+	}
+
+	// Return the promise of a JSON object containing the cards based on what quality they have
+	// Quality ranges from: Free -> Common -> Rare -> Epic -> Legendary
+	searchDeckByQuality(quality){
+		const url = `${BASE_URL}/cards/qualities/`+quality;
+		return fetch(url, httpOptions).then(this.processResponse);
+	}
+
 	// Returns the promise of a JSON object containing the results from the search
 	searchCards(filter) {
 		const url = `${BASE_URL}/cards/search/`+filter;

@@ -61,7 +61,7 @@ class SearchResults extends Component {
           <tbody>
             {this.state.searchResult.map((item, i) => {
               // if the card is valid we return information about it 
-              if (item.name != undefined & item.img != undefined & item.health != undefined & item.attack != undefined & item.cost != undefined) {
+              if (item.name !== undefined & item.img !== undefined & item.health !== undefined & item.attack !== undefined & item.cost !== undefined) {
                 let img =null;
                 // Due to the webserver needing a secure (https://) source we parse the insecure (http) image from
                 // our API into a webserver which returns a secure link to the image

@@ -20,40 +20,47 @@ class VersusMode extends Component{
 		};
 	}
 
-
-	cardInfo(obj){
-		let img = null;
-      	if (obj.img != null){
-        	img = "https://images.weserv.nl/?url=" + obj.img.replace("http://", "");
-      	}
-		return (
-			<div key = {obj.id}>
-				<table class = " table table-bordered "> 
-					<tbody>
-						<tr>
-							<td>
-								{/*<img src = {img} alt = {img}/>*/}
-								<p>{obj.name}</p>
-							</td>
-							<td>
-								<p>Health: {obj.health}</p>
-								<p>Attack: {obj.attack}</p>
-								<p>Cost: {obj.cost}</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			);
+	// When this component is instaniated we add it to the list of observers in the model
+	componentDidMount(){
+		modelInstance.addObserver(this);
 	}
 
-	//TODO: make it so that the table is created here instead of in this.cardInfo()
+	// this will be called when the model calls "notifyObservers()"
+	update(){
+		this.setState({
+			usersCards:JSON.parse(JSON.stringify(modelInstance.getUsersCards())),
+			opponentsCards:JSON.parse(JSON.stringify(modelInstance.getOpponentsCards())),
+		});
+	}
+
+	// Displays information about a specific card
+	cardInfo(obj){
+		// let img = null;
+  //     	if (obj.img != null){
+  //       	img = "https://images.weserv.nl/?url=" + obj.img.replace("http://", "");
+  //     	}
+		return (			
+			<tr key = {obj.cardId}>
+				<td>
+					{/*<img src = {img} alt = {img}/>*/}
+					<p>{obj.name}</p>
+				</td>
+				<td>
+					<p>Health: {obj.health}</p>
+					<p>Attack: {obj.attack}</p>
+					<p>Cost: {obj.cost}</p>
+				</td>
+			</tr>
+		);
+	}
+
+	// Displays all cards for either the user or the opponent AI
 	displayAllCards(owner){
 		let cards = null;
-		if (owner == "user") {
+		if (owner === "user") {
 			cards = this.state.usersCards;
 		}
-		else if (owner == "opponent"){
+		else if (owner === "opponent"){
 			cards = this.state.opponentsCards;
 		}
 		else{
@@ -64,9 +71,13 @@ class VersusMode extends Component{
 		}
 		return (
 				<div>
-					{cards.map((item, i)=>{
-						return this.cardInfo(item);
-					})}
+					<table className = " table table-bordered ">
+						<tbody>
+							{cards.map((item, i)=>{
+								return this.cardInfo(item);
+							})}
+						</tbody>
+					</table>
 				</div>
 			);
 	}
@@ -80,7 +91,7 @@ class VersusMode extends Component{
 		let usersCards = this.state.usersCards;
 		let opponentsCards = this.state.opponentsCards;
 		let history = this.state.history;
-		if (usersCards != undefined & opponentsCards != undefined & usersCards.length>0 & opponentsCards.length>0 ) {
+		if (usersCards !== undefined & opponentsCards !== undefined & usersCards.length>0 & opponentsCards.length>0 ) {
 			let usersCurrent = usersCards[0];
 			let opponentsCurrent = opponentsCards[0];
 			usersCurrent.health -= opponentsCurrent.attack;
@@ -105,11 +116,32 @@ class VersusMode extends Component{
 		}
 	}
 
+
+	// this method tells the model to perform a query for cards of a certain quality
+	// it then tells the model to select a few cards from there at random
+	// which it then tells the model to add to the opponents deck
+	addCardsToOpponent(quality){
+		modelInstance.searchDeckByQuality(quality)
+			.then((result) => modelInstance.selectRandomCardsForOpponent(result))
+				.then((result) => {
+					for (var i = result.length - 1; i >= 0; i--) {
+						modelInstance.addCardToDeck(result[i], "opponent");
+					}
+				})
+	}
+
+
 	render(){
 		return (
 				<div>
 					<Link to = "/"><button>Go back</button></Link>
 					<button onClick = {() => this.fight()}>Fight</button>	
+					<button onClick = {() => this.addCardsToOpponent("Free")}>Add Free cards to opponent</button>
+					<button onClick = {() => this.addCardsToOpponent("Common")}>Add Common cards to opponent</button>
+					<button onClick = {() => this.addCardsToOpponent("Rare")}>Add Rare cards to opponent</button>
+					<button onClick = {() => this.addCardsToOpponent("Epic")}>Add Epic cards to opponent</button>
+					<button onClick = {() => this.addCardsToOpponent("Legendary")}>Add Legendary cards to opponent</button>
+					<button onClick = {() => modelInstance.clearOpponentsCards()}>Clear the opponents deck</button>
 					<div>
 						{/* I want this to take up more height even when it is empty. idk how though, at least without using px */}
 						<div className = "row border border-dark " id = "cardInfo">
