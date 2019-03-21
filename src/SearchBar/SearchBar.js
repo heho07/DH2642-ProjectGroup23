@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 
 // this component basically renders a searchbar which will pass the inputted information to its parent component

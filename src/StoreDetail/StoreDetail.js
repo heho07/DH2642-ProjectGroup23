@@ -18,7 +18,7 @@ class StoreDetail extends Component{
 		if(card === undefined){
 			return (<div className ="col-6 justify-content-center align-self-center">
 				<p className="mb-0 "> This is not the card you're looking for</p>
-				<img src = {img} className = "img-fluid"></img>
+				<img src = {img} alt = {img} className = "img-fluid"></img>
 			</div>)
 		}
 		if (card.img !== null){
@@ -35,7 +35,7 @@ class StoreDetail extends Component{
 				<div className ="col-6 text-center" >
 					<h1 >{card.name}</h1>		
 					<p className="mb-0 " > {card.rarity} {card.race}</p>
-					<img src = {img} />
+					<img src = {img} alt = {img} />
 			
 				</div>
 				<div className ="col-6 justify-content-center align-self-center">
