@@ -25,19 +25,19 @@ class App extends Component {
     return (
         <div className="App">
         <header className="App-header">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-             <Link to ="/"><a class="navbar-brand" href="#">BlockStone</a></Link>
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+             <Link to ="/"><a className="navbar-brand" href="#">BlockStone</a></Link>
              
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-              <Link to = "/"> <a class="nav-item nav-link" >Home <span class="sr-only">(current)</span></a></Link>
-               <Link to = "/VersusMode"> <a class="nav-item nav-link"> VSmode</a></Link>
-               <Link to = "/MyCollection">  <a class="nav-item nav-link">My Collection</a></Link>
-               <Link to = "/searchScreen"><a class="nav-item nav-link" href="#">Store</a></Link>
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div className="navbar-nav">
+              <Link to = "/"> <a ClassName="nav-item nav-link" >Home <span ClassName="sr-only">(current)</span></a></Link>
+               <Link to = "/VersusMode"> <a ClassName="nav-item nav-link"> VSmode</a></Link>
+               <Link to = "/MyCollection">  <a ClassName="nav-item nav-link">My Collection</a></Link>
+               <Link to = "/searchScreen"><a ClassName="nav-item nav-link" href="#">Store</a></Link>
               </div>
             </div>
           </nav>
