@@ -26,7 +26,7 @@ class App extends Component {
         <div className="App">
         <header className="App-header">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
-             <Link to ="/"><a className="navbar-brand" href="#">BlockStone</a></Link>
+             <Link to ="/" className="navbar-brand" >BlockStone</Link>
              
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -34,10 +34,10 @@ class App extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar-nav">
-              <Link to = "/" className = "nav-item nav-link"> Home <span ClassName="sr-only">(current)</span></Link>
-               <Link to = "/VersusMode"> <a ClassName="nav-item nav-link"> VSmode</a></Link>
-               <Link to = "/MyCollection">  <a ClassName="nav-item nav-link">My Collection</a></Link>
-               <Link to = "/searchScreen"><a ClassName="nav-item nav-link" href="#">Store</a></Link>
+              <Link to = "/" className = "nav-item nav-link"> Home <span className="sr-only">(current)</span></Link>
+               <Link to = "/VersusMode" className="nav-item nav-link"> VSmode</Link>
+               <Link to = "/MyCollection" className="nav-item nav-link">My Collection</Link>
+               <Link to = "/searchScreen" className="nav-item nav-link">Store</Link>
               </div>
             </div>
           </nav>
