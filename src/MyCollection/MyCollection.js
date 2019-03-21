@@ -28,7 +28,7 @@ class MyCollection extends Component{
 		console.log("cards: " +cards);
 		if (cards.length === 0){
 			return (
-				<div class="container">
+				<div className="container">
 					<center>
 						<h1>
 							Sorry, no cards fam 
