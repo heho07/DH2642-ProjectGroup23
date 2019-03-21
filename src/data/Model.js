@@ -120,6 +120,12 @@ class Model extends ObservableModel{
 
   	}
 
+  	// returns the promise of a JSON object containing all the cards
+  	getAllCardsFromAPI(){
+  		const url = `${BASE_URL}/cards`;
+  		return fetch(url, httpOptions).then(this.processResponse);
+  	}
+
   	// Creates a JSON object from a response
   	processResponse(response) {
 	    if (response.ok) {
