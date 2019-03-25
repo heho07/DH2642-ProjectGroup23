@@ -37,6 +37,21 @@ class VersusMode extends Component{
 		});
 	}
 
+	onDrag(event, obj){
+		event.dataTransfer.setData("draggedObject", JSON.stringify(obj));
+	}
+
+	dragOver(event, obj){
+		event.preventDefault();
+		// Maybe make some nice colors?
+	}
+
+	onDrop(event, obj){
+		event.preventDefault();
+		let foreignObject = JSON.parse(event.dataTransfer.getData("draggedObject"));
+		this.fight(obj, foreignObject);
+	}
+
 	// Displays information about a specific card
 	cardInfo(obj){
 		// let img = null;
@@ -44,7 +59,9 @@ class VersusMode extends Component{
   //       	img = "https://images.weserv.nl/?url=" + obj.img.replace("http://", "");
   //     	}
 		return (			
-			<tr key = {obj.cardId}>
+			<tr key = {obj.cardId} draggable = "true" onDragStart = {(event) => this.onDrag(event, obj)} onDragOver = {(event) => this.dragOver(event, obj)} 
+			onDrop = {(event) => this.onDrop(event,obj)}
+			>
 				<td>
 					{/*<img src = {img} alt = {img}/>*/}
 					<p>{obj.name}</p>
@@ -91,13 +108,27 @@ class VersusMode extends Component{
 	// basically subtracts the attack no. from the health attribute and updates the object
 	// If a card is detected as dead (<0 hp) it is removed from the deck
 	// maybe have this in the model instead? idk
-	fight(){
+	fight(obj1, obj2){
 		let usersCards = this.state.usersCards;
 		let opponentsCards = this.state.opponentsCards;
 		let history = this.state.history;
+		let usersCurrent;
+		let opponentsCurrent;
 		if (usersCards !== undefined & opponentsCards !== undefined & usersCards.length>0 & opponentsCards.length>0 ) {
-			let usersCurrent = usersCards[0];
-			let opponentsCurrent = opponentsCards[0];
+			if (obj1 === undefined || obj2 === undefined) {
+				usersCurrent = usersCards[0];
+				opponentsCurrent = opponentsCards[0];
+				console.log("undefined objects into fight");
+			}
+			else{
+				opponentsCurrent = obj1;
+				usersCurrent = obj2;
+				console.log("setting the objects accordingly");
+				console.log("users");
+				console.log(usersCurrent);
+				console.log("opponents");
+				console.log(opponentsCurrent);
+			}
 			usersCurrent.health -= opponentsCurrent.attack;
 			opponentsCurrent.health -= usersCurrent.attack;
 			let userInfo = "users " + usersCurrent.name + " attacked " + opponentsCurrent.name + " for " + usersCurrent.attack + " damage";
@@ -105,11 +136,19 @@ class VersusMode extends Component{
 			history.push(userInfo);
 			history.push(opponentInfo);
 			if (usersCurrent.health <= 0) {
-				usersCards.shift();
+				for (let i = usersCards.length - 1; i >= 0; i--) {
+					if (usersCards[i].cardId === usersCurrent.cardId){
+						usersCards.splice(i, i);
+					}
+				}
 				history.push("users " + usersCurrent.name + " died!");
 			}
 			if (opponentsCurrent.health <= 0) {
-				opponentsCards.shift();
+				for (let i = opponentsCards.length - 1; i >= 0; i--) {
+					if (opponentsCards[i].cardId === opponentsCurrent.cardId){
+						opponentsCards.splice(i, i);
+					}
+				}
 				history.push("opponents " + opponentsCurrent.name + " died!");
 			}
 			this.setState({
