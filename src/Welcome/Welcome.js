@@ -32,7 +32,7 @@ class Welcome extends Component {
               </center>
               <br />            
               <h4><center> 
-              <Link to = "/VersusMode">
+              <Link to = "/ChooseDifficulty">
                 <button type="button" className="btn btn-dark">VS mode</button>
                </Link>
               </center></h4>

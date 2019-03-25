@@ -10,6 +10,7 @@ import modelInstance from "./data/Model";
 import Welcome from "./Welcome/Welcome";
 import SearchScreen from "./SearchScreen/SearchScreen";
 import VersusMode from "./VersusMode/VersusMode";
+import ChooseDifficulty from "./VersusMode/ChooseDifficulty";
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class App extends Component {
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar-nav">
               <Link to = "/" className = "nav-item nav-link"> Home <span className="sr-only">(current)</span></Link>
-               <Link to = "/VersusMode" className="nav-item nav-link"> VSmode</Link>
+               <Link to = "/ChooseDifficulty" className="nav-item nav-link"> VSmode</Link>
                <Link to = "/MyCollection" className="nav-item nav-link">My Collection</Link>
                <Link to = "/searchScreen" className="nav-item nav-link">Store</Link>
               </div>
@@ -62,6 +63,12 @@ class App extends Component {
           /> 
 
         {/*A place to try out the vs mode*/}
+          <Route
+            path = "/ChooseDifficulty"
+            render = {() => <ChooseDifficulty/>}
+          />
+
+
           <Route
             path = "/VersusMode"
             render = {() => <VersusMode/>}

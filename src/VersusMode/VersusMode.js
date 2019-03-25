@@ -25,6 +25,10 @@ class VersusMode extends Component{
 		modelInstance.addObserver(this);
 	}
 
+	componentWillUnmount(){
+		modelInstance.removeObserver(this);
+	}
+
 	// this will be called when the model calls "notifyObservers()"
 	update(){
 		this.setState({
@@ -120,12 +124,12 @@ class VersusMode extends Component{
 	// this method tells the model to perform a query for cards of a certain quality
 	// it then tells the model to select a few cards from there at random
 	// which it then tells the model to add to the opponents deck
-	addCardsToOpponent(quality){
+	addCardsToDeck(quality, destination){
 		modelInstance.searchDeckByQuality(quality)
 			.then((result) => modelInstance.selectRandomCardsForOpponent(result))
 				.then((result) => {
 					for (var i = result.length - 1; i >= 0; i--) {
-						modelInstance.addCardToDeck(result[i], "opponent");
+						modelInstance.addCardToDeck(result[i], destination);
 					}
 				})
 	}
@@ -134,20 +138,39 @@ class VersusMode extends Component{
 	render(){
 		return (
 				<div>
-					<Link to = "/"><button>Go back</button></Link>
-					<button onClick = {() => this.fight()}>Fight</button>	
-					<button onClick = {() => this.addCardsToOpponent("Free")}>Add Free cards to opponent</button>
-					<button onClick = {() => this.addCardsToOpponent("Common")}>Add Common cards to opponent</button>
-					<button onClick = {() => this.addCardsToOpponent("Rare")}>Add Rare cards to opponent</button>
-					<button onClick = {() => this.addCardsToOpponent("Epic")}>Add Epic cards to opponent</button>
-					<button onClick = {() => this.addCardsToOpponent("Legendary")}>Add Legendary cards to opponent</button>
-					<button onClick = {() => modelInstance.clearOpponentsCards()}>Clear the opponents deck</button>
+
+					{/* This div is purely to test stuff out with, can be commented out and should be removed later on */}
+					<div id = "testDiv">
+						<h3>For testing purposes</h3>
+						<p>Test out the different stuff by adding cards. Adding cards does not clear the deck. This div should be removed later on</p>
+						<button onClick = {() => this.addCardsToDeck("Free", "opponent")}>Add Free cards to opponent</button>
+						<button onClick = {() => this.addCardsToDeck("Common", "opponent")}>Add Common cards to opponent</button>
+						<button onClick = {() => this.addCardsToDeck("Rare", "opponent")}>Add Rare cards to opponent</button>
+						<button onClick = {() => this.addCardsToDeck("Epic", "opponent")}>Add Epic cards to opponent</button>
+						<button onClick = {() => this.addCardsToDeck("Legendary", "opponent")}>Add Legendary cards to opponent</button>
+						<button onClick = {() => modelInstance.clearCards("opponent")}>Clear the opponents deck</button>
+						<br/>
+						<br/>
+						<button onClick = {() => this.addCardsToDeck("Free", "user")}>Add Free cards to user</button>
+						<button onClick = {() => this.addCardsToDeck("Common", "user")}>Add Common cards to user</button>
+						<button onClick = {() => this.addCardsToDeck("Rare", "user")}>Add Rare cards to user</button>
+						<button onClick = {() => this.addCardsToDeck("Epic", "user")}>Add Epic cards to user</button>
+						<button onClick = {() => this.addCardsToDeck("Legendary", "user")}>Add Legendary cards to user</button>
+						<button onClick = {() => modelInstance.clearCards("user")}>Clear the users deck</button>
+						<br/>
+						<br/>
+					</div>
+
+					<Link to = "/ChooseDifficulty"><button title = "Can't take the heat? Better retreat and change difficulty">Retreat</button></Link>
 					<div>
 						{/* I want this to take up more height even when it is empty. idk how though, at least without using px */}
 						<div className = "row border border-dark " id = "cardInfo">
 							<div className = "col-sm-5">
 								<h1>Users cards </h1>
 								{this.displayAllCards("user")}
+							</div>
+							<div className = "col-sm-1">
+								<button onClick = {() => this.fight()}>Fight</button>	
 							</div>
 							<div className = "col-sm-5" id = "opponentsCards">
 								<h1 id = "opponentHeader">AI opponents cards</h1>
@@ -156,7 +179,7 @@ class VersusMode extends Component{
 						</div>
 						<hr/>
 
-					{/* This will be made scrollable via css
+					{/* scrollable via css
 						need to make it so that the scrollbar is focused to the bottom automatically. implement:
 						https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up/21067431
 						or this https://stackoverflow.com/questions/40336311/how-can-i-make-a-scrollable-component-that-scrolls-to-the-latest-children-compon
@@ -164,7 +187,7 @@ class VersusMode extends Component{
 						<div id = "gameResult">
 								{this.state.history.map((item, i)=> {
 							
-								return <p>{item}</p>}
+								return <p key = {i}>{item}</p>}
 							)}
 							
 						</div>

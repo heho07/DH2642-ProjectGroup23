@@ -27,3 +27,8 @@ table.table-bordered > tbody > tr > td{
 #opponentsCards{
 	float:right;
 }
+
+#testDiv{
+	border:1px solid black;
+	background-color: grey;
+}
