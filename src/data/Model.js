@@ -75,7 +75,7 @@ class Model extends ObservableModel{
 		while(toRet.length < 10){
 			currentObject = objectArray[Math.floor(Math.random()*objectArray.length)]; 
 			try{
-				if ( currentObject.attack !== undefined && currentObject.health !== undefined  && currentObject.name !== undefined ) {
+				if ( currentObject.attack !== undefined && currentObject.health !== undefined  && currentObject.name !== undefined && (currentObject.attack > 0 || currentObject.health > 0)) {
 					if (toRet.length === 0) {
 						toRet.push(currentObject);
 					}
