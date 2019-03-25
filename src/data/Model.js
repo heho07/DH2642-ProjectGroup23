@@ -59,8 +59,19 @@ class Model extends ObservableModel{
 		this.notifyObservers();
 	}
 
-	clearOpponentsCards(){
-		this.opponentsCards = [];
+	clearCards(destination){
+		switch(destination){
+			case 'opponent':
+				this.opponentsCards = [];
+				break;
+			case 'user':
+				this.usersCards = [];
+				break;
+			default:
+				this.opponentsCards = [];
+				console.log("something calling clearCards in Model.js had the wrong input parameter");
+				break;
+		}
 		this.notifyObservers();
 	}
 
