@@ -5,6 +5,12 @@ import "./VersusMode.css";
 
 // A place to try out the gaming stuff
 // currently only displays the cards in the users and the AI opponents decks
+
+// this uses drag & drop. Resources can be found:
+// primarily: https://www.w3schools.com/html/html5_draganddrop.asp
+// a lot here: https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/setData
+// kind of here: https://medium.freecodecamp.org/reactjs-implement-drag-and-drop-feature-without-using-external-libraries-ad8994429f1a
+
 class VersusMode extends Component{
 	
 	// To make sure we don't delete stuff from the users collection when the cards die
@@ -58,9 +64,21 @@ class VersusMode extends Component{
   //     	if (obj.img != null){
   //       	img = "https://images.weserv.nl/?url=" + obj.img.replace("http://", "");
   //     	}
+
+  //added some background color to the tr to make it more visably discernably between the different elements
+  // HOWEVER it kind of looks like shit so idk
+  		let bgColors = [];
+  		for (var i = 0; i <3; i++) {
+  			let toAdd = Math.floor((obj.cardId.charCodeAt(0) * (200-60+1))%150 + 100 )%150;
+  			if (toAdd < 90) {
+  				toAdd += 100;
+  			}
+  			bgColors.push(toAdd);
+  		}
 		return (			
 			<tr key = {obj.cardId} draggable = "true" onDragStart = {(event) => this.onDrag(event, obj)} onDragOver = {(event) => this.dragOver(event, obj)} 
 			onDrop = {(event) => this.onDrop(event,obj)}
+			style = {{backgroundColor:`rgb(${bgColors})`}}
 			>
 				<td>
 					{/*<img src = {img} alt = {img}/>*/}
