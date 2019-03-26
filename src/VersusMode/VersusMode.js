@@ -43,19 +43,35 @@ class VersusMode extends Component{
 		});
 	}
 
+
+	// This method is called when the object is dragged. 
+	// Transfers the object data as a JSON string via the event
 	onDrag(event, obj){
 		event.dataTransfer.setData("draggedObject", JSON.stringify(obj));
 	}
 
+	// This method is called when the object is dragged over a dropable spot
 	dragOver(event, obj){
 		event.preventDefault();
 		// Maybe make some nice colors?
 	}
 
+	// handles what happens when something is dropped
 	onDrop(event, obj){
 		event.preventDefault();
-		let foreignObject = JSON.parse(event.dataTransfer.getData("draggedObject"));
-		this.fight(obj, foreignObject);
+		// to be able to transfer the object we have to send it as JSON string
+		// and then parse it to a JSON object. This creates a copy of the file, 
+		// which makes us unable to change it the way we want in the fight() method
+		// A potential fix to make this smoother is to simply 
+		// send the cardId via the event.dataTranser(). However it currently works, so..
+		let draggedObjectCopy = JSON.parse(event.dataTransfer.getData("draggedObject"));
+		let objectToSendToFight;
+		for (var i = 0; i < this.state.usersCards.length; i++) {
+			if (this.state.usersCards[i].cardId === draggedObjectCopy.cardId){
+				objectToSendToFight = this.state.usersCards[i];
+			}
+		}
+		this.fight(obj, objectToSendToFight);
 	}
 
 	// Displays information about a specific card
@@ -67,6 +83,8 @@ class VersusMode extends Component{
 
   //added some background color to the tr to make it more visably discernably between the different elements
   // HOWEVER it kind of looks like shit so idk
+  // TODO: make it so that only the users cards are draggable, and only the 
+  // opponents cards are onDrop-able
   		let bgColors = [];
   		for (var i = 0; i <3; i++) {
   			let toAdd = Math.floor((obj.cardId.charCodeAt(0) * (200-60+1))%150 + 100 )%150;
@@ -126,45 +144,47 @@ class VersusMode extends Component{
 	// basically subtracts the attack no. from the health attribute and updates the object
 	// If a card is detected as dead (<0 hp) it is removed from the deck
 	// maybe have this in the model instead? idk
-	fight(obj1, obj2){
+	fight(onDropObject, draggedObjectCopy){
 		let usersCards = this.state.usersCards;
 		let opponentsCards = this.state.opponentsCards;
 		let history = this.state.history;
 		let usersCurrent;
 		let opponentsCurrent;
 		if (usersCards !== undefined & opponentsCards !== undefined & usersCards.length>0 & opponentsCards.length>0 ) {
-			if (obj1 === undefined || obj2 === undefined) {
+			if (onDropObject === undefined || draggedObjectCopy === undefined) {
 				usersCurrent = usersCards[0];
 				opponentsCurrent = opponentsCards[0];
 				console.log("undefined objects into fight");
 			}
 			else{
-				opponentsCurrent = obj1;
-				usersCurrent = obj2;
-				console.log("setting the objects accordingly");
-				console.log("users");
-				console.log(usersCurrent);
-				console.log("opponents");
-				console.log(opponentsCurrent);
+				// if no arguments are passed to the method
+				// then we get the objects from the drag events
+				opponentsCurrent = onDropObject;
+				usersCurrent = draggedObjectCopy;
 			}
 			usersCurrent.health -= opponentsCurrent.attack;
 			opponentsCurrent.health -= usersCurrent.attack;
+			
+			// strings used for information
 			let userInfo = "users " + usersCurrent.name + " attacked " + opponentsCurrent.name + " for " + usersCurrent.attack + " damage";
 			let opponentInfo = "opponents " + opponentsCurrent.name + " attacked " + usersCurrent.name + " for " + opponentsCurrent.attack + " damage";
 			history.push(userInfo);
 			history.push(opponentInfo);
+
 			if (usersCurrent.health <= 0) {
+				console.log("users current negative");
 				for (let i = usersCards.length - 1; i >= 0; i--) {
 					if (usersCards[i].cardId === usersCurrent.cardId){
-						usersCards.splice(i, i);
+						usersCards.splice(i, 1);
 					}
 				}
 				history.push("users " + usersCurrent.name + " died!");
 			}
 			if (opponentsCurrent.health <= 0) {
-				for (let i = opponentsCards.length - 1; i >= 0; i--) {
+				console.log("opponents current negative");
+				for (let i = 0; i < opponentsCards.length; i++) {
 					if (opponentsCards[i].cardId === opponentsCurrent.cardId){
-						opponentsCards.splice(i, i);
+						opponentsCards.splice(i, 1);
 					}
 				}
 				history.push("opponents " + opponentsCurrent.name + " died!");
