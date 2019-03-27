@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import "./Welcome.css";
 
 class Welcome extends Component {
-  render() {
+  
+    render() {
     return (
       <div className="Welcome">
         <br/>

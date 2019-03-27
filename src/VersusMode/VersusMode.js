@@ -220,12 +220,12 @@ class VersusMode extends Component{
 					<div id = "testDiv">
 						<h3>For testing purposes</h3>
 						<p>Test out the different stuff by adding cards. Adding cards does not clear the deck. This div should be removed later on</p>
-						<button onClick = {() => this.addCardsToDeck("Free", "opponent")}>Add Free cards to opponent</button>
-						<button onClick = {() => this.addCardsToDeck("Common", "opponent")}>Add Common cards to opponent</button>
-						<button onClick = {() => this.addCardsToDeck("Rare", "opponent")}>Add Rare cards to opponent</button>
-						<button onClick = {() => this.addCardsToDeck("Epic", "opponent")}>Add Epic cards to opponent</button>
-						<button onClick = {() => this.addCardsToDeck("Legendary", "opponent")}>Add Legendary cards to opponent</button>
-						<button onClick = {() => modelInstance.clearCards("opponent")}>Clear the opponents deck</button>
+						<button className="btn btn-dark" id="addButton" onClick = {() => this.addCardsToDeck("Free", "opponent")}>Add Free cards to opponent</button>
+						<button className="btn btn-dark" id="addButton" onClick = {() => this.addCardsToDeck("Common", "opponent")}>Add Common cards to opponent</button>
+						<button className="btn btn-dark" id="addButton" onClick = {() => this.addCardsToDeck("Rare", "opponent")}>Add Rare cards to opponent</button>
+						<button className="btn btn-dark" id="addButton" onClick = {() => this.addCardsToDeck("Epic", "opponent")}>Add Epic cards to opponent</button>
+						<button className="btn btn-dark" id="addButton" onClick = {() => this.addCardsToDeck("Legendary", "opponent")}>Add Legendary cards to opponent</button>
+						<button className="btn btn-dark" id="addButton" onClick = {() => modelInstance.clearCards("opponent")}>Clear the opponents deck</button>
 						<br/>
 						<br/>
 						<button onClick = {() => this.addCardsToDeck("Free", "user")}>Add Free cards to user</button>
