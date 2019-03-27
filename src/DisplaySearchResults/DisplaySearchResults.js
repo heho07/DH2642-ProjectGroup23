@@ -69,16 +69,18 @@ class SearchResults extends Component {
                   img = "https://images.weserv.nl/?url=" + item.img.replace("http://", "");
                 }              
                 return(
-                  <tr key = {item.cardId}>
+                    <tr key = {item.cardId}>
+                    <div className="resultImage">
                     <td class="align-middle"><img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/></td>
+                    </div>
                     <td class="align-middle">{"name: " + item.name}</td>
                     <td class="align-middle">{"id: " + item.cardId}</td>
                     <td class="align-middle">{"type: " + item.type}</td>
                     <td class="align-middle">{"cost: " + item.cost}</td>
                     <td class="align-middle">{"attack: " + item.attack}</td>
                     <td class="align-middle">{"health: " + item.health}</td>
-                    <td class="align-middle"><button onClick = {() => this.handleClickOnCard(item, "user")}>Add to user</button></td>
-                    <td class="align-middle"><button onClick = {() => this.handleClickOnCard(item, "opponent")}>Add to opponent</button></td>
+                    <td class="align-middle"><button className="btn btn-dark" id="addButton" onClick = {() => this.handleClickOnCard(item, "user")}>Add to user</button></td>
+                    <td class="align-middle"><button className="btn btn-dark" id="addButton" onClick = {() => this.handleClickOnCard(item, "opponent")}>Add to opponent</button></td>
                     <td class="align-middle"><Link to = "/storeDetail"><button onClick = {() => this.handleStoreCard(item)}>View this card</button></Link></td>
                   </tr>
                 );
@@ -90,7 +92,7 @@ class SearchResults extends Component {
             })}
           </tbody>
         </table>
-        <p>thisWillShowTheCurrentCard</p>
+  
       </div>
 
     );
