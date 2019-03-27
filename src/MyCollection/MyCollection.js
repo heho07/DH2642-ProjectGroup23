@@ -55,16 +55,20 @@ class MyCollection extends Component{
 	
 	render(){
 		return(
-				<div>
-					<Link to = "/"><button>Go back</button></Link>
-						<table class = "table table-borderless">
-							<tbody>
-								<tr> 
-									{this.displayAllCards()} 
-								</tr>
-							</tbody>
-						</table>
-				</div>);
+			<div>
+				<table class = "table table-borderless">
+					<tbody>
+						<tr> 
+							{this.displayAllCards()} 
+						</tr>
+					</tbody>
+				</table>
+				<center>
+				<Link to = "/">
+					<button className="btn btn-dark" id="backButton">Go back</button>
+				</Link>
+				</center>
+			</div>);
 
 
 	}

@@ -56,9 +56,11 @@ class ChooseDifficulty extends Component{
 		return(
 			<div>
 				<Link to = "/VersusMode">
-					<button onClick = {() => this.addCardsToDeck(quality, "opponent")} className = "diffButton" >{diff}</button>
+					<button onClick = {() => this.addCardsToDeck(quality, "opponent")} className = "diffButton btn btn-dark" >{diff}</button>
 				</Link>
-				<p>{description}</p>
+				<p id="textBelow">
+					{description}
+				</p>
 			</div>
 			);
 	}
@@ -68,7 +70,9 @@ class ChooseDifficulty extends Component{
 		const difficulties = ["Free", "Common", "Rare", "Epic", "Legendary"];
 		return (
 				<div>
-					<h1>Choose your difficulty!</h1>
+					<center>
+						<h1 className="header">Choose your difficulty!</h1>
+					</center>
 					<div className = "row">
 						{difficulties.map((item, i) => {
 							return (

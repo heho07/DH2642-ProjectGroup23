@@ -1,3 +1,15 @@
-.diffButton{
-	width:100%;
+.header {
+	margin-left: 1%;
 }
+
+.diffButton{
+	margin-left: 2%;
+	width:80%;
+}
+
+#textBelow {
+	margin-left: 2%;
+	font-style: italic;
+
+}
+
