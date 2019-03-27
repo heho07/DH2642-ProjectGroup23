@@ -18,7 +18,8 @@ class Model extends ObservableModel{
 		this.usersCards = [];
 		this.opponentsCards = [];
 		this.storedCards = {};
-		this.searchedCards = []
+		this.searchedCards = [];
+		this.filter="";
 	}
 
 	// Checks if the card is already in the usersCards array
@@ -157,9 +158,19 @@ class Model extends ObservableModel{
 	setSearchedCards(array){
 		this.searchedCards = array;
 		console.log(this.searchedCards);
+		this.notifyObservers();
 	}
 	getSearchedCards(){
 		return this.searchedCards;
+	}
+
+	setFilter(filter){
+		this.filter = filter;
+		this.notifyObservers();
+	}
+
+	getFilter(){
+		return this.filter;
 	}
 
 }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import modelInstance from "../data/Model";
 
 // this component basically renders a searchbar which will pass the inputted information to its parent component
 // when the search is submitted.
@@ -9,7 +9,7 @@ class SearchBar extends Component{
 	constructor(props){
 		super (props);
 		 this.state = {
-		 	filter: "",
+		 	filter: modelInstance.getFilter(),
 		 };
 	}
 
@@ -30,7 +30,7 @@ class SearchBar extends Component{
 	// Needs the prop scope to function
 	handleSubmit (event){
 		event.preventDefault();
-		this.props.search(this.state.filter); 		
+		modelInstance.setFilter(this.state.filter); 		
 	}
 
 	render(){

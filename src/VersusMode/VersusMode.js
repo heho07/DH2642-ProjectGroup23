@@ -76,10 +76,10 @@ class VersusMode extends Component{
 
 	// Displays information about a specific card
 	cardInfo(obj){
-		// let img = null;
-  //     	if (obj.img != null){
-  //       	img = "https://images.weserv.nl/?url=" + obj.img.replace("http://", "");
-  //     	}
+		let img = null;
+      	if (obj.img != null){
+        	img = "https://images.weserv.nl/?url=" + obj.img.replace("http://", "");
+      	}
 
   //added some background color to the tr to make it more visably discernably between the different elements
   // HOWEVER it kind of looks like shit so idk
@@ -99,7 +99,7 @@ class VersusMode extends Component{
 			style = {{backgroundColor:`rgb(${bgColors})`}}
 			>
 				<td>
-					{/*<img src = {img} alt = {img}/>*/}
+					<img src = {img} alt = {img}/>
 					<p>{obj.name}</p>
 				</td>
 				<td>

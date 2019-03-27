@@ -13,8 +13,8 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResult: null,
-      loading: true,
+      searchResult: modelInstance.getSearchedCards(),
+      status: true,
       filter:this.props.filter,
     };
   }
@@ -28,21 +28,36 @@ class SearchResults extends Component {
     if (this.state.filter === "") {
       return;
     }
-      modelInstance.searchCards(this.state.filter).then(
-        results =>{ 
-          console.log(results);
-          this.setState({
-            loading: false, 
-            searchResult: results
-          });
-        }
-      ).catch(
-        e => this.setState({
-          loading:null, 
-          status:"ERROR",
-        })
-      );
+    modelInstance.searchCards(this.state.filter).then(
+      results =>{ 
+        console.log(results);
+        this.setState({
+          loading: false, 
+          // searchResult: results
+        });
+        modelInstance.setSearchedCards(results);
+      }
+    ).catch(
+      e => this.setState({
+        loading:null, 
+        status:"ERROR",
+      })
+    );
   }
+
+  componentWillMount(){
+    modelInstance.addObserver(this);
+  }
+
+  componentWillUnmount(){
+      modelInstance.removeObserver(this);
+  }
+
+  update(){
+    this.setState({
+      searchResult:modelInstance.getSearchedCards(),
+    });
+  }  
 
   
   handleClickOnCard(obj, destination){
@@ -55,14 +70,14 @@ class SearchResults extends Component {
 // Creates HTML containing information about the cards found in the search
 // This function could be generalized into it's own class so that it can more easily be used elsewhere
   showCard(){
-    let searchedCards = []; 
+    // let searchedCards = []; 
     return(
       <div>
         <table class ="table">
           <tbody>
             {this.state.searchResult.map((item, i) => {
               // if the card is valid we return information about it 
-              searchedCards.push(item); // add searched cards to model
+              // searchedCards.push(item); // add searched cards to model
               if (item.name !== undefined & item.img !== undefined & item.health !== undefined & item.attack !== undefined & item.cost !== undefined) {
                 let img =null;
                 // Due to the webserver needing a secure (https://) source we parse the insecure (http) image from
@@ -92,7 +107,6 @@ class SearchResults extends Component {
                 return false;
               }
             })}
-            {modelInstance.setSearchedCards(searchedCards)}
           </tbody>
         </table>
   
