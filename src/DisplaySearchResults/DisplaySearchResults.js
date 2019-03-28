@@ -16,6 +16,8 @@ class SearchResults extends Component {
       searchResult: modelInstance.getSearchedCards(),
       status: true,
       filter:this.props.filter,
+      field: "cost",
+      reverseSort: true,
     };
   }
 
@@ -67,10 +69,28 @@ class SearchResults extends Component {
   handleStoreCard(obj){
     modelInstance.storeCard(obj);
   }
+
+
+  sortCard(primer){
+    // reverse indicates what order we're sorting in.
+    // Primer indicates how the sort is made. Has to be a way of sorting such as parseFloat etc
+    // Field indicates what we're sorting by 
+    let key = primer ? x => {return primer(x[this.state.field])} : x => x[this.state.field];
+    let reverse;
+    !(this.state.reverseSort) ? reverse = 1: reverse = -1;
+    return (a,b) =>{
+      return a = key(a), b = key(b), reverse * ((a>b)-(b>a));
+    }
+  }
 // Creates HTML containing information about the cards found in the search
 // This function could be generalized into it's own class so that it can more easily be used elsewhere
   showCard(){
     // let searchedCards = []; 
+    if(this.state.field !== "")
+    {
+      this.state.searchResult.sort(this.sortCard(parseFloat)); //for everything numbers
+      //this.state.searchResult.sort(this.sortCard(function(a){return a.toUpperCase()})); // for name
+    }
     return(
       <div>
         <table class ="table">
@@ -109,9 +129,7 @@ class SearchResults extends Component {
             })}
           </tbody>
         </table>
-  
       </div>
-
     );
   }
 
@@ -124,7 +142,7 @@ class SearchResults extends Component {
         information = <p>loading...</p>;
         break;
       case false:
-        information = this.showCard();
+        information = this.showCard();       
         break;
       default:
         information = <p>Something went wrong</p>;
