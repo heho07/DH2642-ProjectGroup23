@@ -552,6 +552,51 @@ contract ERC721 is ERC165, IERC721 {
 }
 
 contract Blockstone is ERC721, Ownable {
+  // store address is 0xbeef, mou
+  address store = address(0xbeef);
+
+  struct cardMeta {
+    uint256 price;
+    string nameId;
+  }
+  mapping(uint256 => cardMeta) idToMeta;
+
+  event MintNewCard(uint256 indexed id, uint256 indexed price, string indexed nameId);
+
+
+  /**
+   * @dev Mint a new card in the store
+   * @param nameId nameId of the minted card
+   * @param price price of the minted card
+   */
+  function mint(string memory nameId, uint256 price) public onlyOwner {
+    uint256 tokenId = totalAmount;
+    _mint(store, tokenId);
+    idToMeta[tokenId].nameId = nameId;
+    idToMeta[tokenId].price = price;
+    emit MintNewCard(tokenId, price, nameId);
+  }
+
+  /**
+   * @dev Purchase a card
+   * @param tokenId the token to be bought
+   */
+  function purchase(uint256 tokenId) public payable {
+    // Player can only purchase from the store
+    require(ownerOf(tokenId) == store);
+    // The msg.value should be greater and equal to the price
+    require(msg.value >= idToMeta[tokenId].price);
+    _transferFrom(store, msg.sender, tokenId);
+  }
+
+  /**
+   * @dev Withdraw the balance in this contract to owner
+   */
+  function withdraw() public onlyOwner {
+    address payable wallet = msg.sender;
+    wallet.transfer(address(this).balance);
+  }
+
   /**
    * @dev Return all token IDs owned by an owner
    * @param owner address to query
@@ -567,16 +612,5 @@ contract Blockstone is ERC721, Ownable {
       }
     }
     return tokens;
-  }
-
-  /**
-   * @dev Mint a new id for an address
-   * @param to address to own the newly-minted token
-   * @param tokenId new token id
-   */
-  function mint(address to, uint256 tokenId) public onlyOwner {
-    // Restrict the token ID to be incremental, and things will be easier
-    require(tokenId == totalAmount);
-    _mint(to, tokenId);
   }
 }
