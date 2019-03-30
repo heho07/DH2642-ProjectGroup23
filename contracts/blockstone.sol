@@ -553,13 +553,13 @@ contract ERC721 is ERC165, IERC721 {
 
 contract Blockstone is ERC721, Ownable {
   // store address is 0xbeef, mou
-  address store = address(0xbeef);
+  address public store = address(0xbeef);
 
   struct cardMeta {
     uint256 price;
     string nameId;
   }
-  mapping(uint256 => cardMeta) idToMeta;
+  mapping(uint256 => cardMeta) public idToMeta;
 
   event MintNewCard(uint256 indexed id, uint256 indexed price, string indexed nameId);
 
@@ -602,7 +602,7 @@ contract Blockstone is ERC721, Ownable {
    * @param owner address to query
    * @return uint256[] all token IDs
    */
-  function getOwnersAllTokens(address owner) public view returns (uint256[] memory) {
+  function getOwnersAllTokens(address owner) external view returns (uint256[] memory) {
     uint256[] memory tokens = new uint256[](balanceOf(owner));
     uint256 counter = 0;
     for (uint256 id = 0; id < totalAmount; id++) {
