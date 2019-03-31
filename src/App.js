@@ -22,16 +22,17 @@ class App extends Component {
   
 
   // The render function will use Routers to check what URL the user is at and render stuff accordingly
+  // Currently Hamburger menu is not working. 
+  // Might have to change menu. 
   render() {
     return (
         <div className="App">
         <header className="App-header">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
              <Link to ="/" className="navbar-brand" >BlockStone</Link>
-             
              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
