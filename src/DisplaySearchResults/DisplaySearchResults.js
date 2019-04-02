@@ -108,17 +108,20 @@ class SearchResults extends Component {
                 return(
                     <tr key = {item.cardId}>
                     <div className="resultImage">
+                    <center>
                     <td class="align-middle"><img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/></td>
+                    </center>
                     </div>
                     <td class="align-middle">
-                    {"name: " + item.name}<br />
-                    {"id: " + item.cardId}<br />
-                    {"type: " + item.type}<br />
-                    {"cost: " + item.cost}<br />
-                    {"attack: " + item.attack}<br />
-                    {"health: " + item.health}<br />
-                    <button className="btn btn-dark" onClick = {() => this.handleClickOnCard(item, "user")}>Add to user</button> <br />
-                    <button className="btn btn-dark" onClick = {() => this.handleClickOnCard(item, "opponent")}>Add to opponent</button><br />
+                    <b>name</b>
+                    {item.name}<br />
+                    <b>card id </b>{item.cardId}<br />
+                    <b>type </b>{item.type}<br />
+                    <b>cost </b>{item.cost}<br />
+                    <b>atck </b>{item.attack}<br />
+                    <b>health </b>{item.health}<br /> <br />
+                    <button className="btn btn-dark" id="gameButton" onClick = {() => this.handleClickOnCard(item, "user")}>Add to user</button> <br />
+                    <button className="btn btn-dark" id="gameButton" onClick = {() => this.handleClickOnCard(item, "opponent")}>Add to opponent</button><br />
                     <Link to = "/storeDetail"><button className="btn btn-dark"  onClick = {() => this.handleStoreCard(item)}>View this card</button></Link>
                     </td>
 

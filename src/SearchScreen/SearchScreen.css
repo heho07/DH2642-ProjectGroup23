@@ -8,8 +8,12 @@ tr{
 }
 */
 img{
-	height: auto;
-	width: auto;
+	height: 80%;
+	width: 80%;
 	max-width: 307px;
 	max-height: 465px;
+}
+
+#gameButton{
+	margin-bottom: 0.5%;
 }
