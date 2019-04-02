@@ -1,15 +1,17 @@
-/*td{
-	border:1px solid black;
-	padding:1%;
+td{
+	border:0px solid black;
+	padding: 0px;
+
 }
 
 tr{
-	border: 1px solid black;
+	border: 0px solid black;
+
 }
-*/
+
 img{
-	height: 100%;
-	width: 100%;
+	height: 80%;
+	width: 80%;
 	max-width: 307px;
 	max-height: 465px;
 }
@@ -18,3 +20,7 @@ img{
 	margin-bottom: 0.5%;
 }
 
+.table td {
+	padding: .1rem;
+	border-top: 0;
+}
