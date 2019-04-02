@@ -113,13 +113,53 @@ class SearchResults extends Component {
                     </center>
                     </div>
                     <td class="align-middle">
-                    <b>name</b>
-                    {item.name}<br />
-                    <b>card id </b>{item.cardId}<br />
-                    <b>type </b>{item.type}<br />
-                    <b>cost </b>{item.cost}<br />
-                    <b>atck </b>{item.attack}<br />
-                    <b>health </b>{item.health}<br /> <br />
+                    <tr>
+                    <td>
+                      <b>name</b>
+                    </td>
+                    <td>
+                    {item.name}
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                      <b>card id </b>
+                    </td>
+                    <td>
+                    {item.cardId}
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                      <b>type </b></td>
+                    <td>
+                    {item.type}
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                      <b>cost </b>
+                    </td>
+                    <td>
+                    {item.cost}
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                      <b>attack </b>
+                    </td>
+                    <td>
+                    {item.attack}
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                      <b>health </b>
+                    </td>
+                    <td>
+                    {item.health}
+                    </td>
+                    </tr>
                     <button className="btn btn-dark" id="gameButton" onClick = {() => this.handleClickOnCard(item, "user")}>Add to user</button> <br />
                     <button className="btn btn-dark" id="gameButton" onClick = {() => this.handleClickOnCard(item, "opponent")}>Add to opponent</button><br />
                     <Link to = "/storeDetail"><button className="btn btn-dark"  onClick = {() => this.handleStoreCard(item)}>View this card</button></Link>
