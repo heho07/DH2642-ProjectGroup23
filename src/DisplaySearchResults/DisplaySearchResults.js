@@ -27,10 +27,17 @@ class SearchResults extends Component {
   componentDidMount() {
     // when data is retrieved we update the state
     // this will cause the component to re-render
+    
+    // a dummy solution since the API can't query for undefined or empty space
+    let searchItem;
     if (this.state.filter === "") {
-      return;
+      const searchTerms = ["legendary", "knight", "kobold", "murloc", "dragon"];
+      searchItem = searchTerms[Math.floor(Math.random() *searchTerms.length)];
     }
-    modelInstance.searchCards(this.state.filter).then(
+    else{
+      searchItem = this.state.filter;
+    }
+    modelInstance.searchCards(searchItem).then(
       results =>{ 
         console.log(results);
         this.setState({
