@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>title</title>
+  </head>
+  <body>
+    <div>Address: <span id="walletAddress">---</span></div>
+    <div>Number of cards: <span id="cardsNum">---</span></div>
+    <div>Cards of store (<span id="storeCardsNum">---</span>): <span id="storeCards">---</span></div>
+    <div>Cards of user (<span id="userCardsNum">---</span>): <span id="userCards">---</span></div>
+    <div>
+      <button id="btn0" data-id="0" value="1000000000000000000">name0</button>
+      <button id="btn1" data-id="1" value="2000000000000000000">name1</button>
+      <button id="btn2" data-id="2" value="3000000000000000000">name2</button>
+    </div>
+    <!-- web3.js beta37 stable -->
+    <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.37/dist/web3.min.js"></script>
+    <!-- abi , if abi.json cannot be read in, use this method to read in-->
+    <!-- <script language="javascript" type="text/javascript" src="../src/assets/abi.js"></script> -->
+    <!-- script of connecting web3  -->
+    <script language="javascript" type="text/javascript" src="../src/connect.js"></script>
+  </body>
+</html>
