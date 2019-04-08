@@ -19,7 +19,7 @@ class MyCollection extends Component{
         	img = "https://images.weserv.nl/?url=" + obj.img.replace("http://", "");
       	}
 		return (
-				<img src = {img} alt = {img}/>
+				<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/>
 			);
 	}
 
@@ -38,16 +38,15 @@ class MyCollection extends Component{
 						</span> 
 					</center>
 	  			</div>	
-				
 			);
 		}
 		else {
 			return(
-				<td>
+				<div>
 					{cards.map((item, i)=>{
 						return this.cardInfo(item);
 					})}
-				</td>
+				</div>
 	
 			)
 		}
@@ -56,15 +55,9 @@ class MyCollection extends Component{
 	render(){
 		return(
 			<div>
-				<table class = "table table-borderless">
-					<tbody>
-						<tr> 
-							<td>
-								{this.displayAllCards()} 
-							</td>
-						</tr>
-					</tbody>
-				</table>
+				{/*Removed the table from here. Unnecessary*/}
+				{this.displayAllCards()} 
+					
 				<center>
 				<Link to = "/">
 					<button className="btn btn-dark" id="backButton">Go back</button>
