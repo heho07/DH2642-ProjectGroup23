@@ -201,7 +201,7 @@ class SearchResults extends Component {
     // Checks if we are loading or not using the components state
     switch(this.state.loading){
       case true:
-        information = <p>loading...</p>;
+        information = <center><div className = "loader">loading</div></center>;
         break;
       case false:
         information = this.showCard();       

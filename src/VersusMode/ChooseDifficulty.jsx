@@ -8,11 +8,17 @@ import "./ChooseDifficulty.css";
 // Here you will be able to choose the difficulty before the fight begins
 class ChooseDifficulty extends Component{
 	
-
+	constructor(props){
+		super(props);
+		this.state = {
+			loading:false,
+		};
+	}
 	// this method tells the model to perform a query for cards of a certain quality
 	// it then tells the model to select a few cards from there at random
 	// which it then tells the model to add to the deck of the destination given
 	addCardsToDeck(quality, destination){
+		this.setState({loading:true});
 		if (destination === "opponent") {
 			modelInstance.clearCards(destination);
 		}
@@ -22,10 +28,11 @@ class ChooseDifficulty extends Component{
 				.then((result) => {
 					for (var i = result.length - 1; i >= 0; i--) {
 						modelInstance.addCardToDeck(result[i], destination);
+						console.log("finishhhhhh");
 					}
-				}).then(this.props.history.push('/VersusMode'))
+				}).then(() => this.props.history.push('/VersusMode'));
 	}
-
+// 
 	// creates the input buttons that the user can use to decide the difficulty
 	difficultySetting(quality, iterationNumber){
 		// TODO: Make this look pretty. Maybe include some cool pictures?
@@ -68,7 +75,9 @@ class ChooseDifficulty extends Component{
 
 	render(){
 		const difficulties = ["Free", "Common", "Rare", "Epic", "Legendary"];
-		return (
+		// if the cards are loading we notify the user of this.
+		// if the cards are not loading we show the 'choose difficulty' screen. This is shown by default
+		let toReturn = this.state.loading ? <center><div className = "loader">loading</div></center> :
 				<div>
 					<center>
 						<h1 className="header">Choose your difficulty!</h1>
@@ -85,7 +94,7 @@ class ChooseDifficulty extends Component{
 					</div>
 					
 				</div>
-			);
+		return (<div>{toReturn}</div>	);
 
 	}
 }
