@@ -27,9 +27,9 @@ class App extends Component {
   render() {
     return (
         <div className="App">
-        <header className="App-header">
+          <header className="App-header">
 
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+           <nav className="navbar navbar-expand-lg navbar-light bg-light">
              <Link to ="/" className="navbar-brand" >BlockStone</Link>
              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
@@ -50,29 +50,29 @@ class App extends Component {
           {/* Search*/}
           <Route 
             path = "/SearchScreen" 
-            render = {() => <SearchScreen model = {modelInstance}/>}
+            component = {SearchScreen}
           />
 
           <Route 
             path ="/MyCollection"
-            render = { () => <MyCollection/> }
+            component = {MyCollection}
           /> 
         {/* This will be de screen for a specific card, to purchase*/}
           <Route 
             path ="/StoreDetail"
-            render = { () => <StoreDetail/> }
+            component = {StoreDetail}
           /> 
 
         {/*A place to try out the vs mode*/}
           <Route
             path = "/ChooseDifficulty"
-            render = {() => <ChooseDifficulty/>}
+            component = {ChooseDifficulty}
           />
 
 
           <Route
             path = "/VersusMode"
-            render = {() => <VersusMode/>}
+            component = {VersusMode}
           />
 
         </header>

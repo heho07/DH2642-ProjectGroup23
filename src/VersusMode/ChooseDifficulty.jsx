@@ -16,13 +16,14 @@ class ChooseDifficulty extends Component{
 		if (destination === "opponent") {
 			modelInstance.clearCards(destination);
 		}
+		console.log(this.props.history);
 		modelInstance.searchDeckByQuality(quality)
 			.then((result) => modelInstance.selectRandomCardsForOpponent(result))
 				.then((result) => {
 					for (var i = result.length - 1; i >= 0; i--) {
 						modelInstance.addCardToDeck(result[i], destination);
 					}
-				})
+				}).then(this.props.history.push('/VersusMode'))
 	}
 
 	// creates the input buttons that the user can use to decide the difficulty
@@ -55,9 +56,8 @@ class ChooseDifficulty extends Component{
 
 		return(
 			<div>
-				<Link to = "/VersusMode">
+
 					<button onClick = {() => this.addCardsToDeck(quality, "opponent")} className = "diffButton btn btn-dark" >{diff}</button>
-				</Link>
 				<p id="textBelow">
 					{description}
 				</p>
