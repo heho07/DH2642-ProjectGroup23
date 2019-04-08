@@ -31,14 +31,17 @@ class StoreDetail extends Component{
 	
 
 		return(
+
 			<div className= "row align-middle">
-				<div className ="col-6 text-center" >
+				<div className ="col-12 text-center" >
 					<h1 >{card.name}</h1>		
 					<p className="mb-0 " > {card.rarity} {card.race}</p>
-					<img src = {img} alt = {img} />
-			
+					<center>
+						<img src = {img} alt = {img} />
+					</center>
 				</div>
 				<div className ="col-6 justify-content-center align-self-center">
+					
 					<p className="mb-0 "> From set: {card.cardSet} </p>
 					<p className="mb-0 "> Artist: {card.artist} </p>
 					<p className="mb-0 "> {card.flavor}</p>
