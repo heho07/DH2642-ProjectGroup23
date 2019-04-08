@@ -31,12 +31,89 @@ class StoreDetail extends Component{
 	
 
 		return(
+			<td className="align-middle resultImage">
+                 	<center>
+                    <h1></h1>
+                    <img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/>
+                  </center>
+                </td>
+                  
+                <td className="align-middle">
+                <table>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <b>Name</b>
+                        </td>
+                        <td>
+                          {item.name}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <b>Card ID</b>
+                        </td>
+                        <td>
+                          {item.cardId}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <b>type </b>
+                        </td>
+                        <td>
+                          {item.type}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <b>cost </b>
+                        </td>
+                        <td>
+                          {item.cost}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <b>attack </b>
+                        </td>
+                        <td>
+                          {item.attack}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <b>health </b>
+                        </td>
+                        <td>
+                          {item.health}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+
 			<div className= "row align-middle">
-				<div className ="col-6 text-center" >
+				<div className ="col-12 text-center" >
 					<h1 >{card.name}</h1>		
 					<p className="mb-0 " > {card.rarity} {card.race}</p>
-					<img src = {img} alt = {img} />
-			
+					<center>
+					<table>
+						<tr>
+						<td>
+							<img src = {img} alt = {img} />
+						</td>
+						</tr>
+						
+						<td>
+							<p className="mb-0 "> From set: {card.cardSet} </p>
+							<p className="mb-0 "> Artist: {card.artist} </p>
+							<p className="mb-0 "> {card.flavor}</p>
+						</td>
+					
+					</table>
+					</center>
 				</div>
 				<div className ="col-6 justify-content-center align-self-center">
 					<p className="mb-0 "> From set: {card.cardSet} </p>
