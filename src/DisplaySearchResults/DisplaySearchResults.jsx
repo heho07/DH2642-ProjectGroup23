@@ -29,6 +29,7 @@ class SearchResults extends Component {
     // this will cause the component to re-render
     
     // a dummy solution since the API can't query for undefined or empty space
+    // this solution is not used any more 
     let searchItem;
     if (this.state.filter === "") {
       const searchTerms = ["legendary", "knight", "kobold", "murloc", "dragon"];
@@ -37,6 +38,7 @@ class SearchResults extends Component {
     else{
       searchItem = this.state.filter;
     }
+    this.setState({loading:true});
     modelInstance.searchCards(searchItem).then(
       results =>{ 
         console.log(results);
@@ -100,7 +102,7 @@ class SearchResults extends Component {
     }
     return(
       <div>
-        <table class ="table">
+        <table className ="table">
           <tbody>
             {this.state.searchResult.map((item, i) => {
               // if the card is valid we return information about it 
@@ -113,63 +115,70 @@ class SearchResults extends Component {
                   img = "https://images.weserv.nl/?url=" + item.img.replace("http://", "");
                 }              
                 return(
-                    <tr key = {item.cardId}>
-                    <div className="resultImage">
-                    <center>
-                    <td class="align-middle"><img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/></td>
-                    </center>
-                    </div>
-                    <td class="align-middle">
-                    <tr>
-                    <td>
-                      <b>name</b>
+                  <tr key = {item.cardId}>
+                      
+                    <td className="align-middle resultImage">
+                      <center>
+                        <img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/>
+                      </center>
                     </td>
-                    <td>
-                    {item.name}
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>
-                      <b>card id </b>
-                    </td>
-                    <td>
-                    {item.cardId}
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>
-                      <b>type </b></td>
-                    <td>
-                    {item.type}
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>
-                      <b>cost </b>
-                    </td>
-                    <td>
-                    {item.cost}
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>
-                      <b>attack </b>
-                    </td>
-                    <td>
-                    {item.attack}
-                    </td>
-                    </tr>
-                    <tr>
-                    <td>
-                      <b>health </b>
-                    </td>
-                    <td>
-                    {item.health}
-                    </td>
-                    </tr>
-                    <button className="btn btn-dark" id="gameButton" onClick = {() => this.handleClickOnCard(item, "user")}>Add to user</button> <br />
-                    <button className="btn btn-dark" id="gameButton" onClick = {() => this.handleClickOnCard(item, "opponent")}>Add to opponent</button><br />
-                    <Link to = "/storeDetail"><button className="btn btn-dark"  onClick = {() => this.handleStoreCard(item)}>View this card</button></Link>
+                      
+                    <td className="align-middle">
+                    <table>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <b>Name</b>
+                            </td>
+                            <td>
+                              {item.name}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b>Card ID</b>
+                            </td>
+                            <td>
+                              {item.cardId}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b>type </b>
+                            </td>
+                            <td>
+                              {item.type}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b>cost </b>
+                            </td>
+                            <td>
+                              {item.cost}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b>attack </b>
+                            </td>
+                            <td>
+                              {item.attack}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b>health </b>
+                            </td>
+                            <td>
+                              {item.health}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <button className="btn btn-dark" id="gameButton" onClick = {() => this.handleClickOnCard(item, "user")}>Add to user</button> <br />
+                      <button className="btn btn-dark" id="gameButton" onClick = {() => this.handleClickOnCard(item, "opponent")}>Add to opponent</button><br />
+                      <Link to = "/storeDetail"><button className="btn btn-dark"  onClick = {() => this.handleStoreCard(item)}>View this card</button></Link>
                     </td>
 
                   </tr>

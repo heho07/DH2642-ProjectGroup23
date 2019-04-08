@@ -59,7 +59,9 @@ class MyCollection extends Component{
 				<table class = "table table-borderless">
 					<tbody>
 						<tr> 
-							{this.displayAllCards()} 
+							<td>
+								{this.displayAllCards()} 
+							</td>
 						</tr>
 					</tbody>
 				</table>

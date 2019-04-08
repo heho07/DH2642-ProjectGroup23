@@ -39,7 +39,8 @@ class SearchScreen extends Component{
 				{	/* passing the attribute "key" to the component makes it uniquely identifiable
 					by React. As such React will notice when the key has changed and re-render the component.
 					Essentially this means that the component will be deleted then created anew. */}
-				<SearchResults key = {this.state.filter} filter = {this.state.filter}/>
+				{this.state.filter ? <SearchResults key = {this.state.filter} filter = {this.state.filter}/> : <p>Enter a searchword to perform your query!</p>}
+				
 			</div>
 		);
 	}
