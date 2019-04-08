@@ -15,6 +15,7 @@ class SearchResults extends Component {
     this.state = {
       searchResult: modelInstance.getSearchedCards(),
       status: true,
+      errorMessage:null,
       filter:this.props.filter,
       field: "cost",
       reverseSort: true,
@@ -49,10 +50,16 @@ class SearchResults extends Component {
         modelInstance.setSearchedCards(results);
       }
     ).catch(
-      e => this.setState({
-        loading:null, 
-        status:"ERROR",
-      })
+      e => {
+        // if the API query returns an error we save the error status and the error message
+        // and later show it to the user
+        this.setState({
+          loading:null, 
+          status: e.status,
+          errorMessage: e.statusText,
+        });
+        console.log(e);
+      }
     );
   }
 
@@ -207,7 +214,11 @@ class SearchResults extends Component {
         information = this.showCard();       
         break;
       default:
-        information = <p>Something went wrong</p>;
+        information = <div>
+                        <p>Something went wrong. Error message: </p>
+                        <p>{this.state.status}</p>
+                        <p>{this.state.errorMessage}</p>
+                      </div>;
         break;
     }
     return(

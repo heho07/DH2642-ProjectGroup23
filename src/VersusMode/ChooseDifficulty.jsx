@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import modelInstance from "../data/Model.js";
-import { Link } from "react-router-dom";
+
 
 import "./ChooseDifficulty.css";
 
@@ -22,13 +22,11 @@ class ChooseDifficulty extends Component{
 		if (destination === "opponent") {
 			modelInstance.clearCards(destination);
 		}
-		console.log(this.props.history);
 		modelInstance.searchDeckByQuality(quality)
 			.then((result) => modelInstance.selectRandomCardsForOpponent(result))
 				.then((result) => {
 					for (var i = result.length - 1; i >= 0; i--) {
 						modelInstance.addCardToDeck(result[i], destination);
-						console.log("finishhhhhh");
 					}
 				}).then(() => this.props.history.push('/VersusMode'));
 	}
