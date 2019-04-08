@@ -14,6 +14,15 @@ class BlockStoneConnection extends Component {
     super(props);
   }
 
+ // <div>Address: <span id="walletAddress">---</span></div>
+ //    <div>Number of cards: <span id="cardsNum">---</span></div>
+ //    <div>Cards of store (<span id="storeCardsNum">---</span>): <span id="storeCards">---</span></div>
+ //    <div>Cards of user (<span id="userCardsNum">---</span>): <span id="userCards">---</span></div>
+ //    <div>
+ //      <button id="btn0" data-id="0" value="1000000000000000000">name0</button>
+ //      <button id="btn1" data-id="1" value="2000000000000000000">name1</button>
+ //      <button id="btn2" data-id="2" value="3000000000000000000">name2</button>
+ //    </div>
  
 // The HTML to be rendered on the page
   render(){
