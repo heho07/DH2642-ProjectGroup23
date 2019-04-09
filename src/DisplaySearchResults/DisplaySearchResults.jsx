@@ -131,6 +131,35 @@ class SearchResults extends Component {
                     </td>
                       
                     <td className="align-middle">
+                     <table>
+                        <tbody>
+                          <tr>
+                            <td><b>Name</b></td>
+                            <td>{item.name}</td>
+                          </tr>
+                          <tr>
+                            <td><b>Card ID</b></td>
+                            <td>{item.cardId}</td>
+                          </tr>
+                          <tr>
+                            <td><b>type </b></td>
+                            <td>{item.type}</td>
+                          </tr>
+                          <tr>
+                            <td><b>cost </b></td>
+                            <td>{item.cost}</td>
+                          </tr>
+                          <tr>
+                            <td><b>attack </b></td>
+                            <td>{item.attack}</td>
+                          </tr>
+                          <tr>
+                            <td><b>health </b></td>
+                            <td>{item.health}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    
                     <table>
                         <tbody>
                           <tr>
