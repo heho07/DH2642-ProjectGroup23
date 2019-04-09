@@ -183,6 +183,7 @@ class SearchResults extends Component {
                           </tr>
                         </tbody>
                       </table>
+                      <br />
                       <button className="btn btn-dark" id="gameButton" onClick = {() => this.handleClickOnCard(item, "user")}>Add to user</button> <br />
                       <button className="btn btn-dark" id="gameButton" onClick = {() => this.handleClickOnCard(item, "opponent")}>Add to opponent</button><br />
                       <Link to = "/storeDetail"><button className="btn btn-dark"  onClick = {() => this.handleStoreCard(item)}>View this card</button></Link>

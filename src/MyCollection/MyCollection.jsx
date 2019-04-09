@@ -43,6 +43,9 @@ class MyCollection extends Component{
 		else {
 			return(
 				<div>
+					<center>
+						<h1> My Collection </h1>
+					</center>
 					{cards.map((item, i)=>{
 						return this.cardInfo(item);
 					})}
