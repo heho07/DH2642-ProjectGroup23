@@ -24,6 +24,14 @@ table.table-bordered > tbody > tr > td{
     border:1px solid black;
 }
 
+/*
+#cropped 
+*/
+
+#croppedImg {
+	height: 10%;
+}
+
 #opponentsCards{
 	float:right;
 }
