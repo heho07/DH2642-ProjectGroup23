@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import * as Connect from "../connect.js";
+//import * as Connect from "../connect.js";
 
 // importing the modelInstance directly (as opposed to passing it as a prop)
 // this is easier because it makes the component less dependent on the way it is implemented from its parents.
