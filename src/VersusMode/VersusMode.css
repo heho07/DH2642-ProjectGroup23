@@ -27,10 +27,12 @@ table.table-bordered > tbody > tr > td{
 /*
 #cropped 
 */
-
-#croppedImg {
-	height: 10%;
+/*
+img {
+	width: 30%;
 }
+*/
+
 
 #opponentsCards{
 	float:right;
