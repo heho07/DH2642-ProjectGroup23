@@ -23,6 +23,7 @@ class VersusMode extends Component{
 			usersCards:JSON.parse(JSON.stringify(modelInstance.getUsersCards())),
 			opponentsCards:JSON.parse(JSON.stringify(modelInstance.getOpponentsCards())),
 			history:[],
+			gamestate:"",
 		};
 	}
 
@@ -115,6 +116,7 @@ class VersusMode extends Component{
 
 	// Displays all cards for either the user or the opponent AI
 	displayAllCards(owner){
+
 		let cards = null;
 		if (owner === "user") {
 			cards = this.state.usersCards;
@@ -196,6 +198,18 @@ class VersusMode extends Component{
 				opponentsCards:opponentsCards,
 				history:history,
 			});
+
+			if(this.won()){
+				console.log("Lmao");
+				this.setState({
+					gamestate:"GLORIOUS VICTORY",
+				})
+			}
+			if(this.lost()){
+				this.setState({
+					gamestate:"SHAMEFUL DEFEAT",
+				})
+			}
 		}
 	}
 
@@ -213,6 +227,14 @@ class VersusMode extends Component{
 				})
 	}
 
+	won(){
+		const won = this.state.opponentsCards.length === 0 && this.state.usersCards.length !== 0;
+		return won;
+	}
+	lost(){
+		const lost = this.state.usersCards.length === 0 && this.state.opponentsCards.length !== 0;
+		return lost;
+	}
 
 	render(){
 		return (
@@ -241,9 +263,12 @@ class VersusMode extends Component{
 					</div>
 
 					<Link to = "/ChooseDifficulty"><button title = "Can't take the heat? Better retreat and change difficulty">Retreat</button></Link>
+					<h1 className="text-center"> {this.state.gamestate} </h1>
+
 					<div>
 						{/* I want this to take up more height even when it is empty. idk how though, at least without using px */}
 						<div className = "row border border-dark " id = "cardInfo">
+
 							<div className = "col-sm-5">
 								<h1>Users cards </h1>
 								{this.displayAllCards("user")}
