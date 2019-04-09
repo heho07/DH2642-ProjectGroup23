@@ -1,0 +1,14 @@
+.form-control {
+    display: inline;
+    width: 10%;
+    background-color: #343a40;
+    color: #d5d5d5;
+
+}
+
+input {
+	color: #343a40 ;
+	font-style: italic;
+	padding: 0.25em;
+	margin-right: 0.3%;
+}

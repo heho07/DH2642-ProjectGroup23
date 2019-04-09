@@ -16,9 +16,13 @@ class StoreDetail extends Component{
 		console.log(card);
 		let img = "http://i.imgur.com/IlRXBtu.jpg";
 		if(card === undefined){
-			return (<div className ="col-6 justify-content-center align-self-center">
-				<p className="mb-0 "> This is not the card you're looking for</p>
-				<img src = {img} alt = {img} className = "img-fluid"></img>
+			return (
+				
+				<div className ="col-12 justify-content-center align-self-center">
+				<center>
+					<p className="mb-0 "> This is not the card you're looking for</p>
+					<img src = {img} alt = {img} className = "img-fluid"></img>
+				</center>
 			</div>)
 		}
 		if (card.img !== null){

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import modelInstance from "../data/Model";
+import "./SearchBar.css";
 
 // this component basically renders a searchbar which will pass the inputted information to its parent component
 // when the search is submitted.
@@ -40,7 +41,7 @@ class SearchBar extends Component{
 				<div className="header col-sm-12 searchbar view" id="searchBar">
 					<form onSubmit = {(event) => this.handleSubmit(event)} >
 						<input id = "filter" type = "text" value = {this.state.filter} onChange = {(event) => this.handleChangeOfInput(event)}/>
-						<input type = "submit"></input>
+						<input type = "submit" className="form-control"></input>
 					</form>
 				</div>
 			</div>

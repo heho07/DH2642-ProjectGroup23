@@ -1,6 +1,6 @@
 #gameResult{
 	overflow:scroll;
-
+	height:250px;
 }
 #cardInfo{
 	overflow-y:scroll;
@@ -36,26 +36,4 @@ table.table-bordered > tbody > tr > td{
 #addButton {
 	margin-left: 2%;
 	width: 20%;
-}
-
-.cropped {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 50%;
-    text-align: center;
-}
-
-.vsImg {
-    /*display: inline;*/
-    margin: 0 auto;
-    height: 150%;
-    width: auto;
-	position: absolute;
-    top: -9920px;
-    bottom: -9999px;
-    left: -9999px;
-    right: -9999px;
-    margin: auto;
 }
