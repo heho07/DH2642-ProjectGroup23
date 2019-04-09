@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import * as Connect from "../connect.js";
 
 // importing the modelInstance directly (as opposed to passing it as a prop)
 // this is easier because it makes the component less dependent on the way it is implemented from its parents.
@@ -14,6 +15,7 @@ class BlockStoneConnection extends Component {
     super(props);
   }
 
+
  // <div>Address: <span id="walletAddress">---</span></div>
  //    <div>Number of cards: <span id="cardsNum">---</span></div>
  //    <div>Cards of store (<span id="storeCardsNum">---</span>): <span id="storeCards">---</span></div>
@@ -26,7 +28,7 @@ class BlockStoneConnection extends Component {
  
 // The HTML to be rendered on the page
   render(){
-
+  	console.log(window);
     return(
       <div>
 
