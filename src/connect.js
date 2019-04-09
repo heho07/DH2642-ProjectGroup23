@@ -1,7 +1,7 @@
-// import web3 from "web3";
+ import Web3 from "web3";
 // console.log(Web3);
 // console.log(window.web3);
-
+const web3 = new Web3(new Web3.providers.WebsocketProvider('ws://localhost:8546'));
 const contractAddress = "0xD1c2Ec12385938f099Af744eb463A0C1Eb6BC451";
 const chainID = 4;
 const chainName = {
@@ -11,8 +11,9 @@ const chainName = {
   '42': 'testnet (Kovan)'
 };
 let storeAddr = '0xbeef';
-
+console.log(window);
 window.addEventListener('load', async () => {
+ console.log(Web3);
   // Modern dapp browsers...
   if (window.ethereum) {
     window.web3 = new Web3(ethereum);
