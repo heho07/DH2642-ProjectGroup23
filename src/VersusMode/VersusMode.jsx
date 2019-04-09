@@ -267,7 +267,7 @@ class VersusMode extends Component{
 
 					<h1 className="text-center"> {this.state.gamestate} </h1>
 
-					<div style={{width:window.innerWidth, height:window.screen.availHeight*0.95, "minHeight":"15%"}}>
+					<div style={{width:window.innerWidth, height:window.innerHeight*0.95, "minHeight":"15%"}}>
 					{console.log(window)}
 						{/* I want this to take up more height even when it is empty. idk how though, at least without using px */}
 						<div className = "row border border-dark " id = "cardInfo">
@@ -291,7 +291,7 @@ class VersusMode extends Component{
 						https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up/21067431
 						or this https://stackoverflow.com/questions/40336311/how-can-i-make-a-scrollable-component-that-scrolls-to-the-latest-children-compon
 					 */}
-						<div id = "gameResult" style={{width:window.innerWidth, height:window.screen.availHeight*0.05, "minHeight":"15%"}}>
+						<div id = "gameResult" style={{width:window.innerWidth, height:window.innerHeight*0.05, "minHeight":"15%"}}>
 								{this.state.history.map((item, i)=> {
 							
 								return <p key = {i}>{item}</p>}
