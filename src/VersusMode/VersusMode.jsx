@@ -227,6 +227,7 @@ class VersusMode extends Component{
 				})
 	}
 
+
 	won(){
 		const won = this.state.opponentsCards.length === 0 && this.state.usersCards.length !== 0;
 		return won;
@@ -263,9 +264,11 @@ class VersusMode extends Component{
 					</div>
 
 					<Link to = "/ChooseDifficulty"><button title = "Can't take the heat? Better retreat and change difficulty">Retreat</button></Link>
+
 					<h1 className="text-center"> {this.state.gamestate} </h1>
 
-					<div>
+					<div style={{width:window.innerWidth, height:window.screen.availHeight*0.95, "minHeight":"15%"}}>
+					{console.log(window)}
 						{/* I want this to take up more height even when it is empty. idk how though, at least without using px */}
 						<div className = "row border border-dark " id = "cardInfo">
 
@@ -288,7 +291,7 @@ class VersusMode extends Component{
 						https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up/21067431
 						or this https://stackoverflow.com/questions/40336311/how-can-i-make-a-scrollable-component-that-scrolls-to-the-latest-children-compon
 					 */}
-						<div id = "gameResult">
+						<div id = "gameResult" style={{width:window.innerWidth, height:window.screen.availHeight*0.05, "minHeight":"15%"}}>
 								{this.state.history.map((item, i)=> {
 							
 								return <p key = {i}>{item}</p>}
