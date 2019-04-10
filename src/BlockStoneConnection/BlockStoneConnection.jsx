@@ -31,7 +31,7 @@ class BlockStoneConnection extends Component {
   	console.log(window);
     return(
       <div>
-        <button onClick = {() => window.test()}>ANROPAR CONNECT</button>
+        <button onClick = {() => window.ConnectClass.test()}>ANROPAR CONNECT</button>
       </div>
     );
   }
