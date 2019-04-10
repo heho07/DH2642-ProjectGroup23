@@ -17,8 +17,8 @@ class SearchResults extends Component {
       status: true,
       errorMessage:null,
       filter:this.props.filter,
-      field: "cost",
-      reverseSort: true,
+      field: "name",
+      reverseSort: false,
     };
   }
 
@@ -104,8 +104,8 @@ class SearchResults extends Component {
     // let searchedCards = []; 
     if(this.state.field !== "")
     {
-      this.state.searchResult.sort(this.sortCard(parseFloat)); //for everything numbers
-      //this.state.searchResult.sort(this.sortCard(function(a){return a.toUpperCase()})); // for name
+      // this.state.searchResult.sort(this.sortCard(parseFloat)); //for everything numbers
+      this.state.searchResult.sort(this.sortCard(function(a){return a.toUpperCase()})); // for name
     }
     return(
       <div>
