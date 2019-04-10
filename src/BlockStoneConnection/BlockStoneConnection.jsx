@@ -27,11 +27,16 @@ class BlockStoneConnection extends Component {
  //    </div>
  
 // The HTML to be rendered on the page
+  handleClick(){
+    let res = window.ConnectClass.getInfo(window.ConnectClass.contract, window.ConnectClass.account );
+    res.then((e) => console.log(e));
+  }
+
   render(){
   	console.log(window);
     return(
       <div>
-        <button onClick = {() => window.ConnectClass.test()}>ANROPAR CONNECT</button>
+        <button onClick = {() => this.handleClick()}>ANROPAR CONNECT</button>
       </div>
     );
   }

@@ -80,7 +80,7 @@ function test (){
 }
 
 function getContract(addr) {
-  return fetch('../src/assets/abi.json')
+  return fetch('./assets/abi.json')
     .then(respObj => respObj.json())
     .catch(err => Promise.reject(err))
     .then(abi => {
@@ -134,7 +134,8 @@ function getNetIdAndAccount() {
 
 function getInfo(contract, account) {
   bindEvent(contract, account);
-
+  console.log(account);
+  console.log(storeAddr);
   return Promise.all([
     getExistingAmount(contract),
     getCardsNum(contract, storeAddr),

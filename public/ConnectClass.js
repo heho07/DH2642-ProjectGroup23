@@ -7,7 +7,7 @@ class ConnectClass{
     console.log("initalizing ConnectClass");
     this.contractAddress = "0xD1c2Ec12385938f099Af744eb463A0C1Eb6BC451"; 
     this.chainID = 4;
-    this.storeAddr = '0xbeef';
+    this.storeAddr = '0x000000000000000000000000000000000000bEEF';
     this.chainName = {
       '1': 'mainnet',
       '3': 'testnet (Ropsten)',
@@ -20,7 +20,7 @@ class ConnectClass{
     this.userCards = null;
     this.storeCards = null;
     this.contract = null;
-
+    this.account = null;
     //connecting to the contract
     this.asGetContract();
   }
@@ -50,9 +50,12 @@ class ConnectClass{
         location.reload();
       })
       this.contract = contract;
-
+      console.log("innan getNetIdAndAccount");
       this.getNetIdAndAccount()
-      .then(acc => this.getInfo(contract, acc))
+      .then(acc => {
+        this.account = acc;
+        return this.getInfo(contract, acc);
+      })
       .then((res) => {
         let [
         cardsNum,
@@ -60,7 +63,7 @@ class ConnectClass{
         storeCards,
         userCardsNum,
         userCards] = res;
-        this.cardsNum = cardsNum;
+        this.cardsNum = "joarColl";
         this.storeCardsNum = storeCardsNum;
         this.userCardsNum = userCardsNum;
         this.userCards = userCards;
@@ -149,8 +152,11 @@ getNetIdAndAccount() {
 
 getInfo(contract, account) {
   // bindEvent(contract, account);
+  console.log("kör getinfo");
+  console.log(contract);
+  console.log(account);
   let storeAddr = this.storeAddr;
-
+  console.log(storeAddr);
   return Promise.all([
     this.getExistingAmount(contract),
     this.getCardsNum(contract, storeAddr),
@@ -169,7 +175,7 @@ getCardsNum(contract, addr) {
 }
 
 getStoreCards(contract) {
-  return contract.methods.getOwnersAllTokens(storeAddr).call()
+  return contract.methods.getOwnersAllTokens(this.storeAddr).call()
 }
 
 getAllCards(contract, account) {
