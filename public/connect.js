@@ -8,19 +8,21 @@ const chainName = {
   '42': 'testnet (Kovan)'
 };
 let storeAddr = '0xbeef';
+
+
 window.addEventListener('load', async () => {
- console.log(Web3);
+ console.log("hejejejejejasdasdasa async");
   // Modern dapp browsers...
   if (window.ethereum) {
+      console.log("before");
     window.web3 = new Web3(ethereum);
     try {
       // Request account access if needed
       await ethereum.enable();
+      console.log("hejj");
       // Acccounts now exposed
-
       // Initiate contract
       const contract = await getContract();
-
       // Work for MetaMask ^5.0.0
       // Event listener on account is changed
       window.ethereum.on('accountsChanged', () => {
@@ -55,7 +57,7 @@ window.addEventListener('load', async () => {
         let elemUserCars = document.getElementById('userCards');
         elemUserCars.textContent = userCards.join();
       });
-
+      console.log("this show?");
     } catch (error) {
       // User denied account access...
       console.log('You should connect your accounts before using this app!');
@@ -72,6 +74,10 @@ window.addEventListener('load', async () => {
   }
 });
 
+function test (){
+  console.log("HEJEJEJEHEJASFSD");
+  console.log(web3);
+}
 
 function getContract(addr) {
   return fetch('../src/assets/abi.json')
@@ -184,4 +190,11 @@ function bindEvent(contract, account) {
       .on('error', (err) => console.error);
     })
   });
+}
+
+class connect{
+  constructor(){
+    this.test = "hej";
+  }
+  
 }
