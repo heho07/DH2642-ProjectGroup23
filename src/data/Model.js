@@ -19,8 +19,38 @@ class Model extends ObservableModel{
 		this.usersCards = [];
 		this.opponentsCards = [];
 		this.storedCards = {};
-		this.searchedCards = [];
-		this.filter="";
+		
+		// Checking the localStorage for filter
+	    if (localStorage.getItem("filter") != null) {
+	      try{
+	        this.filter = localStorage.getItem("filter");
+	        console.log("Successfully loaded filter from localStorage!");
+	      }
+	      catch(err){
+	        console.log("Failed to load filter from localStorage with the following error message");
+	        console.log(err);
+	        this.filter = "";
+	      }
+	    }
+	    else{
+	      this.filter = "";
+	    }
+		
+	    // Checking the localStorage for searchResults
+	    if (localStorage.getItem("searchedCards") != null) {
+	      try{
+	        this.searchedCards = JSON.parse(localStorage.getItem("searchedCards"));
+	        console.log("Successfully loaded searchedCards from localStorage!");
+	      }
+	      catch(err){
+	        console.log("Failed to load searchedCards from localStorage with the following error message");
+	        console.log(err);
+	        this.searchedCards = [];
+	      }
+	    }
+	    else{
+	      this.searchedCards = [];
+	    }
 	}
 
 	// Checks if the card is already in the usersCards array
@@ -160,6 +190,7 @@ class Model extends ObservableModel{
 		this.searchedCards = array;
 		console.log(this.searchedCards);
 		this.notifyObservers();
+		localStorage.setItem("searchedCards", JSON.stringify(this.searchedCards));
 	}
 
 	clearSearchedCards(){
@@ -174,6 +205,7 @@ class Model extends ObservableModel{
 	setFilter(filter){
 		this.filter = filter;
 		this.notifyObservers();
+		localStorage.setItem("filter", this.filter);
 	}
 
 	getFilter(){
