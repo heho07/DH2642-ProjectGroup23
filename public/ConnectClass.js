@@ -22,10 +22,14 @@ class ConnectClass{
     this.contract = null;
     this.account = null;
     //connecting to the contract
-    this.cardArray = [{
-      cNameID: "Ysera",
-      cPrice: 1
-    }];
+    this.exampleCardArray = [
+      {name:"Ysera", price: 1},
+      {name: "Malygos", price: 2},
+      {name: "Dragonhatcher", price: 3},
+      {name: "Evolved Kobold", price: 3},
+      {name: "Microtech Controller", price: 3},
+      {name: "Defias Cleaner", price: 3}
+    ]; // example of relevant data from API
     this.asGetContract();
   }
 
@@ -170,12 +174,13 @@ getInfo(contract, account) {
     ])
 }
 
+// tried to mint card so the store would be populated
+// failed
 testAddCard(contract) {
-  const namn = this.cardArray[0].cNameID;
-  const kostnad =this.cardArray[0].cPrice;
-  console.log("hej", namn, kostnad);
-  
-  contract.methods.mint(namn, kostnad).call();
+  const name = this.exampleCardArray[0].name;
+  const price =this.exampleCardArray[0].price;
+
+  return contract.methods.mint(name, price).call();
 }
 
 getExistingAmount(contract) {

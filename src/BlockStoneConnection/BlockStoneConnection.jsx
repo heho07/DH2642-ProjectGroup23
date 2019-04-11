@@ -39,7 +39,9 @@ class BlockStoneConnection extends Component {
     }))
     .catch((err) => console.log(err));
 
-    window.ConnectClass.testAddCard(window.ConnectClass.contract);
+    const test = window.ConnectClass.testAddCard(window.ConnectClass.contract);
+    test.then((e) => console.log("does resolve??? ", e))
+    .catch((err) => console.log("not resolve: ",err));
 
     const storeCards = window.ConnectClass.getStoreCards(window.ConnectClass.contract);
     storeCards.then((e) => console.log(e))
