@@ -57,7 +57,7 @@ class SearchBar extends Component{
 						<input id = "filter" type = "text" value = {this.state.filter} onChange = {(event) => this.handleChangeOfInput(event)}/>
 						<input type = "submit" className="form-control"></input>
 						<button onClick = {(e) => this.sort()}>Sortbutton</button>
-						<button onClick = {(e) => this.ascendingDescending()}>ascdesc</button>
+						<button onClick = {(e) => this.ascendingDescending()}>Change ascending / descending</button>
 						<button onClick = {() => this.changeSortingType("name")}>Sort by name</button>
 						<button onClick = {() => this.changeSortingType("health")}>Sort by health</button>
 						<button onClick = {() => this.changeSortingType("attack")}>Sort by attack</button>						
