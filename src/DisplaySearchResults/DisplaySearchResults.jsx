@@ -17,8 +17,8 @@ class SearchResults extends Component {
       status: true,
       errorMessage:null,
       filter:this.props.filter,
-      field: "name",
-      reverseSort: false,
+      field: this.props.field,
+      reverseSort: this.props.reverseSort,
     };
   }
 

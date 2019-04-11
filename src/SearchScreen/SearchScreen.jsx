@@ -13,6 +13,8 @@ class SearchScreen extends Component{
 		super(props);
 		this.state = {
 			filter:modelInstance.getFilter(),
+			field: "name",
+      		reverseSort: false,
 		}
 	}
 
@@ -22,24 +24,34 @@ class SearchScreen extends Component{
 
 	componentWillUnmount(){
     	modelInstance.removeObserver(this);
-  }
+	}
 
-  update(){
-    this.setState({
-      filter:modelInstance.getFilter(),
-    });
-  }
+	update(){
+		this.setState({
+			filter:modelInstance.getFilter(),
+		});
+	}
+
+	sort(){
+		this.setState({
+			reverseSort:true,
+		});
+		console.log("sort called from SearchScreen");
+	}
 
 	// The HTML to be rendered on the page
 	render(){
 		return(
 			<div>
 			<br />
-				<SearchBar/>
+				<SearchBar sort = {() => this.sort()}/>
 				{	/* passing the attribute "key" to the component makes it uniquely identifiable
 					by React. As such React will notice when the key has changed and re-render the component.
 					Essentially this means that the component will be deleted then created anew. */}
-				{this.state.filter ? <SearchResults key = {this.state.filter} filter = {this.state.filter}/> : <center><p>Enter a searchword to perform your query!</p></center>}
+				{this.state.filter ? 
+					<SearchResults key = {this.state.filter} filter = {this.state.filter} field = {this.state.field} reverseSort = {this.state.reverseSort}/> 
+					: 
+					<center><p>Enter a searchword to perform your query!</p></center>}
 				
 			</div>
 		);
