@@ -6,6 +6,7 @@ import SearchResults from "../DisplaySearchResults/DisplaySearchResults";
 import "./SearchScreen.css";
 
 
+
 // This screen should probably be split up into several components. Maybe one for the search and one for displaying the results
 // They can then communicate with eachother via a parent component which keeps track of their states for easy communication
 class SearchScreen extends Component{
