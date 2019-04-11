@@ -34,6 +34,7 @@ class SearchScreen extends Component{
 		});
 	}
 
+	// tells the JS sort function what to sort on
 	sortCard(primer){
     // reverse indicates what order we're sorting in.
     // Primer indicates how the sort is made. Has to be a way of sorting such as parseFloat etc
@@ -46,6 +47,9 @@ class SearchScreen extends Component{
 	      return a = key(a), b = key(b), reverse * ((a>b)-(b>a));
 	    }
 	  }
+
+	  // checks if we want to sort on a number or a string, then calls this.sortCard with the appropriate parameters 
+	  // and changes this.state.searchResults
 	sortFunc(){
 		// this.state.searchResult.sort(this.sortCard(parseFloat)); //for everything numbers
 		console.log("Calling sortFunc");
@@ -56,6 +60,8 @@ class SearchScreen extends Component{
 			this.state.searchResult.sort(this.sortCard(parseFloat)); //for numbers
 		}
 	}
+
+	// changes from ascending -> descending or vice versa
 	ascendingDescending(){
 		this.setState({
 			reverseSort:!this.state.reverseSort,
@@ -65,6 +71,7 @@ class SearchScreen extends Component{
 		console.log("ascendingDescending called from SearchScreen");
 	}
 
+	// changes what to sort on (name, health, or attack)
 	changeSortingType(type){
 		this.setState({field:type});
 		this.sortFunc();
@@ -77,6 +84,8 @@ class SearchScreen extends Component{
 			<div>
 			<br />
 				<SearchBar 
+					// pass down the functions related to sort here
+					// so that they can be used in the search bar
 					ascendingDescending = {() => this.ascendingDescending()}
 					sort = {() => this.sortFunc()}
 					changeSortingType = {(type) => this.changeSortingType(type)}
@@ -87,6 +96,7 @@ class SearchScreen extends Component{
 					Essentially this means that the component will be deleted then created anew. */}
 				{this.state.filter ? 
 					<SearchResults 
+						// passing down all the states related to showing the search result
 						key = {this.state.filter} 
 						filter = {this.state.filter} 
 						field = {this.state.field} 
