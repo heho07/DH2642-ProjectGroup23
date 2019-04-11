@@ -10,7 +10,8 @@ class SearchBar extends Component{
 	constructor(props){
 		super (props);
 		 this.state = {
-		 	filter: modelInstance.getFilter(),
+			 filter: modelInstance.getFilter(),
+			 isOpen: false,
 		 };
 	}
 
@@ -31,15 +32,14 @@ class SearchBar extends Component{
 	// Needs the prop scope to function
 	handleSubmit (event){
 		event.preventDefault();
-		if (modelInstance.getFilter() === this.state.filter) {
-			// if the new filter is the same as the old one we don't need to do a new search
-			console.log("samma lolll");
+		if (modelInstance.getFilter() === this.state.filter) {   // if the new filter is the same as the old one we don't need to do a new search
+			  console.log("samma lolll");
 		}
-		else{
-			// if there is a new search filter we clear the previous search results from the model
+	   else{   // if there is a new search filter we clear the previous search results from the model
 			modelInstance.clearSearchedCards();
-			modelInstance.setFilter(this.state.filter); 		
-		}
+			modelInstance.setFilter(this.state.filter);
+        }
+					
 	}
 
 	ascendingDescending(){
@@ -51,19 +51,37 @@ class SearchBar extends Component{
 		this.props.changeSortingType(type);
 	}
 
+	toggleOpen = () => this.setState({
+		 isOpen: !this.state.isOpen 
+		});
+
+
 	render(){
+		const menuClass = `dropdown-menu  col-md-4 ${this.state.isOpen ? " show" : ""}`;
 		return(
 			<center>
 			<div className="row">
 				<div className="header col-sm-12 searchbar view" id="searchBar">
 					<form onSubmit = {(event) => this.handleSubmit(event)} >
 						<input id = "filter" type = "text" value = {this.state.filter} onChange = {(event) => this.handleChangeOfInput(event)}/>
-						<input type = "submit" className="form-control"></input>
-						<button onClick = {(e) => this.ascendingDescending()}>Change ascending / ascendingDescending</button>
-						<button onClick = {() => this.changeSortingType("name")}>Sort by name</button>
-						<button onClick = {() => this.changeSortingType("health")}>Sort by health</button>
-						<button onClick = {() => this.changeSortingType("attack")}>Sort by attack</button>						
+						<input type = "submit" className="form-control"></input>				
 					</form>
+					<div className="dropdown" onClick={this.toggleOpen}>
+						<button className="btn btn-secondary dropdown-toggle" 
+								type="button" 
+								id="dropdownMenuButton" 
+								data-toggle="dropdown"
+								aria-haspopup="true" 
+								aria-expanded="false">
+						</button>
+						<div className= {menuClass}  aria-labelledby="dropdownMenuButton">
+
+							<button  className = "btn  btn-primary" onClick = {(e) => this.ascendingDescending()}>Change ascending / ascendingDescending</button>	
+							<button onClick = {() => this.changeSortingType("name")}>Sort by name</button>
+							<button onClick = {() => this.changeSortingType("health")}>Sort by health</button>
+							<button onClick = {() => this.changeSortingType("attack")}>Sort by attack</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</center>
