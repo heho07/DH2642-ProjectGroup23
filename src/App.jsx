@@ -11,6 +11,7 @@ import Welcome from "./Welcome/Welcome";
 import SearchScreen from "./SearchScreen/SearchScreen";
 import VersusMode from "./VersusMode/VersusMode";
 import ChooseDifficulty from "./VersusMode/ChooseDifficulty";
+import BlockStoneConnection from "./BlockStoneConnection/BlockStoneConnection";
 
 class App extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class App extends Component {
               </div>
             </div>
           </nav>
-
+          <BlockStoneConnection/>
           {/* We rended diffrent component based on the path */}
           <Route exact path="/" component={Welcome} />   
           

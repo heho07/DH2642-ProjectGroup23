@@ -1,5 +1,6 @@
 import ObservableModel from "./ObservableModel";
 
+
 // Contains the base url on which we can add specific requests to the API
 const BASE_URL = "https://omgvamp-hearthstone-v1.p.rapidapi.com/";
 
