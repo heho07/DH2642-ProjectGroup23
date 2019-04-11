@@ -161,6 +161,12 @@ class Model extends ObservableModel{
 		console.log(this.searchedCards);
 		this.notifyObservers();
 	}
+
+	clearSearchedCards(){
+		this.searchedCards = [];
+		this.notifyObservers();
+	}
+
 	getSearchedCards(){
 		return this.searchedCards;
 	}

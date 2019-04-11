@@ -31,7 +31,15 @@ class SearchBar extends Component{
 	// Needs the prop scope to function
 	handleSubmit (event){
 		event.preventDefault();
-		modelInstance.setFilter(this.state.filter); 		
+		if (modelInstance.getFilter() === this.state.filter) {
+			// if the new filter is the same as the old one we don't need to do a new search
+			console.log("samma lolll");
+		}
+		else{
+			// if there is a new search filter we clear the previous search results from the model
+			modelInstance.clearSearchedCards();
+			modelInstance.setFilter(this.state.filter); 		
+		}
 	}
 
 	ascendingDescending(){

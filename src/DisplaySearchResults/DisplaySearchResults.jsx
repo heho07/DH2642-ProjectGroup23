@@ -28,29 +28,38 @@ class SearchResults extends Component {
   componentDidMount() {
     // when data is retrieved we update the state
     // this will cause the component to re-render
+    if (modelInstance.getSearchedCards() === undefined || modelInstance.getSearchedCards().length ==0) {
+      // only do this if we don't already have a search result loaded in
 
-    this.setState({loading:true});
-    modelInstance.searchCards(this.state.filter).then(
-      results =>{ 
-        console.log(results);
-        this.setState({
-          loading: false, 
-          // searchResult: results
-        });
-        modelInstance.setSearchedCards(results);
-      }
-    ).catch(
-      e => {
-        // if the API query returns an error we save the error status and the error message
-        // and later show it to the user
-        this.setState({
-          loading:null, 
-          status: e.status,
-          errorMessage: e.statusText,
-        });
-        console.log(e);
-      }
-    );
+    
+      this.setState({loading:true}, () =>
+        modelInstance.searchCards(this.state.filter).then(
+          results =>{ 
+            console.log(results);
+            this.setState({
+              loading: false, 
+              // searchResult: results
+            });
+            modelInstance.setSearchedCards(results);
+          }
+        ).catch(
+          e => {
+            // if the API query returns an error we save the error status and the error message
+            // and later show it to the user
+            this.setState({
+              loading:null, 
+              status: e.status,
+              errorMessage: e.statusText,
+            });
+            console.log(e);
+          }
+        )
+      );
+    }
+    else{
+      // if we already have some result saved since before
+      this.setState({loading:false});
+    }
   }
 
   componentWillMount(){
