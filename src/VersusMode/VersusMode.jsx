@@ -76,7 +76,7 @@ class VersusMode extends Component{
 	}
 
 	// Displays information about a specific card
-	cardInfo(obj){
+	cardInfo(obj, owner){
 		let img = null;
       	if (obj.img != null){
         	img = "https://images.weserv.nl/?url=" + obj.img.replace("http://", "");
@@ -94,10 +94,16 @@ class VersusMode extends Component{
   			}
   			bgColors.push(toAdd);
   		}
+
+
+
 		return (			
-			<tr key = {obj.cardId} draggable = "true" onDragStart = {(event) => this.onDrag(event, obj)} onDragOver = {(event) => this.dragOver(event, obj)} 
-			onDrop = {(event) => this.onDrop(event,obj)}
-			style = {{backgroundColor:`rgb(${bgColors})`}}
+			<tr key = {obj.cardId} 
+				draggable = {owner === "user"}		 //is draggable if users card 
+				onDragStart = {owner === "user" ? (event) => this.onDrag(event, obj) : null} // can only be dragged if users card 
+				onDragOver = {owner === "opponent" ? (event) => this.dragOver(event, obj) : null} 	// can only be dragged over opponents card
+				onDrop = {owner === "opponent" ? (event) => this.onDrop(event,obj) : null}	// can only be dropped on opponents card
+				style = {{backgroundColor:`rgb(${bgColors})`}}
 			>
 				<td>
 					<div className = "cropped">
@@ -139,7 +145,7 @@ class VersusMode extends Component{
 					<table className = " table table-bordered ">
 						<tbody>
 							{cards.map((item, i)=>{
-								return this.cardInfo(item);
+								return this.cardInfo(item, owner);
 							})}
 						</tbody>
 					</table>
@@ -272,7 +278,6 @@ class VersusMode extends Component{
 					<h1 className="text-center"> {this.state.gamestate} </h1>
 
 					<div style={{width:window.innerWidth, height:window.innerHeight*0.95, "minHeight":"15%"}}>
-					{console.log(window)}
 						{/* I want this to take up more height even when it is empty. idk how though, at least without using px */}
 						<div className = "row border border-dark " id = "cardInfo">
 
