@@ -13,7 +13,7 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResult: modelInstance.getSearchedCards(),
+      searchResult: this.props.searchResult,
       status: true,
       errorMessage:null,
       filter:this.props.filter,
@@ -76,27 +76,21 @@ class SearchResults extends Component {
     modelInstance.storeCard(obj);
   }
 
-
-  sortCard(primer){
-    // reverse indicates what order we're sorting in.
-    // Primer indicates how the sort is made. Has to be a way of sorting such as parseFloat etc
-    // Field indicates what we're sorting by 
-    let key = primer ? x => {return primer(x[this.state.field])} : x => x[this.state.field];
-    let reverse;
-    !(this.state.reverseSort) ? reverse = 1: reverse = -1;
-    return (a,b) =>{
-      return a = key(a), b = key(b), reverse * ((a>b)-(b>a));
-    }
+  sort(){
+    this.props.sort();
   }
+
+
+  
 // Creates HTML containing information about the cards found in the search
 // This function could be generalized into it's own class so that it can more easily be used elsewhere
   showCard(){
     // let searchedCards = []; 
-    if(this.state.field !== "")
-    {
-      // this.state.searchResult.sort(this.sortCard(parseFloat)); //for everything numbers
-      this.state.searchResult.sort(this.sortCard(function(a){return a.toUpperCase()})); // for name
-    }
+    // if(this.state.field !== "")
+    // {
+    //   // this.state.searchResult.sort(this.sortCard(parseFloat)); //for everything numbers
+    //   this.sort(); // for name
+    // }
     return(
       <div>
         <table className ="table">
