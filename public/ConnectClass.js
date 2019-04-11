@@ -22,6 +22,10 @@ class ConnectClass{
     this.contract = null;
     this.account = null;
     //connecting to the contract
+    this.cardArray = [{
+      cNameID: "Ysera",
+      cPrice: 1
+    }];
     this.asGetContract();
   }
 
@@ -164,6 +168,14 @@ getInfo(contract, account) {
     this.getCardsNum(contract, account),
     this.getAllCards(contract, account)
     ])
+}
+
+testAddCard(contract) {
+  const namn = this.cardArray[0].cNameID;
+  const kostnad =this.cardArray[0].cPrice;
+  console.log("hej", namn, kostnad);
+  
+  contract.methods.mint(namn, kostnad).call();
 }
 
 getExistingAmount(contract) {
