@@ -34,11 +34,6 @@ class SearchBar extends Component{
 		modelInstance.setFilter(this.state.filter); 		
 	}
 
-	sort(){
-		this.props.sort();
-		console.log("sort clicked in searchbar");
-	}
-
 	ascendingDescending(){
 		this.props.ascendingDescending();
 
@@ -56,8 +51,7 @@ class SearchBar extends Component{
 					<form onSubmit = {(event) => this.handleSubmit(event)} >
 						<input id = "filter" type = "text" value = {this.state.filter} onChange = {(event) => this.handleChangeOfInput(event)}/>
 						<input type = "submit" className="form-control"></input>
-						<button onClick = {(e) => this.sort()}>Sortbutton</button>
-						<button onClick = {(e) => this.ascendingDescending()}>Change ascending / descending</button>
+						<button onClick = {(e) => this.ascendingDescending()}>Change ascending / ascendingDescending</button>
 						<button onClick = {() => this.changeSortingType("name")}>Sort by name</button>
 						<button onClick = {() => this.changeSortingType("health")}>Sort by health</button>
 						<button onClick = {() => this.changeSortingType("attack")}>Sort by attack</button>						

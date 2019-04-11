@@ -65,16 +65,16 @@ class SearchScreen extends Component{
 	ascendingDescending(){
 		this.setState({
 			reverseSort:!this.state.reverseSort,
-		});
+		}, () => this.sortFunc());
 		console.log(this.state.reverseSort);
-		this.sortFunc();
+		// this.sortFunc();
 		console.log("ascendingDescending called from SearchScreen");
 	}
 
 	// changes what to sort on (name, health, or attack)
 	changeSortingType(type){
-		this.setState({field:type});
-		this.sortFunc();
+		this.setState({field:type}, () => this.sortFunc());
+		
 	}
 
 
@@ -87,7 +87,6 @@ class SearchScreen extends Component{
 					// pass down the functions related to sort here
 					// so that they can be used in the search bar
 					ascendingDescending = {() => this.ascendingDescending()}
-					sort = {() => this.sortFunc()}
 					changeSortingType = {(type) => this.changeSortingType(type)}
 					
 				/>
