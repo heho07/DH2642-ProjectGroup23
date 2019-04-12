@@ -12,6 +12,7 @@ import SearchScreen from "./SearchScreen/SearchScreen";
 import VersusMode from "./VersusMode/VersusMode";
 import ChooseDifficulty from "./VersusMode/ChooseDifficulty";
 import BlockStoneConnection from "./BlockStoneConnection/BlockStoneConnection";
+import PopUp from "./VersusMode/PopUp";
 
 class App extends Component {
   constructor(props) {
@@ -74,6 +75,10 @@ class App extends Component {
           <Route
             path = "/VersusMode"
             component = {VersusMode}
+          />
+          <Route
+            path ="/PopUp"
+            component = {PopUp}
           />
 
         </header>
