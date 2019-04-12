@@ -107,13 +107,24 @@ class SearchResults extends Component {
             {this.state.searchResult.map((item, i) => {
               // if the card is valid we return information about it 
               // searchedCards.push(item); // add searched cards to model
-              if (item.name !== undefined & item.img !== undefined & item.health !== undefined & item.attack !== undefined & item.cost !== undefined) {
+              if(!item.collectible){
+                // restrict the cards a bit to only show collectibles
+                item.name = undefined;
+              }
+              if (item.name !== undefined & 
+                  item.img !== undefined & 
+                  item.health !== undefined & item.health > 0 &
+                  item.attack !== undefined & item.attack > 0 &
+                  item.cost !== undefined) {
                 let img =null;
                 // Due to the webserver needing a secure (https://) source we parse the insecure (http) image from
                 // our API into a webserver which returns a secure link to the image
                 if (item.img != null){
                   img = "https://images.weserv.nl/?url=" + item.img.replace("http://", "");
-                }              
+
+                }
+              
+                              
                 return(
                   <tr key = {item.cardId}>
                       
