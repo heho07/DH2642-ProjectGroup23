@@ -15,6 +15,14 @@
 	color: white;
 }
 
+a.nav-item.nav-link {
+	color: rgba(197, 197, 197, 0.5);
+}
+
+a.nav-item.nav-link:hover {
+	color: #dedede;
+}
+
 a:-webkit-any-link {
     color: -webkit-link;
     cursor: pointer;

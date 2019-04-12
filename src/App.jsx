@@ -33,17 +33,13 @@ class App extends Component {
 
            <nav className="navbar navbar-expand-lg navbar-light bg-light">
              <Link to ="/" className="navbar-brand" >BlockStone</Link>
-             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div className="navbar-nav">
-              <Link to = "/" className = "nav-item nav-link"> Home <span className="sr-only">(current)</span></Link>
                <Link to = "/ChooseDifficulty" className="nav-item nav-link"> VSmode</Link>
                <Link to = "/MyCollection" className="nav-item nav-link">My Collection</Link>
                <Link to = "/searchScreen" className="nav-item nav-link">Store</Link>
-              </div>
-            </div>
+             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+
           </nav>
           <BlockStoneConnection/>
           {/* We rended diffrent component based on the path */}
