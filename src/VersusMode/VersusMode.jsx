@@ -36,6 +36,11 @@ class VersusMode extends Component{
 		modelInstance.removeObserver(this);
 	}
 
+	componentDidUpdate(){
+		const test = document.getElementById("gameResult");
+		test.scrollTop =test.scrollHeight;
+	
+	}
 	// this will be called when the model calls "notifyObservers()"
 	update(){
 		this.setState({
@@ -74,7 +79,7 @@ class VersusMode extends Component{
 		}
 		this.fight(obj, objectToSendToFight);
 	}
-
+	
 	// Displays information about a specific card
 	cardInfo(obj, owner){
 		let img = null;
@@ -86,6 +91,8 @@ class VersusMode extends Component{
   // HOWEVER it kind of looks like shit so idk
   // TODO: make it so that only the users cards are draggable, and only the 
   // opponents cards are onDrop-able
+
+  /*
   		let bgColors = [];
   		for (var i = 0; i <3; i++) {
   			let toAdd = Math.floor((obj.cardId.charCodeAt(0) * (200-60+1))%150 + 100 )%150;
@@ -94,33 +101,30 @@ class VersusMode extends Component{
   			}
   			bgColors.push(toAdd);
   		}
-
-
+	*/
 
 		return (			
-			<tr key = {obj.cardId} 
-				draggable = {owner === "user"}		 //is draggable if users card 
-				onDragStart = {owner === "user" ? (event) => this.onDrag(event, obj) : null} // can only be dragged if users card 
-				onDragOver = {owner === "opponent" ? (event) => this.dragOver(event, obj) : null} 	// can only be dragged over opponents card
-				onDrop = {owner === "opponent" ? (event) => this.onDrop(event,obj) : null}	// can only be dropped on opponents card
-				style = {{backgroundColor:`rgb(${bgColors})`}}
-			>
-				<td>
-					<div className = "cropped">
-						<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}} className = "vsImg"/>
-					</div>
-					<p>
-						<b>{obj.name}</b> 
-						<b>Health: </b> {obj.health} 
-						<b>Attack: </b> {obj.attack} 
-						<b>Cost: </b> {obj.cost} </p>
-					<p>Health: {obj.health}</p>
-					<p>Attack: {obj.attack}</p>
-					<p>Cost: {obj.cost}</p>
-				</td>
-				
-				
-			</tr>
+			<table className ="table table-borderless">
+				<tr key = {obj.cardId} 
+					draggable = {owner === "user"}		 //is draggable if users card 
+					onDragStart = {owner === "user" ? (event) => this.onDrag(event, obj) : null} // can only be dragged if users card 
+					onDragOver = {owner === "opponent" ? (event) => this.dragOver(event, obj) : null} 	// can only be dragged over opponents card
+					onDrop = {owner === "opponent" ? (event) => this.onDrop(event,obj) : null}	// can only be dropped on opponents card
+					//style = {{backgroundColor:`rgb(${bgColors})`}}
+					>
+					<td>
+						<div className = "cropped ">
+							<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}} className = "vsImg"/>
+						</div>
+					</td>
+					<td>
+						<h3><p>{obj.name}</p></h3>
+						<p>Health: {obj.health}</p>
+						<p>Attack: {obj.attack}</p>
+						<p>Cost: {obj.cost}</p>
+					</td>
+				</tr>
+			</table>
 		);
 	}
 
@@ -247,6 +251,7 @@ class VersusMode extends Component{
 		return lost;
 	}
 
+
 	render(){
 		return (
 				<div>
@@ -274,6 +279,14 @@ class VersusMode extends Component{
 					</div>
 
 					<Link to = "/ChooseDifficulty"><button title = "Can't take the heat? Better retreat and change difficulty">Retreat</button></Link>
+					
+					<button className="btn-primary" onClick = {
+						() => window.open(
+							"http://localhost:3000/PopUp",
+							"_blank",
+							"height=500,width=300"
+							)}> Info
+					</button>
 
 					<h1 className="text-center"> {this.state.gamestate} </h1>
 
@@ -300,16 +313,21 @@ class VersusMode extends Component{
 						https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up/21067431
 						or this https://stackoverflow.com/questions/40336311/how-can-i-make-a-scrollable-component-that-scrolls-to-the-latest-children-compon
 					 */}
+
 						<div id = "gameResult" style={{width:window.innerWidth, height:window.innerHeight*0.05, "minHeight":"15%"}}>
+					 		<h1>Fight history</h1>
 								{this.state.history.map((item, i)=> {
 							
 								return <p key = {i}>{item}</p>}
 							)}
 							
 						</div>
+						
 					</div>
 				</div>
 			);
+
+	
 
 	}
 }
