@@ -1,6 +1,7 @@
 #gameResult{
 	overflow:scroll;
-	height:250px;
+    height:250px;
+
 }
 #cardInfo{
 	overflow-y:scroll;
@@ -12,8 +13,8 @@
 }
 
 .cropped {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 300px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
@@ -41,11 +42,11 @@
 .td-versus {
 	border:1px solid black;
 }
-*/
+
 table.table-bordered > tbody > tr > td{
     border:1px solid black;
 }
-
+*/
 /*
 #cropped 
 */
@@ -55,6 +56,9 @@ img {
 }
 */
 
+.table {
+    border-style: hidden
+}
 
 #opponentsCards{
 	float:right;
