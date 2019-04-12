@@ -11,5 +11,20 @@
 .imageParagraph {
 	font-style: italic;
 	color: brown;
-	text-decoration: underline;
+	text-decoration: none;
+}
+
+.imageOptionCollection {
+	max-width: 100px;
+	max-height: 200px;
+}
+
+.imageOptionVersus {
+	max-width: 250px;
+	max-height: 157.15px;
+}
+
+.imageOptionCoins {
+	max-width: 180px;
+	max-height: 157.15px;
 }
