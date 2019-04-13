@@ -69,7 +69,7 @@ class SearchBar extends Component{
 
 
 					<button className = "sortOption btn btn-dark" onClick = {(e) => this.ascendingDescending()}>Change ascending / ascendingDescending</button>	
-					<button className = "sortOption btn btn-dark" Click = {() => this.changeSortingType("name")}>Sort by name</button>
+					<button className = "sortOption btn btn-dark" onClick = {() => this.changeSortingType("name")}>Sort by name</button>
 					<button className = "sortOption btn btn-dark" onClick = {() => this.changeSortingType("health")}>Sort by health</button>
 					<button className = "sortOption btn btn-dark" onClick = {() => this.changeSortingType("attack")}>Sort by attack</button>
 				
