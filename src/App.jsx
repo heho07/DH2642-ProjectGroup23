@@ -33,8 +33,8 @@ class App extends Component {
 
            <nav className="navbar navbar-expand-lg navbar-light bg-light">
              <Link to ="/" className="navbar-brand" >BlockStone</Link>
-               <Link to = "/ChooseDifficulty" className="nav-item nav-link"> VSmode</Link>
                <Link to = "/MyCollection" className="nav-item nav-link">My Collection</Link>
+               <Link to = "/ChooseDifficulty" className="nav-item nav-link">VSmode</Link>
                <Link to = "/searchScreen" className="nav-item nav-link">Store</Link>
              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>

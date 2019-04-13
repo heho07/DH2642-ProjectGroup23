@@ -66,24 +66,17 @@ class SearchBar extends Component{
 						<input id = "filter" type = "text" value = {this.state.filter} onChange = {(event) => this.handleChangeOfInput(event)}/>
 						<input type = "submit" className="form-control"></input>				
 					</form>
-					<div className="dropdown" onClick={this.toggleOpen}>
-						<button className="btn btn-secondary dropdown-toggle" 
-								type="button" 
-								id="dropdownMenuButton" 
-								data-toggle="dropdown"
-								aria-haspopup="true" 
-								aria-expanded="false">
-						</button>
-						<div className= {menuClass}  aria-labelledby="dropdownMenuButton">
 
-							<button  className = "btn  btn-primary" onClick = {(e) => this.ascendingDescending()}>Change ascending / ascendingDescending</button>	
-							<button onClick = {() => this.changeSortingType("name")}>Sort by name</button>
-							<button onClick = {() => this.changeSortingType("health")}>Sort by health</button>
-							<button onClick = {() => this.changeSortingType("attack")}>Sort by attack</button>
-						</div>
+
+					<button className = "sortOption btn btn-dark" onClick = {(e) => this.ascendingDescending()}>Change ascending / ascendingDescending</button>	
+					<button className = "sortOption btn btn-dark" Click = {() => this.changeSortingType("name")}>Sort by name</button>
+					<button className = "sortOption btn btn-dark" onClick = {() => this.changeSortingType("health")}>Sort by health</button>
+					<button className = "sortOption btn btn-dark" onClick = {() => this.changeSortingType("attack")}>Sort by attack</button>
+				
+				
 					</div>
 				</div>
-			</div>
+		
 		</center>
 		);
 	}
