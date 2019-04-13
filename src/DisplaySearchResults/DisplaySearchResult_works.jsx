@@ -101,37 +101,75 @@ class SearchResults extends Component {
     //   this.sort(); // for name
     // }
     return(
-      <div className = "row">
-          {this.state.searchResult.map((item, i) => {
-            // if the card is valid we return information about it 
-            // searchedCards.push(item); // add searched cards to model
-            if(!item.collectible){
-              // restrict the cards a bit to only show collectibles
-              item.name = undefined;
-            }
-            if (item.name !== undefined & 
-                item.img !== undefined & 
-                item.health !== undefined & item.health > 0 &
-                item.attack !== undefined & item.attack > 0 &
-                item.cost !== undefined) {
-              let img =null;
-              // Due to the webserver needing a secure (https://) source we parse the insecure (http) image from
-              // our API into a webserver which returns a secure link to the image
-              if (item.img != null){
-                img = "https://images.weserv.nl/?url=" + item.img.replace("http://", "");
-
+      <div>
+        <table className ="table">
+          <tbody>
+            {this.state.searchResult.map((item, i) => {
+              // if the card is valid we return information about it 
+              // searchedCards.push(item); // add searched cards to model
+              if(!item.collectible){
+                // restrict the cards a bit to only show collectibles
+                item.name = undefined;
               }
-            
-                            
+              if (item.name !== undefined & 
+                  item.img !== undefined & 
+                  item.health !== undefined & item.health > 0 &
+                  item.attack !== undefined & item.attack > 0 &
+                  item.cost !== undefined) {
+                let img =null;
+                // Due to the webserver needing a secure (https://) source we parse the insecure (http) image from
+                // our API into a webserver which returns a secure link to the image
+                if (item.img != null){
+                  img = "https://images.weserv.nl/?url=" + item.img.replace("http://", "");
+
+                }
+              
+                              
                 return(
-                  <div className = "col-sm-4 teststyle">
-                    <center>
-                      <img className="storeCardImage" src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/>
+                    <tr key = {item.cardId}>
+                      
+                    <td className="align-middle resultImage">
+                      <center>
+                        <img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/>
+                      </center>
+                    </td>
+                      
+                    <td className="align-middle">
+                     <table>
+                        <tbody>
+                          <tr>
+                            <td><b>Name</b></td>
+                            <td>{item.name}</td>
+                          </tr>
+                          <tr>
+                            <td><b>Card ID</b></td>
+                            <td>{item.cardId}</td>
+                          </tr>
+                          <tr>
+                            <td><b>type </b></td>
+                            <td>{item.type}</td>
+                          </tr>
+                          <tr>
+                            <td><b>cost </b></td>
+                            <td>{item.cost}</td>
+                          </tr>
+                          <tr>
+                            <td><b>attack </b></td>
+                            <td>{item.attack}</td>
+                          </tr>
+                          <tr>
+                            <td><b>health </b></td>
+                            <td>{item.health}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <br />
+                      <button className="btn btn-dark" id="gameButton" onClick = {() => this.handleClickOnCard(item, "user")}>Add to user</button> <br />
+                      <button className="btn btn-dark" id="gameButton" onClick = {() => this.handleClickOnCard(item, "opponent")}>Add to opponent</button><br />
                       <Link to = "/storeDetail"><button className="btn btn-dark"  onClick = {() => this.handleStoreCard(item)}>View this card</button></Link>
-                    </center>
-                  </div>
+                    </td>
 
-
+                  </tr>
                 );
               }
               else{
@@ -139,6 +177,8 @@ class SearchResults extends Component {
                 return false;
               }
             })}
+          </tbody>
+        </table>
       </div>
     );
   }

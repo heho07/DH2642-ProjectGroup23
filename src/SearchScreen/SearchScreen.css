@@ -25,3 +25,6 @@ img{
 	border-top: 0;
 }
 
+.storeCardImage {
+  max-width: 65%;
+}
