@@ -126,7 +126,7 @@ class SearchResults extends Component {
               
                               
                 return(
-                  <tr key = {item.cardId}>
+                    <tr key = {item.cardId}>
                       
                     <td className="align-middle resultImage">
                       <center>
