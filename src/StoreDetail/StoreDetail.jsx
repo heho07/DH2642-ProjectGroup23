@@ -45,7 +45,7 @@ class StoreDetail extends Component{
 						<table>
 							<tr>
 								<td>
-									<img src = {img} alt = {img} className="specImg2" />
+									<img src = {img} alt = {img} className="specImg" />
 								</td>
 								<td>
 									<p className="mb-0 "> <b>From set: </b> {card.cardSet} </p>
@@ -59,22 +59,6 @@ class StoreDetail extends Component{
 						</table>
 			
 					</center>	
-				</div>
-		
-				<div className ="col-sm-6">
-					<center>
-						<img src = {img} alt = {img} className="specImg"/>
-					</center>
-				</div>	
-				<div className ="col-sm-5">
-					<br />
-					<br />
-					<br />
-					<p className="mb-0 "> <b>From set: </b> {card.cardSet} </p>
-					<p className="mb-0 "> <b>Artist: </b>{card.artist} </p>
-					<p className="mb-0 "> <b>Description: </b> <i>{card.flavor}</i></p>
-					<br/>
-				    <button className="purchaseButton btn btn-dark" >Purchase card</button> <br />
 				</div>
 			
 			</div>
