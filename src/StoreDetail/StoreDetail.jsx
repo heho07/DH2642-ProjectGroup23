@@ -36,22 +36,47 @@ class StoreDetail extends Component{
 
 		return(
 
-			<div className= "row align-middle">
-				<div className ="col-12 text-center" >
-					<h1 >{card.name}</h1>		
-					<p className="mb-0 " > {card.rarity} {card.race}</p>
-				</div>
-				<div className ="col-6 justify-content-center align-self-center">
-					<img src = {img} alt = {img} className="specImg"/>
+			<div className= "row">
+				<div className ="col-sm-12" >
+					<center>
+						<h1 >{card.name}</h1>	
+						<p className="mb-0 " > {card.rarity} {card.race}</p>
+		
+						<table>
+							<tr>
+								<td>
+									<img src = {img} alt = {img} className="specImg2" />
+								</td>
+								<td>
+									<p className="mb-0 "> <b>From set: </b> {card.cardSet} </p>
+									<p className="mb-0 "> <b>Artist: </b>{card.artist} </p>
+									<p className="mb-0 "> <b>Description: </b> <i>{card.flavor}</i></p>
+									<br/>
+								    <button className="purchaseButton btn btn-dark" >Purchase card</button> <br />
+							    </td>
 
+							</tr>
+						</table>
+			
+					</center>	
+				</div>
+		
+				<div className ="col-sm-6">
+					<center>
+						<img src = {img} alt = {img} className="specImg"/>
+					</center>
 				</div>	
-				<div className ="col-3 justify-content-center align-self-center">
+				<div className ="col-sm-5">
+					<br />
+					<br />
+					<br />
 					<p className="mb-0 "> <b>From set: </b> {card.cardSet} </p>
 					<p className="mb-0 "> <b>Artist: </b>{card.artist} </p>
 					<p className="mb-0 "> <b>Description: </b> <i>{card.flavor}</i></p>
 					<br/>
-				    <button className="btn btn-dark" >Purchase card</button> <br />
+				    <button className="purchaseButton btn btn-dark" >Purchase card</button> <br />
 				</div>
+			
 			</div>
 		);
 
