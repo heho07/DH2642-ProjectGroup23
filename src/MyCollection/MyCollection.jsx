@@ -19,7 +19,11 @@ class MyCollection extends Component{
         	img = "https://images.weserv.nl/?url=" + obj.img.replace("http://", "");
       	}
 		return (
-				<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/>
+			<div className = "col-sm-4">
+				<center>
+					<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/>
+				</center>
+			</div>
 			);
 	}
 
@@ -42,10 +46,12 @@ class MyCollection extends Component{
 		}
 		else {
 			return(
-				<div>
+				<div className="row">
+				<div className="col-sm-12">
 					<center>
-						<h1> My Collection </h1>
+						<h1>My Collection</h1>
 					</center>
+				</div>
 					{cards.map((item, i)=>{
 						return this.cardInfo(item);
 					})}
