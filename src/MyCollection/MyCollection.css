@@ -1,3 +1,8 @@
 #backButton {
 	width: 20%;
 }
+
+.textExplain {
+	font-style: italic;
+	color: brown; 
+}

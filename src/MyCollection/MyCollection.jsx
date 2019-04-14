@@ -32,16 +32,21 @@ class MyCollection extends Component{
 		console.log("cards: " +cards);
 		if (cards.length === 0){
 			return (
-				<div className="container">
+				<div className ="row">
+				<div className ="col-sm-12">
 					<center>
 						<h1>
-							Sorry, no cards fam 
+							Sorry, no cards fam! 
 						</h1> 
-						<span>
-							Try going to the seach screen and pick a a few cards, then return here
-						</span> 
+						<p className= "textExplain">
+							Try going to the store and pick a a few cards.
+						</p> 
+						<Link to="/SearchScreen">
+                			<button type="button" className="btn btn-dark" id="backButton">Go to the store</button>
+              			</Link>
 					</center>
 	  			</div>	
+	  			</div>
 			);
 		}
 		else {
@@ -68,8 +73,13 @@ class MyCollection extends Component{
 				{this.displayAllCards()} 
 					
 				<center>
+				<br />
+				<p className="textExplain">
+					Or go back to the menu for other options
+				</p> 
+
 				<Link to = "/">
-					<button className="btn btn-dark" id="backButton">Go back</button>
+					<button className="btn btn-dark" id="backButton">Go back to the menu</button>
 				</Link>
 				</center>
 			</div>);
