@@ -14,8 +14,9 @@ class Welcome extends Component {
             <div className = "col-sm-4 teststyle">
               
               <center>
-              <img className="imageOptionCollection" src={require('./collection_small.png')} />
-            
+              <Link to="/MyCollection">
+                <img className="imageOptionCollection" src={require('./collection_small.png')} />
+              </Link>
               </center>
               <br />
               <p className ="imageParagraph">Check your cards</p>
@@ -31,7 +32,9 @@ class Welcome extends Component {
             </div> 
             <div className = "col-sm-4 teststyle">
               <center>
+              <Link to = "/ChooseDifficulty">
                 <img className="imageOptionVersus" src={require('./versus_small.png')} />
+              </Link>
               </center>
               <center>
               <br/>
@@ -46,7 +49,9 @@ class Welcome extends Component {
             </div> 
             <div className = "col-sm-4 teststyle">
               <center>
+              <Link to="/SearchScreen">
                 <img className="imageOptionCoins" src={require('./coins_small.png')} />
+              </Link>
               </center>
               <center>
               <br/>

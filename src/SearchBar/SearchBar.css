@@ -16,7 +16,7 @@ input {
 
 .sortOption {
 	font-style: italic;
-	display: inline;
+	display: inline-block;
 	margin-right: 2%;
 	color: brown;
 
