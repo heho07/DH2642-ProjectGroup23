@@ -57,7 +57,8 @@ class SearchBar extends Component{
 
 
 	render(){
-		const menuClass = `dropdown-menu  col-md-4 ${this.state.isOpen ? " show" : ""}`;
+		//Generates the search field and lets the user change sorting options.
+		// Needs to be updated with pointers. 
 		return(
 			<center>
 			<div className="row">

@@ -7,10 +7,15 @@ class Welcome extends Component {
   
     render() {
     return (
+      // Creates all the options at the initial menu. 
+      // Both images and buttons link to same destination. 
       <div className="Welcome">
         <br/>
         <center>
           <div className = "row">
+
+            {/* Options to get to my collection, needs to be populated by the user */}
+
             <div className = "col-sm-4 teststyle">
               
               <center>
@@ -29,7 +34,10 @@ class Welcome extends Component {
               </Link>
               </center>
               </h4>
-            </div> 
+            </div>
+
+            {/* Options to get to the Versus-mode */} 
+
             <div className = "col-sm-4 teststyle">
               <center>
               <Link to = "/ChooseDifficulty">
@@ -47,6 +55,9 @@ class Welcome extends Component {
                </Link>
               </center></h4>
             </div> 
+
+            {/* Options to transfer users to the store */} 
+
             <div className = "col-sm-4 teststyle">
               <center>
               <Link to="/SearchScreen">

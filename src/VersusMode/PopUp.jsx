@@ -9,6 +9,7 @@ class PopUp extends Component{
 
 	render(){
 		return (
+				// Generates the rules in the pop, accessed from the Versus mode
 				<div>
 					<h1>How to play</h1>
 					<p>The goal of the game is to defeat you opponent by beating their cards with your cards.</p>

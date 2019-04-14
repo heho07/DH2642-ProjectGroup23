@@ -35,7 +35,9 @@ class StoreDetail extends Component{
 	
 
 		return(
-
+		/* Returns a div that contains the necessary info on a specific card. 
+			The Purchase button will take the user to a pop up where cards can
+			be bought via the blockchain.  */
 			<div className= "row">
 				<div className ="col-sm-12" >
 					<center>

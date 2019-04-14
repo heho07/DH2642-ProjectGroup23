@@ -31,6 +31,8 @@ class MyCollection extends Component{
 		const cards = this.state.usersCards;
 		console.log("cards: " +cards);
 		if (cards.length === 0){
+			// Option if there are no cards in the collection. 
+
 			return (
 				<div className ="row">
 				<div className ="col-sm-12">
@@ -51,6 +53,7 @@ class MyCollection extends Component{
 		}
 		else {
 			return(
+				// Returns the cards that are in the collection
 				<div className="row">
 				<div className="col-sm-12">
 					<center>
