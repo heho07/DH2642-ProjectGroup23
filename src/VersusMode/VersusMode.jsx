@@ -256,7 +256,8 @@ class VersusMode extends Component{
 		return (
 				<div>
 
-					{/* This div is purely to test stuff out with, can be commented out and should be removed later on */}
+					{/* Commented out to check how the final screen looks.
+					 This div is purely to test stuff out with, can be commented out and should be removed later on 
 					<div id = "testDiv">
 						<h3>For testing purposes</h3>
 						<p>Test out the different stuff by adding cards. Adding cards does not clear the deck. This div should be removed later on</p>
@@ -277,17 +278,19 @@ class VersusMode extends Component{
 						<br/>
 						<br/>
 					</div>
-
-					<Link to = "/ChooseDifficulty"><button title = "Can't take the heat? Better retreat and change difficulty">Retreat</button></Link>
+					*/}
+					<center>
+						<Link to = "/ChooseDifficulty"><button className="btn btn-dark infoButton" title = "Can't take the heat? Better retreat and change difficulty">Retreat</button></Link>
+						
+						<button className="btn btn-dark infoButton" onClick = {
+							() => window.open(
+								"http://localhost:3000/PopUp",
+								"_blank",
+								"height=500,width=300"
+								)}> How to play
+						</button>
+					</center>
 					
-					<button className="btn-primary" onClick = {
-						() => window.open(
-							"http://localhost:3000/PopUp",
-							"_blank",
-							"height=500,width=300"
-							)}> Info
-					</button>
-
 					<h1 className="text-center"> {this.state.gamestate} </h1>
 
 					<div style={{width:window.innerWidth, height:window.innerHeight*0.95, "minHeight":"15%"}}>

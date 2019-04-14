@@ -32,14 +32,15 @@ class App extends Component {
           <header className="App-header">
 
            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-             <Link to ="/" className="navbar-brand" >BlockStone</Link>
-               <Link to = "/MyCollection" className="nav-item nav-link">My Collection</Link>
-               <Link to = "/ChooseDifficulty" className="nav-item nav-link">VS</Link>
-               <Link to = "/searchScreen" className="nav-item nav-link">Store</Link>
-             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-
+              <Link to ="/" className="navbar-brand" >BlockStone</Link>
+              <Link to = "/MyCollection" className="nav-item nav-link">My Collection</Link>
+              <Link to = "/ChooseDifficulty" className="nav-item nav-link">VS</Link>
+              <Link to = "/searchScreen" className="nav-item nav-link">Store</Link>
+              {/* No need for the button, should be enough like this ^. 
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+            */}
           </nav>
           <BlockStoneConnection/>
           {/* We rended diffrent component based on the path */}
@@ -50,7 +51,8 @@ class App extends Component {
             path = "/SearchScreen" 
             component = {SearchScreen}
           />
-
+        
+        {/*My Collection*/}
           <Route 
             path ="/MyCollection"
             component = {MyCollection}
