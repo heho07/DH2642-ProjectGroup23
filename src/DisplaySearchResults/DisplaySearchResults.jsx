@@ -35,7 +35,6 @@ class SearchResults extends Component {
       this.setState({loading:true}, () =>
         modelInstance.searchCards(this.state.filter).then(
           results =>{ 
-            console.log(results);
             this.setState({
               loading: false, 
               // searchResult: results

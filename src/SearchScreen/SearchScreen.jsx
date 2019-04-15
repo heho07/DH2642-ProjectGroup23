@@ -40,7 +40,6 @@ class SearchScreen extends Component{
     // reverse indicates what order we're sorting in.
     // Primer indicates how the sort is made. Has to be a way of sorting such as parseFloat etc
     // Field indicates what we're sorting by 
-    	console.log("calling sortCard");
 	    let key = primer ? x => {return primer(x[this.state.field])} : x => x[this.state.field];
 	    let reverse;
 	    !(this.state.reverseSort) ? reverse = 1: reverse = -1;
@@ -53,7 +52,6 @@ class SearchScreen extends Component{
 	  // and changes this.state.searchResults
 	sortFunc(){
 		// this.state.searchResult.sort(this.sortCard(parseFloat)); //for everything numbers
-		console.log("Calling sortFunc");
 		let tmpArray = this.state.searchResult;
 		if ( this.state.field === "name" ) {
 
@@ -72,9 +70,7 @@ class SearchScreen extends Component{
 		this.setState({
 			reverseSort:!this.state.reverseSort,
 			}, () => this.sortFunc());
-		console.log(this.state.reverseSort);
 		// this.sortFunc();
-		console.log("ascendingDescending called from SearchScreen");
 	}
 
 	// changes what to sort on (name, health, or attack)

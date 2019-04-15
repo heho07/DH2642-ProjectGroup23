@@ -33,7 +33,6 @@ class BlockStoneConnection extends Component {
   }
 
   render(){
-  	console.log(window);
     return(
       <div>
         <button onClick = {() => this.handleClick()}>ANROPAR CONNECT</button>
@@ -41,10 +40,8 @@ class BlockStoneConnection extends Component {
             console.log(res);
             let arr = [];
             Object.values(res).forEach( (i) =>{
-              //console.log(i);
               i.forEach((j) => arr.push(j));
             });
-            console.log(arr);
             
 
 
