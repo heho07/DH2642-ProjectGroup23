@@ -187,8 +187,11 @@ class Model extends ObservableModel{
 	}
 	  
 	setSearchedCards(array){
-		this.searchedCards = array;
-		console.log(this.searchedCards);
+		for (var i = array.length - 1; i >= 0; i--) {
+			if(array[i].attack !== undefined && array[i].health !== undefined  && array[i].name && array[i].attack > 0 && array[i].health > 0){
+				this.searchedCards.push(array[i]);
+			}
+		}
 		this.notifyObservers();
 		localStorage.setItem("searchedCards", JSON.stringify(this.searchedCards));
 	}

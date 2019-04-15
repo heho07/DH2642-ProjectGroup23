@@ -105,10 +105,10 @@ class SearchResults extends Component {
           {this.state.searchResult.map((item, i) => {
             // if the card is valid we return information about it 
             // searchedCards.push(item); // add searched cards to model
-            if(!item.collectible){
-              // restrict the cards a bit to only show collectibles
-              item.name = undefined;
-            }
+            // if(!item.collectible){
+            //   // restrict the cards a bit to only show collectibles
+            //   item.name = undefined;
+            // }
             if (item.name !== undefined & 
                 item.img !== undefined & 
                 item.health !== undefined & item.health > 0 &

@@ -37,6 +37,18 @@ class BlockStoneConnection extends Component {
     return(
       <div>
         <button onClick = {() => this.handleClick()}>ANROPAR CONNECT</button>
+        <button onClick = {() => modelInstance.getAllCardsFromAPI().then((res) => {
+            console.log(res);
+            let arr = [];
+            Object.values(res).forEach( (i) =>{
+              //console.log(i);
+              i.forEach((j) => arr.push(j));
+            });
+            console.log(arr);
+            
+
+
+          })}>all cards</button>
       </div>
     );
   }
