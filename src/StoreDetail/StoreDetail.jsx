@@ -25,6 +25,7 @@ class StoreDetail extends Component{
 					status:"done",
 				});
 				found = true;
+				console.log("state ändrat");
 			}
 		});
 		if (!found) {
@@ -49,7 +50,7 @@ class StoreDetail extends Component{
 			console.log("TRUE");
 			toReturn = <p>loading</p>;
 		}
-		else if (!this.state.status === "done"){
+		else if (this.state.status === "done"){
 			console.log("FALSE");
 
 			let card = this.state.card;
