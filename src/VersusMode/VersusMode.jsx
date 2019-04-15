@@ -190,7 +190,6 @@ class VersusMode extends Component{
 			history.push(opponentInfo);
 
 			if (usersCurrent.health <= 0) {
-				console.log("users current negative");
 				for (let i = usersCards.length - 1; i >= 0; i--) {
 					if (usersCards[i].cardId === usersCurrent.cardId){
 						usersCards.splice(i, 1);
@@ -199,7 +198,6 @@ class VersusMode extends Component{
 				history.push("users " + usersCurrent.name + " died!");
 			}
 			if (opponentsCurrent.health <= 0) {
-				console.log("opponents current negative");
 				for (let i = 0; i < opponentsCards.length; i++) {
 					if (opponentsCards[i].cardId === opponentsCurrent.cardId){
 						opponentsCards.splice(i, 1);
@@ -214,7 +212,6 @@ class VersusMode extends Component{
 			});
 
 			if(this.won()){
-				console.log("Lmao");
 				this.setState({
 					gamestate:"GLORIOUS VICTORY",
 				})

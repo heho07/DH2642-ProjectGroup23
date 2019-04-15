@@ -4,16 +4,9 @@ import modelInstance from "../data/Model";
 
 
 class StoreDetail extends Component{
-	constructor(props) {
-		super(props);
-		this.state = {
-			
-		}
-	};
 
 	render() {
 		const card = modelInstance.getCard();
-		console.log(card);
 		let img = "http://i.imgur.com/IlRXBtu.jpg";
 		if(card === undefined){
 			return (
@@ -28,7 +21,6 @@ class StoreDetail extends Component{
 		if (card.img !== null){
 			img = "https://images.weserv.nl/?url=" + card.img.replace("http://", "");
 		} 
-		console.log(card.race);
 		if(card.race === undefined){
 			card.race = card.type;
 		}
