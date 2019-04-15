@@ -44,7 +44,7 @@ class SearchScreen extends Component{
 	    let reverse;
 	    !(this.state.reverseSort) ? reverse = 1: reverse = -1;
 	    return (a,b) =>{
-	      return a = key(a), b = key(b), reverse * ((a>b)-(b>a));
+	      return (a = key(a) , b = key(b), reverse * ((a>b)-(b>a)));
 	    }
 	  }
 

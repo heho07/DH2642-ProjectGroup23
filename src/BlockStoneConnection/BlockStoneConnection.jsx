@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 //import * as Connect from "../connect.js";
 
 // importing the modelInstance directly (as opposed to passing it as a prop)
@@ -11,9 +10,7 @@ import modelInstance from "../data/Model";
 // Renders HTML for the search results.
 // What filter to search for is passed to it from its parent component (this.props.filter)
 class BlockStoneConnection extends Component {
-  constructor(props) {
-    super(props);
-  }
+
 
 
  // <div>Address: <span id="walletAddress">---</span></div>

@@ -28,7 +28,7 @@ class SearchResults extends Component {
   componentDidMount() {
     // when data is retrieved we update the state
     // this will cause the component to re-render
-    if (modelInstance.getSearchedCards() === undefined || modelInstance.getSearchedCards().length ==0) {
+    if (modelInstance.getSearchedCards() === undefined || modelInstance.getSearchedCards().length === 0) {
       // only do this if we don't already have a search result loaded in
 
     
