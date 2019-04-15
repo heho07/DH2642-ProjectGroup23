@@ -7,6 +7,7 @@ class StoreDetail extends Component{
 
 	constructor(props) {
 		super(props);
+		// we access the id from the URL 
 		let url = this.props.location.search;
 		this.state = {
 			cardId:queryString.parse(url).id,
@@ -17,24 +18,25 @@ class StoreDetail extends Component{
 
 	componentDidMount(){
 		let found = false;
+		// checks if the user has the card with matching cardId in the model
 		modelInstance.getSearchedCards().forEach((item) => {
 			if (item.cardId === this.state.cardId) {
-				console.log("hittade i modellen");
 				this.setState({
 					card:item,
 					status:"done",
 				});
 				found = true;
-				console.log("state ändrat");
 			}
 		});
+		// if the card was not found we query the API for the card
 		if (!found) {
 			modelInstance.searchCardsById(this.state.cardId).then((res) => {
 				this.setState({
-					card:res,
+					card:res[0],
 					status:"done",
 				})
 			}).catch( (e) => {
+				// handling potential error from the API
 				console.log(e);
 				this.setState({status:"Error"})
 			});
@@ -47,33 +49,15 @@ class StoreDetail extends Component{
 	render() {
 		let toReturn;
 		if (this.state.status === "loading") {
-			console.log("TRUE");
-			toReturn = <p>loading</p>;
+			toReturn = <center><div className = "loader">loading</div></center>;
 		}
 		else if (this.state.status === "done"){
-			console.log("FALSE");
-
+		// If the card has finished loading from the model / API
 			let card = this.state.card;
-			let img = "http://i.imgur.com/IlRXBtu.jpg";
-			if(card === undefined){
-				return (
-					
-					<div className ="col-12 justify-content-center align-self-center">
-					<center>
-						<p className="mb-0 "> This is not the card you're looking for</p>
-						<img src = {img} alt = {img} className = "img-fluid"></img>
-					</center>
-				</div>)
-			}
-			if (card.img !== null){
-				img = "https://images.weserv.nl/?url=" + card.img.replace("http://", "");
-			} 
-			console.log(card.race);
 			if(card.race === undefined){
 				card.race = card.type;
 			}
-		
-
+			let img = "https://images.weserv.nl/?url=" + card.img.replace("http://", "");
 			toReturn = (
 			/* Returns a div that contains the necessary info on a specific card. 
 				The Purchase button will take the user to a pop up where cards can
@@ -83,7 +67,6 @@ class StoreDetail extends Component{
 						<center>
 							<h1 >{card.name}</h1>	
 							<p className="mb-0 " > {card.rarity} {card.race}</p>
-			
 							<table>
 								<tr>
 									<td>
@@ -96,36 +79,28 @@ class StoreDetail extends Component{
 										<br/>
 									    <button className="purchaseButton btn btn-dark" >Purchase card</button> <br />
 								    </td>
-
 								</tr>
-							</table>
-				
+							</table>	
 						</center>	
 					</div>
-				
 				</div>
 			);
-
-		
 		}
+		// if error we show some error screen
 		else if (this.state.status === "Error"){
-			console.log("error?????????");
-			console.log(this.state.status);
-			toReturn = <p>something went wrong</p>;
+			let img = "http://i.imgur.com/IlRXBtu.jpg";
+			toReturn = (
+				<div className ="col-12 justify-content-center align-self-center">
+					<center>
+						<p className="mb-0 "> This is not the card you're looking for, something went wrong</p>
+						<img src = {img} alt = {img} className = "img-fluid"></img>
+					</center>
+				</div>
+			);
 		}
 		return <div>{toReturn}</div>
 	}
 }
-
-
-
-
-
-
-
-
-
-
 
 
 export default StoreDetail;
