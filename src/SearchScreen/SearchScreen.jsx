@@ -54,12 +54,17 @@ class SearchScreen extends Component{
 	sortFunc(){
 		// this.state.searchResult.sort(this.sortCard(parseFloat)); //for everything numbers
 		console.log("Calling sortFunc");
+		let tmpArray = this.state.searchResult;
 		if ( this.state.field === "name" ) {
-			this.state.searchResult.sort(this.sortCard(function(a){return a.toUpperCase()})); // for name
+
+			tmpArray.sort(this.sortCard(function(a){return a.toUpperCase()})); // for name
+			// modelInstance.setSearchCards(tmpArray);
 		} 
 		else{
-			this.state.searchResult.sort(this.sortCard(parseFloat)); //for numbers
+			tmpArray.sort(this.sortCard(parseFloat)); //for numbers
 		}
+		modelInstance.clearSearchedCards();
+		modelInstance.setSearchedCards(tmpArray);
 	}
 
 	// changes from ascending -> descending or vice versa
