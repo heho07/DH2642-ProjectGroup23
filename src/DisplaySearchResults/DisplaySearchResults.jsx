@@ -126,7 +126,7 @@ class SearchResults extends Component {
                   <div className = "col-sm-4 teststyle">
                     <center>
                       <img className="storeCardImage" src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}}/>
-                      <Link to = "/storeDetail"><button className="btn btn-dark"  onClick = {() => this.handleStoreCard(item)}>View this card</button></Link>
+                      <Link to = {"/storeDetail?id="+item.cardId}><button className="btn btn-dark"  onClick = {() => this.handleStoreCard(item)}>View this card</button></Link>
                     </center>
                   </div>
 
