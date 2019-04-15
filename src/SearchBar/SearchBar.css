@@ -19,5 +19,5 @@ input {
 	display: inline-block;
 	margin-right: 2%;
 	color: brown;
-
+	cursor: pointer;
 }
