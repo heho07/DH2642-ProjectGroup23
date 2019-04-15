@@ -114,7 +114,7 @@ class VersusMode extends Component{
 					>
 					<td>
 						<div className = "cropped ">
-							<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://t3.ftcdn.net/jpg/01/20/55/62/500_F_120556266_mRv3efLLQlc8m3NcVJG7jAIARhBoATpn.jpg"}} className = "vsImg"/>
+							<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://i.imgur.com/ZI9QakW.png"}} className = "vsImg"/>
 						</div>
 					</td>
 					<td>

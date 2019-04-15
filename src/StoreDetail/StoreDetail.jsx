@@ -70,7 +70,7 @@ class StoreDetail extends Component{
 							<table>
 								<tr>
 									<td>
-										<img src = {img} alt = {img} className="specImg" />
+										<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://i.imgur.com/ZI9QakW.png"}} className="specImg" />
 									</td>
 									<td>
 										<p className="mb-0 "> <b>From set: </b> {card.cardSet} </p>
