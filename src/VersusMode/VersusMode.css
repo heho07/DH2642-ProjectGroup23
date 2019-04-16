@@ -6,10 +6,8 @@
 #cardInfo{
 	overflow-y:scroll;
 	height:500px;
-}
-
-#opponentHeader{
-	float:right;
+    display: flex;
+    justify-content: space-between;
 }
 
 .cropped {
@@ -40,33 +38,13 @@
     min-width: 15%;
 }
 
-/*
-.tr-versus {
-	border:1px solid black;
-}
 
-.td-versus {
-	border:1px solid black;
-}
-
-table.table-bordered > tbody > tr > td{
-    border:1px solid black;
-}
-*/
-/*
-#cropped 
-*/
-/*
-img {
-	width: 30%;
-}
-*/
 
 .table {
     border-style: hidden
 }
 
-#opponentsCards{
+.opponentsCards{
 	float:right;
 }
 
@@ -78,4 +56,15 @@ img {
 #addButton {
 	margin-left: 2%;
 	width: 20%;
+}
+
+.flexContainer{
+    display:flex;
+    justify-content: space-between;
+        width: 180px;
+
+}
+
+.flexItem{
+    align-self: auto;
 }

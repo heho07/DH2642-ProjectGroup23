@@ -30,6 +30,7 @@ class VersusMode extends Component{
 	// When this component is instaniated we add it to the list of observers in the model
 	componentDidMount(){
 		modelInstance.addObserver(this);
+		this.state.opponentsCards.forEach((card) => console.log(card));
 	}
 
 	componentWillUnmount(){
@@ -87,43 +88,34 @@ class VersusMode extends Component{
         	img = "https://images.weserv.nl/?url=" + obj.img.replace("http://", "");
       	}
 
-  //added some background color to the tr to make it more visably discernably between the different elements
-  // HOWEVER it kind of looks like shit so idk
-  // TODO: make it so that only the users cards are draggable, and only the 
-  // opponents cards are onDrop-able
-
-  /*
-  		let bgColors = [];
-  		for (var i = 0; i <3; i++) {
-  			let toAdd = Math.floor((obj.cardId.charCodeAt(0) * (200-60+1))%150 + 100 )%150;
-  			if (toAdd < 90) {
-  				toAdd += 100;
-  			}
-  			bgColors.push(toAdd);
-  		}
-	*/
-
 		return (			
-			<table className ="table table-borderless">
-				<tr key = {obj.cardId} 
-					draggable = {owner === "user"}		 //is draggable if users card 
-					onDragStart = {owner === "user" ? (event) => this.onDrag(event, obj) : null} // can only be dragged if users card 
-					onDragOver = {owner === "opponent" ? (event) => this.dragOver(event, obj) : null} 	// can only be dragged over opponents card
-					onDrop = {owner === "opponent" ? (event) => this.onDrop(event,obj) : null}	// can only be dropped on opponents card
-					//style = {{backgroundColor:`rgb(${bgColors})`}}
-					>
-					<td>
-						<div className = "cropped ">
-							<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://i.imgur.com/ZI9QakW.png"}} className = "vsImg"/>
-						</div>
-					</td>
-					<td>
-						<h3><p>{obj.name}</p></h3>
-						<p>Health: {obj.health}</p>
-						<p>Attack: {obj.attack}</p>
-						<p>Cost: {obj.cost}</p>
-					</td>
-				</tr>
+			<table className ="table table-borderless" 
+				key = {obj.cardId + obj.name}>
+				<tbody>
+					<tr key = {obj.cardId} 
+						draggable = {owner === "user"}		 //is draggable if users card 
+						onDragStart = {owner === "user" ? (event) => this.onDrag(event, obj) : null} // can only be dragged if users card 
+						onDragOver = {owner === "opponent" ? (event) => this.dragOver(event, obj) : null} 	// can only be dragged over opponents card
+						onDrop = {owner === "opponent" ? (event) => this.onDrop(event,obj) : null}	// can only be dropped on opponents card
+						//style = {{backgroundColor:`rgb(${bgColors})`}}
+						>
+						<td>
+							<h3>{obj.name}</h3>
+							<div className = "cropped ">
+								<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://i.imgur.com/ZI9QakW.png"}} className = "vsImg"/>
+							</div>
+							<div className = "flexContainer">
+								<div className = "flexItem">
+									<p>Health: {obj.health}</p>
+								</div>
+								<div className = "flexItem">
+									<p>Attack: {obj.attack}</p>
+
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
 			</table>
 		);
 	}
@@ -134,27 +126,27 @@ class VersusMode extends Component{
 		let cards = null;
 		if (owner === "user") {
 			cards = this.state.usersCards;
+			return (
+				<div>
+					{cards.map((item, i)=>{
+						return this.cardInfo(item, owner);
+					})}
+				</div>
+			);
 		}
 		else if (owner === "opponent"){
 			cards = this.state.opponentsCards;
+			return (
+					<div className = "opponentsCards">
+						{cards.map((item, i)=>{
+							return this.cardInfo(item, owner);
+						})}
+					</div>
+				);
 		}
 		else{
-			return false;
-		}
-		if (cards === null){
 			return <p>something went wrong</p>;
 		}
-		return (
-				<div>
-					<table className = " table table-bordered ">
-						<tbody>
-							{cards.map((item, i)=>{
-								return this.cardInfo(item, owner);
-							})}
-						</tbody>
-					</table>
-				</div>
-			);
 	}
 
 	// Checks for what cards the user and opponent has
@@ -255,6 +247,7 @@ class VersusMode extends Component{
 
 					{/* Commented out to check how the final screen looks.
 					 This div is purely to test stuff out with, can be commented out and should be removed later on 
+					*/}
 					<div id = "testDiv">
 						<h3>For testing purposes</h3>
 						<p>Test out the different stuff by adding cards. Adding cards does not clear the deck. This div should be removed later on</p>
@@ -275,10 +268,12 @@ class VersusMode extends Component{
 						<br/>
 						<br/>
 					</div>
-					*/}
+					
 					<center>
 						<Link to = "/ChooseDifficulty"><button className="btn btn-dark infoButton" title = "Can't take the heat? Better retreat and change difficulty">Retreat</button></Link>
 						
+						<button className = "btn btn-dark infoButton" onClick = {() => this.fight()}>Fight</button>
+
 						<button className="btn btn-dark infoButton" onClick = {
 							() => window.open(
 								"http://localhost:3000/PopUp",
@@ -290,19 +285,19 @@ class VersusMode extends Component{
 					
 					<h1 className="text-center"> {this.state.gamestate} </h1>
 
-					<div style={{width:window.innerWidth, height:window.innerHeight*0.95, "minHeight":"15%"}}>
+					<div style={{width:window.innerWidth*0.99, height:window.innerHeight*0.95, "minHeight":"15%"}}>
 						{/* I want this to take up more height even when it is empty. idk how though, at least without using px */}
-						<div className = "row border border-dark " id = "cardInfo">
+						<div className = " border border-dark " id = "cardInfo">
 
-							<div className = "col-sm-5">
+							<div >
 								<h1>Users cards </h1>
+								<hr/>
 								{this.displayAllCards("user")}
 							</div>
-							<div className = "col-sm-1">
-								<button onClick = {() => this.fight()}>Fight</button>	
-							</div>
-							<div className = "col-sm-5" id = "opponentsCards">
-								<h1 id = "opponentHeader">AI opponents cards</h1>
+							
+							<div  id = "opponentsCards">
+								<h1>AI opponents cards</h1>
+								<hr/>
 								{this.displayAllCards("opponent")}
 							</div>
 						</div>
