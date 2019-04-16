@@ -192,7 +192,8 @@ class Model extends ObservableModel{
 	  
 	setSearchedCards(array){
 		for (var i = array.length - 1; i >= 0; i--) {
-			if(array[i].attack !== undefined && array[i].health !== undefined  && array[i].name && array[i].attack > 0 && array[i].health > 0){
+			if(array[i].attack !== undefined && array[i].health !== undefined  && array[i].name && array[i].attack > 0 && array[i].health > 0 
+				&& array[i].cardId && array[i].cardId !== undefined && array[i].name !== undefined){
 				this.searchedCards.push(array[i]);
 			}
 		}
