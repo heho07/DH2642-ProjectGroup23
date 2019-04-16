@@ -30,7 +30,8 @@ class VersusMode extends Component{
 	// When this component is instaniated we add it to the list of observers in the model
 	componentDidMount(){
 		modelInstance.addObserver(this);
-		this.state.opponentsCards.forEach((card) => console.log(card));
+
+		this.saveOriginalHealth();
 	}
 
 	componentWillUnmount(){
@@ -42,12 +43,34 @@ class VersusMode extends Component{
 		test.scrollTop =test.scrollHeight;
 	
 	}
+
+	saveOriginalHealth(){
+		//saving the original health of the cards
+		let cards = this.state.opponentsCards;
+		this.setState({opponentsCards:[]});
+		cards.forEach((card) => {
+				card["originalHealth"] = card.health;
+			}
+		);
+		this.setState({opponentsCards:cards});
+		// this.state.opponentsCards.forEach((card) =>{
+		// 		card["originalHealth"] = card.health;
+		// 	}
+		// );
+		cards = this.state.usersCards;
+		this.setState({usersCards:[]});
+		cards.forEach((card) => {
+				card["originalHealth"] = card.health;
+			}
+		);
+		this.setState({usersCards:cards});
+	}
 	// this will be called when the model calls "notifyObservers()"
 	update(){
 		this.setState({
 			usersCards:JSON.parse(JSON.stringify(modelInstance.getUsersCards())),
 			opponentsCards:JSON.parse(JSON.stringify(modelInstance.getOpponentsCards())),
-		});
+		}, () => this.saveOriginalHealth());
 	}
 
 
@@ -105,11 +128,12 @@ class VersusMode extends Component{
 								<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://i.imgur.com/ZI9QakW.png"}} className = "vsImg"/>
 							</div>
 							<div className = "flexContainer">
-								<div className = "flexItem">
-									<p>Health: {obj.health}</p>
+								<div className = "statInfo">
+									<p>Hp {obj.health + " (" +  obj.originalHealth + ")"}</p>
+								
 								</div>
-								<div className = "flexItem">
-									<p>Attack: {obj.attack}</p>
+								<div className = "statInfo">
+									<p>Atk {obj.attack}</p>
 
 								</div>
 							</div>
@@ -247,7 +271,6 @@ class VersusMode extends Component{
 
 					{/* Commented out to check how the final screen looks.
 					 This div is purely to test stuff out with, can be commented out and should be removed later on 
-					*/}
 					<div id = "testDiv">
 						<h3>For testing purposes</h3>
 						<p>Test out the different stuff by adding cards. Adding cards does not clear the deck. This div should be removed later on</p>
@@ -268,6 +291,7 @@ class VersusMode extends Component{
 						<br/>
 						<br/>
 					</div>
+					*/}
 					
 					<center>
 						<Link to = "/ChooseDifficulty"><button className="btn btn-dark infoButton" title = "Can't take the heat? Better retreat and change difficulty">Retreat</button></Link>

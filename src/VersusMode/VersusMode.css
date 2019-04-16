@@ -65,6 +65,10 @@
 
 }
 
-.flexItem{
+.statInfo{
     align-self: auto;
+    border:1px solid black;
+    border-radius: 20%;
+    background-color: red;
+    color:white;
 }
