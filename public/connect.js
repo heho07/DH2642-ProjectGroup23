@@ -1,5 +1,5 @@
 console.log("does this run");
-const contractAddress = "0xD1c2Ec12385938f099Af744eb463A0C1Eb6BC451";
+const contractAddress = "0x42e6eB47312A427BaC527C954ece5defbeB094c2";
 const chainID = 4;
 const chainName = {
   '1': 'mainnet',
@@ -197,5 +197,4 @@ class connect{
   constructor(){
     this.test = "hej";
   }
-  
 }
