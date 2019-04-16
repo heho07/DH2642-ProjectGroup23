@@ -5,7 +5,7 @@
 class ConnectClass{
   constructor(){
     console.log("initalizing ConnectClass");
-    this.contractAddress = "0xD1c2Ec12385938f099Af744eb463A0C1Eb6BC451"; 
+    this.contractAddress = "0x42e6eB47312A427BaC527C954ece5defbeB094c2";
     this.chainID = 4;
     this.storeAddr = '0x000000000000000000000000000000000000bEEF';
     this.chainName = {
@@ -25,7 +25,7 @@ class ConnectClass{
     this.asGetContract();
   }
 
-  // made the on-load thing into a method that is called from the constructor. 
+  // made the on-load thing into a method that is called from the constructor.
   // this method saves stuff to the class attributes
   async asGetContract(){
     this.herman = "cool";
@@ -84,7 +84,7 @@ class ConnectClass{
   else {
     console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
   }
-} 
+}
 
 
 
