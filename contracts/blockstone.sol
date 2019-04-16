@@ -557,11 +557,11 @@ contract Blockstone is ERC721, Ownable {
 
   struct cardMeta {
     uint256 price;
-    string nameId;
+    bytes32 nameId;
   }
   mapping(uint256 => cardMeta) public idToMeta;
 
-  event MintNewCard(uint256 indexed id, uint256 indexed price, string indexed nameId);
+  event MintNewCard(uint256 indexed id, uint256 indexed price, bytes32 nameId);
 
 
   /**
@@ -569,12 +569,24 @@ contract Blockstone is ERC721, Ownable {
    * @param nameId nameId of the minted card
    * @param price price of the minted card
    */
-  function mint(string memory nameId, uint256 price) public onlyOwner {
+  function mint(bytes32 nameId, uint256 price) public onlyOwner {
     uint256 tokenId = totalAmount;
     _mint(store, tokenId);
     idToMeta[tokenId].nameId = nameId;
     idToMeta[tokenId].price = price;
     emit MintNewCard(tokenId, price, nameId);
+  }
+
+  /**
+   * @dev Mint new cards in batch mode
+   * @param nameIds nameIds of the minted cards
+   * @param prices prices of the minted cards
+   */
+  function batchMint(bytes32[] memory nameIds, uint256[] memory prices) public onlyOwner {
+    uint256 len = prices.length;
+    for (uint256 index; index < len; index++) {
+        mint(nameIds[index], prices[index]);
+    }
   }
 
   /**
