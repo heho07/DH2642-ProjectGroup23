@@ -5,7 +5,7 @@
 class ConnectClass{
   constructor(){
     console.log("initalizing ConnectClass");
-    this.contractAddress = "0x42e6eB47312A427BaC527C954ece5defbeB094c2";
+    this.contractAddress = "0x0DA5b794A99cAABB2369d51c52ae651536d30d72";
     this.chainID = 4;
     this.storeAddr = '0x000000000000000000000000000000000000bEEF';
     this.chainName = {
