@@ -29,16 +29,68 @@ class BlockStoneConnection extends Component {
     //res.then((e) => console.log(e));
     let cardArr = [];
     let res = window.ConnectClass.getStoreCards(window.ConnectClass.contract);
-    res.then( (e) => {
+     res.then( (e) => {
       e.forEach(token => {
         let meta = window.ConnectClass.getCardMeta(window.ConnectClass.contract, token);
         meta.then( k => {
           cardArr.push({"price": window.web3.utils.fromWei(k.price), "nameId": window.web3.utils.hexToAscii(k.nameId)})
-          console.log(cardArr);
+          // console.log(cardArr);
           });
       });
     });
-     
+  }
+
+  addAllCardsToFireBase(){
+    let arr = [];
+    modelInstance.getAllCardsFromAPI().then((res) => {
+      Object.values(res).forEach((category) =>{
+        category.forEach((card) => {
+          if (card.cardId &&
+            card.cardId !== undefined &&
+            card.cardId.length <= 16 &&
+            card.attack &&
+            card.attack !== undefined &&
+            card.health &&
+            card.health !== undefined &&
+            card.rarity &&
+            card.rarity !== undefined &&
+            card.name &&
+            card.name !== undefined) {
+            arr.push(card);
+          }
+        });
+      
+
+      // console.log("card number: "+arr.length);
+
+      const rarity = {
+        "Free": 1,
+        "Common": 2,
+        "Rare": 3,
+        "Epic": 4,
+        "Legendary": 5
+      }
+      // let cardId = [];
+      // let prices = [];
+
+      arr.forEach((card) => {
+        // push cardId
+        // let id = card.cardId;
+        // cardId.push(id);
+        // calculate price and push it
+        let price =  3*card.health + 2*card.attack + 10*rarity[card.rarity];
+        card["price"] = price;
+      });
+      // console.log(prices);
+    });
+      console.log(arr);
+  }).then(() => {
+    // when we have populated arr
+    arr.forEach((card) =>{
+      window.firebaseClass.addCard(card.cardId, card.price);
+    });
+    console.log("finished populating with cards");
+  }); 
   }
 
   render(){
@@ -93,6 +145,11 @@ class BlockStoneConnection extends Component {
             console.assert(prices.length === nameIds.length);
           })
         }>all cards</button>
+
+        <button onClick = {() => window.firebaseClass.initialize()}>intitialize</button>
+        <button onClick = {() => window.firebaseClass.tryRead()}>tryRead</button>
+
+        <button onClick = {() => this.addAllCardsToFireBase()}>add addAllCardsToFireBase</button>
       </div>
     );
   }
@@ -101,3 +158,13 @@ class BlockStoneConnection extends Component {
 
 
 export default BlockStoneConnection;
+
+
+// cardsToDisplay = []
+// for APIcard in cardsFromAPISearch{
+//   blockStoneCard = getBlockStoneCardFromID(APIcard.cardId);
+//   if (blockStoneCard.owner === "store") {
+//     APIcard.price = blockStoneCard.price
+//     cardsToDisplay.push(APIcard)
+//   }
+// }
