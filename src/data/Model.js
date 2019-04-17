@@ -19,6 +19,7 @@ class Model extends ObservableModel{
 		this.usersCards = [];
 		this.opponentsCards = [];
 		this.storedCards = {};
+		this.cardsFromStore = [];
 		
 		// Checking the localStorage for filter
 	    if (localStorage.getItem("filter") != null) {
@@ -220,6 +221,28 @@ class Model extends ObservableModel{
 		return this.filter;
 	}
 
+	async setCardsInTheStore(){
+	}
+
+	getCardsInTheStore(){
+	}
+
+	async getCardsInBlockChain(){
+		let cardArr = [];
+		let res = window.ConnectClass.getStoreCards(window.ConnectClass.contract);
+		await (res.then( (e) => {
+				e.forEach(token => {
+					let meta = window.ConnectClass.getCardMeta(window.ConnectClass.contract, token);
+					meta.then( k => {
+						cardArr.push({"price": window.web3.utils.fromWei(k.price), "nameId": window.web3.utils.hexToAscii(k.nameId)});
+						})
+						.catch(err => console.log(err));
+				});
+			})
+			.catch(err=>console.log(err)
+			));
+		return cardArr;
+	}
 }
 const modelInstance = new Model();
 export default modelInstance;

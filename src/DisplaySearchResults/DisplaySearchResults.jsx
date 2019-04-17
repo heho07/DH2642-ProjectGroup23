@@ -28,6 +28,18 @@ class SearchResults extends Component {
   componentDidMount() {
     // when data is retrieved we update the state
     // this will cause the component to re-render
+    modelInstance.getCardsInBlockChain().then(metaArray=> {
+       console.log(metaArray); 
+        metaArray.forEach( cardMeta => {
+        this.state.searchResult.map((item, i) => {
+          if(item.name === cardMeta.name) {
+            item.price = cardMeta.price;
+          }
+        });
+      });
+    })
+    .catch(e => console.log("welp"));
+
     if (modelInstance.getSearchedCards() === undefined || modelInstance.getSearchedCards().length === 0) {
       // only do this if we don't already have a search result loaded in
 
@@ -99,15 +111,20 @@ class SearchResults extends Component {
     //   // this.state.searchResult.sort(this.sortCard(parseFloat)); //for everything numbers
     //   this.sort(); // for name
     // }
+
+
     return(
       <div className = "row">
-          {this.state.searchResult.map((item, i) => {
+
+          {  this.state.searchResult.map((item, i) => {
             // if the card is valid we return information about it 
             // searchedCards.push(item); // add searched cards to model
             // if(!item.collectible){
             //   // restrict the cards a bit to only show collectibles
             //   item.name = undefined;
             // }
+           console.log(item);
+            
             if (item.name !== undefined & 
                 item.img !== undefined & 
                 item.health !== undefined & item.health > 0 &
@@ -120,7 +137,6 @@ class SearchResults extends Component {
                 img = "https://images.weserv.nl/?url=" + item.img.replace("http://", "");
 
               }
-            
                             
                 return(
                   <div className = "col-sm-4 teststyle">
