@@ -28,7 +28,7 @@ class ConnectClass{
   // made the on-load thing into a method that is called from the constructor.
   // this method saves stuff to the class attributes
   async asGetContract(){
-    this.herman = "cool";
+    // this.herman = "cool";
     if (window.ethereum) {
       console.log("ethereum OK");
       window.web3 = new window.Web3(ethereum);
@@ -63,7 +63,7 @@ class ConnectClass{
         storeCards,
         userCardsNum,
         userCards] = res;
-        this.cardsNum = "joarColl";
+        this.cardsNum = cardsNum;
         this.storeCardsNum = storeCardsNum;
         this.userCardsNum = userCardsNum;
         this.userCards = userCards;

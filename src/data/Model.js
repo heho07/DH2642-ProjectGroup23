@@ -12,7 +12,7 @@ const httpOptions = {
 class Model extends ObservableModel{
 
 	// the Model inherits everything from the ObservableModel file (from Lab4) so that we easily can add obsevers to the model
-	constructor(){
+	constructor(parameter){
 		// super(); needs to be called before we define attributes to the class. This is due to the way JS inheritance works. 
 		// super(); means the Model inherits stuff from ObservableModel (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)
 		super();
@@ -52,6 +52,11 @@ class Model extends ObservableModel{
 	    else{
 	      this.searchedCards = [];
 	    }
+
+	    this.blockChainCards = [];
+	    // calling the method that gets card info from the blockchain when the model initialized
+	    // this.getCardsInBlockChain();
+	    
 	}
 
 	// Checks if the card is already in the usersCards array
@@ -191,10 +196,27 @@ class Model extends ObservableModel{
 		return this.storedCard;
 	}
 	  
+
 	setSearchedCards(array){
+		console.log("adding card to searchedCards");
 		for (var i = array.length - 1; i >= 0; i--) {
 			if(array[i].attack !== undefined && array[i].health !== undefined  && array[i].name && array[i].attack > 0 && array[i].health > 0 
 				&& array[i].cardId && array[i].cardId !== undefined && array[i].name !== undefined){
+				// for (const blockChanCard of this.blockChainCards){
+				// 	if (array[i].cardId === blockChanCard.cardId){
+				// 		array[i]["price"] = blockChanCard.price;
+				// 		break;
+				// 	}
+				// }
+				for (const blockChainCard of this.blockChainCards){
+					if (array[i].cardId === blockChainCard.cardId.trim()){
+						console.log(array[i]);
+						array[i]["price"] = blockChainCard.price;
+						console.log("Found something");
+						console.log(array[i]);
+						break;
+					}
+				}
 				this.searchedCards.push(array[i]);
 			}
 		}
@@ -221,34 +243,51 @@ class Model extends ObservableModel{
 		return this.filter;
 	}
 
-	async setCardsInTheStore(){
-	}
+	// async setCardsInTheStore(){
+	// }
 
-	getCardsInTheStore(){
-	}
+	// getCardsInTheStore(){
+	// }
 
 	async getCardsInBlockChain(){
+		console.log("Initalizing the cards from blockchain");
+		console.log(window.ConnectClass);
 		let cardArr = [];
 		// wait until this is done before proceeding
 		await window.ConnectClass.getStoreCards(window.ConnectClass.contract).then(async (res)=>{
 			for (const token of res) {
-				console.log("handling tokenid : " + token);
+				// console.log("handling tokenid : " + token);
 				// don't exit the for loop before this is done
 				await this.getMetaData(token).then((res) => cardArr.push(res));
 			}
-			console.log(cardArr);
+			// console.log(cardArr);
+		}).catch((error) => {
+			console.log("error in getCardsInBlockChain");
+			console.log(error);
 		});
-			return cardArr;
+
+		this.blockChainCards = cardArr;
+		return cardArr;
+		
 	}
 
 	async getMetaData(token){
 		let toRet;
+		console.log("starting getMetaData");
 		await window.ConnectClass.getCardMeta(window.ConnectClass.contract, token).then((metaData) => {
-			toRet = {"price": window.web3.utils.fromWei(metaData.price), "cardId" : window.web3.utils.hexToAscii(metaData.nameId)};
+			toRet = {"price": window.web3.utils.fromWei(metaData.price), "cardId" : window.web3.utils.toUtf8(metaData.nameId)};
 		});
+		console.log("finished getMetaData");
 		return toRet;
 	}
 
+	getblockChainCards(){
+		console.log(this.blockChainCards);
+		return this.blockChainCards;
+	}
+
 }
-const modelInstance = new Model();
+
+var modelInstance = new Model();
+
 export default modelInstance;

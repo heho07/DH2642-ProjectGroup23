@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import StoreDetail from "./StoreDetail/StoreDetail";
 import MyCollection from "./MyCollection/MyCollection";
-// import modelInstance from "./data/Model";
+import modelInstance from "./data/Model";
 import Welcome from "./Welcome/Welcome";
 import SearchScreen from "./SearchScreen/SearchScreen";
 import VersusMode from "./VersusMode/VersusMode";
@@ -20,6 +20,7 @@ class App extends Component {
     this.state = {
       title: "BlockStone"
     };
+    // modelInstance.getCardsInBlockChain();
   }
   
 

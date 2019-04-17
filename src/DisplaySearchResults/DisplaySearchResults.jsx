@@ -28,17 +28,22 @@ class SearchResults extends Component {
   componentDidMount() {
     // when data is retrieved we update the state
     // this will cause the component to re-render
-    modelInstance.getCardsInBlockChain().then(metaArray=> {
-       console.log(metaArray); 
-        metaArray.forEach( cardMeta => {
-        this.state.searchResult.map((item, i) => {
-          if(item.name === cardMeta.name) {
-            item.price = cardMeta.price;
-          }
-        });
-      });
-    })
-    .catch(e => console.log("welp"));
+    // modelInstance.getCardsInBlockChain().then( (metaArray) => {
+    //    console.log("GOT INFO ------------------------");
+    //    console.log(metaArray); 
+    //     metaArray.forEach( cardMeta => {
+    //     this.state.searchResult.map((item, i) => {
+    //       if(item.cardId === cardMeta.cardId) {
+    //         console.log("found matching card");
+    //         item.price = cardMeta.price;
+    //       }
+    //     });
+    //   });
+    // })
+    // .catch(e => {
+    //   console.log("Error in displaySearchresults componentDidMount");
+    //   console.log(e);
+    // });
 
     if (modelInstance.getSearchedCards() === undefined || modelInstance.getSearchedCards().length === 0) {
       // only do this if we don't already have a search result loaded in
@@ -142,7 +147,8 @@ class SearchResults extends Component {
                   <div className = "col-sm-4 teststyle">
                     <center>
                       <img className="storeCardImage" src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://i.imgur.com/ZI9QakW.png"}}/>
-                      <Link to = {"/storeDetail?id="+item.cardId}><button className="btn btn-dark"  onClick = {() => this.handleStoreCard(item)}>View this card</button></Link> 
+                      <Link to = {"/storeDetail?id="+item.cardId}><button className="btn btn-dark"  onClick = {() => this.handleStoreCard(item)}>View this card</button></Link>
+                      <p>Price: {item.price}</p> 
                     </center>
                   </div>
 

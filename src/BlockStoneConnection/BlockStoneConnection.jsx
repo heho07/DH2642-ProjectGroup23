@@ -101,7 +101,8 @@ class BlockStoneConnection extends Component {
           })
         }>all cards</button>
 
-        <button onClick = {() => this.getCardsFromBlockChain()}>get cards from blockchain</button>
+        <button onClick = {() => this.getCardsFromBlockChain()}>get cards from blockchain to model</button>
+        <button onClick = {() => modelInstance.getblockChainCards()}>view blockchaincards in model</button>
       </div>
     );
   }
