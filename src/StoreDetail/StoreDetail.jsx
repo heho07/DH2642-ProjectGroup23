@@ -31,6 +31,13 @@ class StoreDetail extends Component{
 		// if the card was not found we query the API for the card
 		if (!found) {
 			modelInstance.searchCardsById(this.state.cardId).then((res) => {
+				for (const [index, blockChainCard] of modelInstance.getblockChainCards().entries()){
+					if (res[0].cardId === blockChainCard.cardId) {
+						res[0]["price"] = blockChainCard.price;
+						res[0]["tokenId"] = index;
+						break;
+					}
+				}
 				this.setState({
 					card:res[0],
 					status:"done",
@@ -44,6 +51,37 @@ class StoreDetail extends Component{
 
 	}
 
+	placePurchase(tokenId, price){
+		if (!tokenId) {
+			console.log("missing tokenId");
+			return false;
+		}
+		if (!price) {
+			console.log("missing price");
+			return false;
+		}
+		let contract = window.ConnectClass.contract;
+		console.log(contract);
+		let account = window.ConnectClass.account;
+		console.log("price before web3: " + price);
+		
+		let newPrice = new window.web3.utils.BN(price/20);
+		console.log(newPrice);
+		price = window.web3.utils.toWei(newPrice);
+		console.log("price after web3: " + newPrice.toString());
+		
+		return contract.methods.purchase(tokenId).send({from: account, value: price})
+			.on('transactionHash', (hash) => console.log(hash))
+			.on('confirmation', (confirmationNumber, receipt) => {
+				console.log(confirmationNumber);
+				console.log(receipt);
+			})
+			.on('receipt', (receipt) => {
+				console.log(receipt);
+			})
+			.on('error', (err) => console.error)
+			.catch(error => console.log(error));
+	}
 
 
 	render() {
@@ -77,7 +115,9 @@ class StoreDetail extends Component{
 										<p className="mb-0 "> <b>Artist: </b>{card.artist} </p>
 										<p className="mb-0 "> <b>Description: </b> <i>{card.flavor}</i></p>
 										<br/>
-									    <button className="purchaseButton btn btn-dark" >Purchase card</button> <br />
+									    <button className="purchaseButton btn btn-dark" onClick = {() => this.placePurchase(card.tokenId, card.price)}>Purchase card</button> <br />
+									    <p>Price: {card.price}</p>
+									    <p>TokenId: {card.tokenId}</p>
 								    </td>
 								</tr>
 							</table>	
@@ -94,6 +134,7 @@ class StoreDetail extends Component{
 					<center>
 						<p className="mb-0 "> This is not the card you're looking for, something went wrong</p>
 						<img src = {img} alt = {img} className = "img-fluid"></img>
+
 					</center>
 				</div>
 			);

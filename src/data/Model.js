@@ -208,10 +208,11 @@ class Model extends ObservableModel{
 				// 		break;
 				// 	}
 				// }
-				for (const blockChainCard of this.blockChainCards){
+				for (const [index, blockChainCard] of this.blockChainCards.entries()){
 					if (array[i].cardId === blockChainCard.cardId.trim()){
 						console.log(array[i]);
 						array[i]["price"] = blockChainCard.price;
+						array[i]["tokenId"] = index;
 						console.log("Found something");
 						console.log(array[i]);
 						break;
