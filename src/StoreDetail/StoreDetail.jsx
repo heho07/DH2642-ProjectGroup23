@@ -51,6 +51,8 @@ class StoreDetail extends Component{
 
 	}
 
+
+	//TODO: basically everything connecting to blockchain here should be moved to ConnectClass.js
 	placePurchase(tokenId, price){
 		if (!tokenId) {
 			console.log("missing tokenId");
@@ -63,14 +65,14 @@ class StoreDetail extends Component{
 		let contract = window.ConnectClass.contract;
 		console.log(contract);
 		let account = window.ConnectClass.account;
-		console.log("price before web3: " + price);
+		// console.log("price before web3: " + price);
 		
-		let newPrice = new window.web3.utils.BN(price/20);
+		let newPrice = new window.web3.utils.BN(price);
+		// console.log(newPrice);
 		console.log(newPrice);
-		price = window.web3.utils.toWei("1");
-		console.log("price after web3: " + newPrice.toString());
-		
-		return contract.methods.purchase(tokenId).send({from: account, value: price})
+		// console.log("price after web3: " + price);
+	
+		return contract.methods.purchase(tokenId).send({from: account, value: newPrice})
 			.on('transactionHash', (hash) => console.log(hash))
 			.on('confirmation', (confirmationNumber, receipt) => {
 				console.log(confirmationNumber);

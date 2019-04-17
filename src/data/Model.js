@@ -266,7 +266,7 @@ class Model extends ObservableModel{
 			console.log("error in getCardsInBlockChain");
 			console.log(error);
 		});
-
+		console.log(cardArr);
 		this.blockChainCards = cardArr;
 		return cardArr;
 		
@@ -274,11 +274,11 @@ class Model extends ObservableModel{
 
 	async getMetaData(token){
 		let toRet;
-		console.log("starting getMetaData");
+		// console.log("starting getMetaData");
 		await window.ConnectClass.getCardMeta(window.ConnectClass.contract, token).then((metaData) => {
 			toRet = {"price": window.web3.utils.fromWei(metaData.price), "cardId" : window.web3.utils.toUtf8(metaData.nameId)};
 		});
-		console.log("finished getMetaData");
+		// console.log("finished getMetaData");
 		return toRet;
 	}
 
