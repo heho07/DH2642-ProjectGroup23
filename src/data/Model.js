@@ -229,20 +229,26 @@ class Model extends ObservableModel{
 
 	async getCardsInBlockChain(){
 		let cardArr = [];
-		let res = window.ConnectClass.getStoreCards(window.ConnectClass.contract);
-		await (res.then( (e) => {
-				e.forEach(token => {
-					let meta = window.ConnectClass.getCardMeta(window.ConnectClass.contract, token);
-					meta.then( k => {
-						cardArr.push({"price": window.web3.utils.fromWei(k.price), "nameId": window.web3.utils.hexToAscii(k.nameId)});
-						})
-						.catch(err => console.log(err));
-				});
-			})
-			.catch(err=>console.log(err)
-			));
-		return cardArr;
+		// wait until this is done before proceeding
+		await window.ConnectClass.getStoreCards(window.ConnectClass.contract).then(async (res)=>{
+			for (const token of res) {
+				console.log("handling tokenid : " + token);
+				// don't exit the for loop before this is done
+				await this.getMetaData(token).then((res) => cardArr.push(res));
+			}
+			console.log(cardArr);
+		});
+			return cardArr;
 	}
+
+	async getMetaData(token){
+		let toRet;
+		await window.ConnectClass.getCardMeta(window.ConnectClass.contract, token).then((metaData) => {
+			toRet = {"price": window.web3.utils.fromWei(metaData.price), "cardId" : window.web3.utils.hexToAscii(metaData.nameId)};
+		});
+		return toRet;
+	}
+
 }
 const modelInstance = new Model();
 export default modelInstance;

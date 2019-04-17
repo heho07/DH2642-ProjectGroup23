@@ -123,7 +123,7 @@ class SearchResults extends Component {
             //   // restrict the cards a bit to only show collectibles
             //   item.name = undefined;
             // }
-           console.log(item);
+           // console.log(item);
             
             if (item.name !== undefined & 
                 item.img !== undefined & 
