@@ -66,9 +66,14 @@
 }
 
 .statInfo{
+    margin-top:3%;
+    border-radius: 5px;
     align-self: auto;
-    border:1px solid black;
-    border-radius: 20%;
-    background-color: red;
+    background-color: #343A40;
     color:white;
+    padding: 0.2em;
+}
+
+.statText {
+    padding: 0.2em;
 }
