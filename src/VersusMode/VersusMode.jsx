@@ -129,11 +129,11 @@ class VersusMode extends Component{
 							</div>
 							<div className = "flexContainer">
 								<div className = "statInfo">
-									<p>Hp {obj.health + " (" +  obj.originalHealth + ")"}</p>
+									<p className="statText">Health: {obj.health + "/" +  obj.originalHealth}</p>
 								
 								</div>
 								<div className = "statInfo">
-									<p>Atk {obj.attack}</p>
+									<p className="statText">Attack: {obj.attack}</p>
 
 								</div>
 							</div>

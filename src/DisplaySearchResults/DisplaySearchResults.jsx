@@ -176,10 +176,12 @@ class SearchResults extends Component {
         information = this.showCard();       
         break;
       default:
-        information = <div>
-                        <p>Something went wrong. Error message: </p>
-                        <p>{this.state.status}</p>
-                        <p>{this.state.errorMessage}</p>
+        information = <div> 
+                        <center>
+                          <p>Something went wrong. </p>
+                          <p>Error message: {this.state.status}</p>
+                          <p>{this.state.errorMessage}</p>
+                        </center>
                       </div>;
         break;
     }
