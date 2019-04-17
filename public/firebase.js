@@ -12,6 +12,7 @@ class firebaseClass{
     this.firebase = window.firebase;
     // this.firestore = window.firebase.firestore;
     this.db = null;
+    this.ui = new window.firebaseui.auth.AuthUI(this.firebase.auth());
   }
 
   initialize(){
@@ -27,6 +28,14 @@ class firebaseClass{
     this.firebase.initializeApp(config);
 
     this.db = firebase.firestore();
+
+    window.firebaseui.start('#firebaseui-auth-container', {
+    signInOptions: [
+      this.firebase.auth.EmailAuthProvider.PROVIDER_ID
+    ],
+    // Other config options...
+    });
+
     console.log("fb initialized");
   }
  
