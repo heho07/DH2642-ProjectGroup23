@@ -560,7 +560,7 @@ contract Blockstone is ERC721, Ownable {
     bytes32 cardId;
   }
   mapping(uint256 => cardMeta) public idToMeta;
-  mapping(uint256 => cardMeta) public idToMeta;
+  mapping(bytes32 => uint256) public cardIdToTokenId;
 
   event MintNewCard(uint256 indexed id, uint256 indexed price, bytes32 cardId);
 
@@ -575,6 +575,7 @@ contract Blockstone is ERC721, Ownable {
     _mint(store, tokenId);
     idToMeta[tokenId].cardId = cardId;
     idToMeta[tokenId].price = price;
+    cardIdToTokenId[cardId] = tokenId;
     emit MintNewCard(tokenId, price, cardId);
   }
 
