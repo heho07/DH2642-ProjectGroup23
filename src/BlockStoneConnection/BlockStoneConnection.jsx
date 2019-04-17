@@ -25,8 +25,20 @@ class BlockStoneConnection extends Component {
 
 // The HTML to be rendered on the page
   handleClick(){
-    let res = window.ConnectClass.getInfo(window.ConnectClass.contract, window.ConnectClass.account );
-    res.then((e) => console.log(e));
+    //let res = window.ConnectClass.getInfo(window.ConnectClass.contract, window.ConnectClass.account );
+    //res.then((e) => console.log(e));
+    let cardArr = [];
+    let res = window.ConnectClass.getStoreCards(window.ConnectClass.contract);
+    res.then( (e) => {
+      e.forEach(token => {
+        let meta = window.ConnectClass.getCardMeta(window.ConnectClass.contract, token);
+        meta.then( k => {
+          cardArr.push({"price": window.web3.utils.fromWei(k.price), "nameId": window.web3.utils.hexToAscii(k.nameId)})
+          console.log(cardArr);
+          });
+      });
+    });
+     
   }
 
   render(){
