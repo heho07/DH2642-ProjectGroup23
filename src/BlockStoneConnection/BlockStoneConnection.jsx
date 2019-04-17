@@ -38,7 +38,7 @@ class BlockStoneConnection extends Component {
           });
       });
     });
-     
+
   }
 
   render(){
@@ -82,7 +82,7 @@ class BlockStoneConnection extends Component {
               let id = window.web3.utils.padRight(window.web3.utils.asciiToHex(card.cardId), 32);
               nameIds.push(id);
               // calculate price and push it
-              let price =  3*card.health + 2*card.attack + 10*rarity[card.rarity];
+              let price =  0.2*card.health + 0.1*card.attack + 2*rarity[card.rarity];
               prices.push(window.web3.utils.toWei(String(price)));
             });
 
