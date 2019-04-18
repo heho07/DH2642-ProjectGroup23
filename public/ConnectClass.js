@@ -50,7 +50,6 @@ class ConnectClass{
         location.reload();
       })
       this.contract = contract;
-      console.log("innan getNetIdAndAccount");
       this.getNetIdAndAccount()
       .then(acc => {
         this.account = acc;
@@ -86,15 +85,7 @@ class ConnectClass{
   }
 }
 
-
-
-test (){
-  console.log("HEJEJEJEHEJASFSD");
-  console.log(web3);
-}
-
 getContract(addr) {
-  // console.log(web3);
   return fetch('./assets/abi.json')
   .then(respObj => respObj.json())
   .catch(err => Promise.reject(err))
@@ -152,7 +143,6 @@ getNetIdAndAccount() {
 
 getInfo(contract, account) {
   // bindEvent(contract, account);
-  console.log("kör getinfo");
   console.log(contract);
   console.log(account);
   let storeAddr = this.storeAddr;
