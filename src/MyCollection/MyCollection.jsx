@@ -8,9 +8,36 @@ class MyCollection extends Component{
 		super(props);
 		this.state = {
 			usersCards:modelInstance.getUsersCards(),
+			status:"loading",
 		};
 	}
 
+	// componentWillMount(){
+	// 	modelInstance.addObserver(this);
+	// }
+
+	// componentWillUnmount(){
+	// 	modelInstance.removeObserver(this);
+	// }
+
+
+
+	componentDidMount(){
+		console.log("web3 below ----------------------");
+		console.log(window.web3);
+		console.log("connect below ------------------------------------");
+		console.log(window.ConnectClass);
+		modelInstance.getCardFromUserAccount().then( () => {
+			console.log("hello");
+			// this.setState({
+			// 	usersCards:modelInstance.getUsersCards(),
+			// }, () => {
+			// 	this.setState({
+			// 		status:"done",
+			// 	})
+			// })
+		});
+	}
 
 	
 	cardInfo(obj){
