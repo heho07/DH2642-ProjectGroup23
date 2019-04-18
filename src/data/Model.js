@@ -175,7 +175,6 @@ class Model extends ObservableModel{
 	// Returns the promise of a JSON object containing the results from the search
 	searchCardsById(filter) {
 		const url = `${BASE_URL}/cards/`+filter;
-    	console.log("Searched for cards with keyword " + filter);
     	return fetch(url, httpOptions).then(this.processResponse);
   	}
 
