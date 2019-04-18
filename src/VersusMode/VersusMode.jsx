@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import modelInstance from "../data/Model.js";
 import { Link } from "react-router-dom";
 import "./VersusMode.css";
+import Popup from "reactjs-popup";
+import PopUp from "./PopUp";
 
 // A place to try out the gaming stuff
 // currently only displays the cards in the users and the AI opponents decks
@@ -30,7 +32,7 @@ class VersusMode extends Component{
 	// When this component is instaniated we add it to the list of observers in the model
 	componentDidMount(){
 		modelInstance.addObserver(this);
-		
+
 		this.saveOriginalHealth();
 	}
 
@@ -298,13 +300,10 @@ class VersusMode extends Component{
 						
 						<button className = "btn btn-dark infoButton" onClick = {() => this.fight()}>Fight</button>
 
-						<button className="btn btn-dark infoButton" onClick = {
-							() => window.open(
-								"http://localhost:3000/PopUp",
-								"_blank",
-								"height=500,width=300"
-								)}> How to play
-						</button>
+						<Popup trigger = {<button className = "btn btn-dark infoButton">Trigger</button>} position ="bottom center">
+							<PopUp/>
+						</Popup>
+						
 					</center>
 					
 					<h1 className="text-center"> {this.state.gamestate} </h1>

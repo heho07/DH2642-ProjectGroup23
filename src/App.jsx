@@ -74,10 +74,6 @@ class App extends Component {
             path = "/VersusMode"
             component = {VersusMode}
           />
-          <Route
-            path ="/PopUp"
-            component = {PopUp}
-          />
 
         </header>
       </div>
