@@ -186,6 +186,12 @@ getAllCards(contract, account) {
   return contract.methods.getOwnersAllTokens(account).call()
 }
 
+// Get the tokenId by cardId, which needs to be parsed into bytes32 by
+// `web3.utils.padRight(web3.utils.asciiToHex(card.cardId), 32);`
+getTokenIdbyCardId(contract, cardId) {
+  return contract.methods.cardIdToTokenId(cardId).call()
+}
+
 // Get the metadata of a specific tokenId
 getCardMeta(contract, tokenid) {
   // Return a promise with resolve value [price(uint256), nameId(string)]
