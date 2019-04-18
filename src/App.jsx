@@ -11,7 +11,6 @@ import SearchScreen from "./SearchScreen/SearchScreen";
 import VersusMode from "./VersusMode/VersusMode";
 import ChooseDifficulty from "./VersusMode/ChooseDifficulty";
 import BlockStoneConnection from "./BlockStoneConnection/BlockStoneConnection";
-import PopUp from "./VersusMode/PopUp";
 
 class App extends Component {
   constructor(props) {

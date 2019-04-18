@@ -2,7 +2,8 @@
 // THIS FILE IS FOR TESTING PURPOSES ONLY
 
 
-import React, { Component } from "react";
+//import React, { Component } from "react";
+import { Component } from "react"
 //import * as Connect from "../connect.js";
 
 // importing the modelInstance directly (as opposed to passing it as a prop)

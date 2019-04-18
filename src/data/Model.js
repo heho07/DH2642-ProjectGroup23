@@ -19,8 +19,6 @@ class Model extends ObservableModel{
 		if (localStorage.getItem("usersCards") != null) {
 			try{
 				this.usersCards = JSON.parse(localStorage.getItem("usersCards"));
-				console.log("Successfully loaded usersCards from localStorage!");
-				console.log(this.usersCards);
 			}
 			catch(err){
 				console.log("Failed to load usersCards from localStorage with the following error message:");
@@ -124,8 +122,6 @@ class Model extends ObservableModel{
 
 	setUsersCards(cardArray){
 		this.usersCards = cardArray;
-		console.log("called setUsersCards with cardArray");
-		console.log(cardArray);
 		localStorage.setItem("usersCards", JSON.stringify(this.usersCards));
 	}
 
