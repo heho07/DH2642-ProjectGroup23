@@ -29,6 +29,7 @@ class MyCollection extends Component{
 
 	displayAllCards(){
 		const cards = this.state.usersCards;
+		console.log(cards);
 		if (cards.length === 0){
 			// Option if there are no cards in the collection. 
 
