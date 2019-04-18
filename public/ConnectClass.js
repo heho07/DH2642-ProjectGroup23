@@ -70,7 +70,7 @@ class ConnectClass{
     } catch (error) {
       // User denied account access...
       console.log(error);
-      console.log('You should connect your accounts before using this app!');
+      alert('You should connect your accounts before using this app! \nThis webpage will not function without it.');
     }
   }
   // Legacy dapp browsers...
@@ -80,7 +80,7 @@ class ConnectClass{
   }
   // Non-dapp browsers...
   else {
-    console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+    alert('Non-Ethereum browser detected. You should consider trying MetaMask! \nThis webpage will not function without it.');
   }
 }
 
@@ -109,7 +109,7 @@ getNetIdAndAccount() {
   })
   .then(([netId, netName]) => {
     if (netId != chainID) {
-      return Promise.reject(`Should be on the ${chainName[chainID]} testnet!!!`);
+      return Promise.reject(`Should be on the ${chainName[chainID]} testnet!!!\nThis webpage will not function without it.`);
     }
 
     return web3.eth.getAccounts()
