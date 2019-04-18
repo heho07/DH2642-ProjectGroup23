@@ -117,7 +117,6 @@ getNetIdAndAccount() {
     return web3.eth.getAccounts()
   })
   .then((accountList) => {
-    console.log(accountList);
     if (accountList[0] == null) {
       return Promise.reject('You don\'t have an account or you should unlock your account.');
     }
@@ -143,10 +142,8 @@ getNetIdAndAccount() {
 
 getInfo(contract, account) {
   // bindEvent(contract, account);
-  console.log(contract);
-  console.log(account);
+
   let storeAddr = this.storeAddr;
-  console.log(storeAddr);
   return Promise.all([
     this.getExistingAmount(contract),
     this.getCardsNum(contract, storeAddr),
@@ -168,7 +165,6 @@ getCardsNum(contract, addr) {
 
 // Get all the tokenIds store has
 getStoreCards(contract) {
-  console.log("Calling getStoreCards with storeAddr: " + this.storeAddr);
   return contract.methods.getOwnersAllTokens(this.storeAddr).call()
 }
 
