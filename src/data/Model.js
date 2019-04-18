@@ -249,6 +249,8 @@ class Model extends ObservableModel{
 					}
 			}
 		}
+		localStorage.setItem("searchedCards", JSON.stringify(this.searchedCards));
+
 	}
 	
 
