@@ -69,7 +69,6 @@ class SearchResults extends Component {
               status: e.status,
               errorMessage: e.statusText,
             });
-            console.log(e);
           }
         )
       );
