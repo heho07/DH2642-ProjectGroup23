@@ -166,22 +166,27 @@ getInfo(contract, account) {
     ])
 }
 
+// Get the number of cards in the contract
 getExistingAmount(contract) {
   return contract.methods.existingAmount().call()
 }
 
+// Get how many cards an address has
 getCardsNum(contract, addr) {
   return contract.methods.balanceOf(addr).call();
 }
 
+// Get all the tokenIds store has
 getStoreCards(contract) {
   return contract.methods.getOwnersAllTokens(this.storeAddr).call()
 }
 
+// Get all the tokenIds one account has
 getAllCards(contract, account) {
   return contract.methods.getOwnersAllTokens(account).call()
 }
 
+// Get the metadata of a specific tokenId
 getCardMeta(contract, tokenid) {
   // Return a promise with resolve value [price(uint256), nameId(string)]
   return contract.methods.idToMeta(tokenid).call()
