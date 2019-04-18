@@ -288,6 +288,9 @@ class Model extends ObservableModel{
 
 	}
 
+
+	// Returns the promise of a cardArray containing the cards owned by the current user address
+	// also changes the attribute in the model for this
 	async getCardFromUserAccount(){
 		console.log("Init getFromUserAcc");
 		let cardArr = [];
@@ -296,8 +299,15 @@ class Model extends ObservableModel{
 			for (const token of res) {
 				// console.log("handling tokenid : " + token);
 				// don't exit the for loop before this is done
-				console.log(token);
-				await this.getMetaData(token).then((res) => cardArr.push(res));
+				// console.log(token);
+				let metaData = await this.getMetaData(token);
+				let cardFromApi = await this.searchCardsById(metaData.cardId);
+				cardFromApi = cardFromApi[0];
+				// console.log(cardFromApi.name);
+				cardFromApi["price"] = metaData.price;
+				cardArr.push(cardFromApi);
+				// console.log("inside getCardsFromUserAccount)");
+				// console.log(metaData);
 			}
 			// console.log(cardArr);
 		}).catch((error) => {
