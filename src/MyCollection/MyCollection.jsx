@@ -12,17 +12,6 @@ class MyCollection extends Component{
 			status:"loading",
 		};
 	}
-
-	// componentWillMount(){
-	// 	modelInstance.addObserver(this);
-	// }
-
-	// componentWillUnmount(){
-	// 	modelInstance.removeObserver(this);
-	// }
-
-
-
 	componentDidMount(){
 		
 		// Due to us not having a way to ensure that the web3 and ConnectClass scripts have been
@@ -30,11 +19,9 @@ class MyCollection extends Component{
 		// afterwards we can use them
 		setTimeout( () => {
 			modelInstance.getCardFromUserAccount().then( () => {
-				console.log("hello");
 				this.setState({
 					usersCards:modelInstance.getUsersCards(),
 				}, () => {
-					console.log("cards have been SETTTT");
 					this.setState({
 						status:"done",
 					})
@@ -60,7 +47,6 @@ class MyCollection extends Component{
 
 	displayAllCards(){
 		const cards = this.state.usersCards;
-		console.log(cards);
 		if (cards.length === 0){
 			// Option if there are no cards in the collection. 
 
@@ -101,9 +87,7 @@ class MyCollection extends Component{
 	}
 	
 	render(){
-		// TODO: loading
 		let toDisplay;
-
 		switch (this.state.status){
 			case "loading":
 				toDisplay = <center><div className = "loader">loading</div></center>;
