@@ -20,7 +20,7 @@ class Welcome extends Component {
               
               <center>
               <Link to="/MyCollection">
-                <img className="imageOptionCollection" src={require('./collection_small.png')} alt ="collection_small.png" />
+                <img className="imageOptionCollection" src={'https://i.imgur.com/FTmnBfJ.png'} alt ="collection_small.png" />
               </Link>
               </center>
               <br />
@@ -41,7 +41,7 @@ class Welcome extends Component {
             <div className = "col-sm-4 teststyle">
               <center>
               <Link to = "/ChooseDifficulty">
-                <img className="imageOptionVersus" src={require('./versus_small.png')} alt ="versus_small.png"/>
+                <img className="imageOptionVersus" src={'https://i.imgur.com/35iaEoK.png'} alt ="versus_small.png"/>
               </Link>
               </center>
               <center>
@@ -61,7 +61,7 @@ class Welcome extends Component {
             <div className = "col-sm-4 teststyle">
               <center>
               <Link to="/SearchScreen">
-                <img className="imageOptionCoins" src={require('./coins_small.png')} alt ="coins_small.png" />
+                <img className="imageOptionCoins" src={'https://i.imgur.com/8CfuZYg.png'} alt ="coins_small.png" />
               </Link>
               </center>
               <center>
