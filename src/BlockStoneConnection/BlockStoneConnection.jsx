@@ -1,3 +1,6 @@
+// THIS FILE IS FOR TESTING PURPOSES ONLY
+
+
 import React, { Component } from "react";
 //import * as Connect from "../connect.js";
 
