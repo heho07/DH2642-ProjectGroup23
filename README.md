@@ -18,17 +18,17 @@ The information on the store account are objects with a cardId property and a pr
 
 When the user browses the store, the information in the store is fetched and subsequently queried against a simultaneous fetch from the API in order to get further data such as image. The control between API and BlockChain is done by iterating through the API call results and directly mapping them to corresponding BlockChain entries via the cardId property.
 
-When the user purchases the card, the ownership will transfer from the store to the  user. This is a permanent change, so the user is now owner of that card whenever the user logs in. When the user subsequently navigates to the collection or to the game mode, the cards displayed will be fetched in a similar manner to the store however it is compared to the users account and not the store.
+When the user purchases the card, the ownership will transfer from the store to the user. This is a permanent change, so the user is now owner of that card whenever the user logs in. When the user subsequently navigates to the collection or to the game mode, the cards displayed will be fetched in a similar manner to the store however it is compared to the users account and not the store.
 
 ### Testing the code
 
-In order to properly test the code, the user needs an account on Metamask. Make sure it is on the RinkebyTestNetwork. Moreover, in order to test the trasaction functionality, the account requires Ether. To load the account with Ether for testing, follow the instructions here: https://faucet.rinkeby.io/
+In order to properly test the code, the user needs an account on Metamask. Make sure it is on the RinkebyTestNetwork. Moreover, in order to test the transaction functionality, the account requires Ether. To load the account with Ether for testing, follow the instructions here: https://faucet.rinkeby.io/
 
 ## Project file structure
 
 ### contracts
 
-- **blockstone.sol** is the code working on the blockchain as a database and all operations that are allowed, including purchase, transfer, and so on.
+- **blockstone.sol** is the code working on the BlockChain as a database and all operations that are allowed, including purchase, transfer, and so on.
 
 ### public
 
