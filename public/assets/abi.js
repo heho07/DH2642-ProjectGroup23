@@ -70,7 +70,7 @@ const ABI = [
         "type": "uint256"
       },
       {
-        "name": "nameId",
+        "name": "cardId",
         "type": "bytes32"
       }
     ],
@@ -132,7 +132,7 @@ const ABI = [
     "constant": false,
     "inputs": [
       {
-        "name": "nameIds",
+        "name": "cardIds",
         "type": "bytes32[]"
       },
       {
@@ -330,10 +330,29 @@ const ABI = [
     "type": "function"
   },
   {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "name": "cardIdToTokenId",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "constant": false,
     "inputs": [
       {
-        "name": "nameId",
+        "name": "cardId",
         "type": "bytes32"
       },
       {
@@ -413,7 +432,7 @@ const ABI = [
       },
       {
         "indexed": false,
-        "name": "nameId",
+        "name": "cardId",
         "type": "bytes32"
       }
     ],
