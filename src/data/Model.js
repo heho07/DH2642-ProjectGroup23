@@ -86,6 +86,7 @@ class Model extends ObservableModel{
 	}
 
 	getUsersCards(){
+		console.log(this.usersCards);
 		return this.usersCards;
 	}
 
@@ -285,6 +286,27 @@ class Model extends ObservableModel{
 		this.blockChainCards = cardArr;
 		return cardArr;
 
+	}
+
+	async getCardFromUserAccount(){
+		console.log("Init getFromUserAcc");
+		let cardArr = [];
+		// wait until this is done before proceeding
+		await window.ConnectClass.getAllCards().then(async (res)=>{
+			for (const token of res) {
+				// console.log("handling tokenid : " + token);
+				// don't exit the for loop before this is done
+				console.log(token);
+				await this.getMetaData(token).then((res) => cardArr.push(res));
+			}
+			// console.log(cardArr);
+		}).catch((error) => {
+			console.log("error in getCardsFromUserAccount");
+			console.log(error);
+		});
+		console.log(cardArr);
+		this.setUsersCards(cardArr);
+		return cardArr;
 	}
 
 	async getMetaData(token){
