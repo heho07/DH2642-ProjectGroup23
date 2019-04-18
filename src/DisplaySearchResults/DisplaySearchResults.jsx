@@ -52,7 +52,7 @@ class SearchResults extends Component {
       this.setState({loading:true}, () =>
         modelInstance.searchCards(this.state.filter).then(
           results =>{ 
-            modelInstance.setSearchedCards(results).then( () => {
+            modelInstance.compareToBlockChain(results).then( () => {
               this.setState({
                 loading: false, 
                 // searchResult: results
@@ -69,7 +69,6 @@ class SearchResults extends Component {
               status: e.status,
               errorMessage: e.statusText,
             });
-            console.log(e);
           }
         )
       );
@@ -146,7 +145,7 @@ class SearchResults extends Component {
               }
                             
                 return(
-                  <div className = "col-sm-4 teststyle">
+                  <div className = "col-sm-4 teststyle" key ={item.cardId}>
                     <center>
                       <img className="storeCardImage" src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://i.imgur.com/ZI9QakW.png"}}/>
                       <Link to = {"/storeDetail?id="+item.cardId}><button className="btn btn-dark"  onClick = {() => this.handleStoreCard(item)}>View this card</button></Link>

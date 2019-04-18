@@ -30,11 +30,9 @@ class ChooseDifficulty extends Component{
 					}
 				}).then(() => {
 					modelInstance.getCardFromUserAccount().then( () => {
-						console.log("hello");
 						this.setState({
 							usersCards:modelInstance.getUsersCards(),
 						}, () => {
-							console.log("cards have been SETTTT");
 							this.props.history.push('/VersusMode')
 						})
 					});

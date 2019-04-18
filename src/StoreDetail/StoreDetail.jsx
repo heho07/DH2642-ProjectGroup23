@@ -62,13 +62,8 @@ class StoreDetail extends Component{
 			console.log("missing price");
 			return false;
 		}
-		let contract = window.ConnectClass.contract;
-		console.log(contract);
-		let account = window.ConnectClass.account;
-		// console.log("price before web3: " + price);
-
+		
 		let newPrice = window.web3.utils.toWei(price.toString());
-		console.log(newPrice);
 
 		window.ConnectClass.purchaseCard(cardId, newPrice);
 	}
@@ -96,20 +91,22 @@ class StoreDetail extends Component{
 							<h1 >{card.name}</h1>
 							<p className="mb-0 " > {card.rarity} {card.race}</p>
 							<table>
-								<tr>
-									<td>
-										<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://i.imgur.com/ZI9QakW.png"}} className="specImg" />
-									</td>
-									<td>
-										<p className="mb-0 "> <b>From set: </b> {card.cardSet} </p>
-										<p className="mb-0 "> <b>Artist: </b>{card.artist} </p>
-										<p className="mb-0 "> <b>Description: </b> <i>{card.flavor}</i></p>
-										<br/>
-									    <button className="purchaseButton btn btn-dark" onClick = {() => this.placePurchase(card.cardId, card.price)}>Purchase card</button> <br />
-									    <p>Price: {card.price}</p>
-									    <p>TokenId: {card.tokenId}</p>
-								    </td>
-								</tr>
+								<tbody>
+									<tr>
+										<td>
+											<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://i.imgur.com/ZI9QakW.png"}} className="specImg" />
+										</td>
+										<td>
+											<p className="mb-0 "> <b>From set: </b> {card.cardSet} </p>
+											<p className="mb-0 "> <b>Artist: </b>{card.artist} </p>
+											<p className="mb-0 "> <b>Description: </b> <i>{card.flavor}</i></p>
+											<br/>
+											<button className="purchaseButton btn btn-dark" onClick = {() => this.placePurchase(card.cardId, card.price)}>Purchase card</button> <br />
+											<p>Price: {card.price}</p>
+											<p>TokenId: {card.tokenId}</p>
+										</td>
+									</tr>
+								</tbody>
 							</table>
 						</center>
 					</div>

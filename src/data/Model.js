@@ -119,7 +119,6 @@ class Model extends ObservableModel{
 		localStorage.setItem("opponentsCards", JSON.stringify(this.opponentsCards));
 	}
 	getUsersCards(){
-		console.log(this.usersCards);
 		return this.usersCards;
 	}
 
@@ -212,7 +211,6 @@ class Model extends ObservableModel{
 	// Returns the promise of a JSON object containing the results from the search
 	searchCardsById(filter) {
 		const url = `${BASE_URL}/cards/`+filter;
-    	console.log("Searched for cards with keyword " + filter);
     	return fetch(url, httpOptions).then(this.processResponse);
   	}
 
@@ -237,48 +235,43 @@ class Model extends ObservableModel{
 		return this.storedCard;
 	}
 
-
-	async setSearchedCards(array){
-		console.log("adding card to searchedCards");
+//	compareToBlockChain takes an array with objects from the API-call and first filters them by
+//	desirable attributes and compares the filtered objects to the ones in the store.
+//	Upon success, add the object to the array of objects that gets displayed.
+	async compareToBlockChain(array){		
 		for (var i = array.length - 1; i >= 0; i--) {
 			if(array[i].attack !== undefined && array[i].health !== undefined  && array[i].name && array[i].attack > 0 && array[i].health > 0
 				&& array[i].cardId && array[i].cardId !== undefined && array[i].name !== undefined){
-				// for (const blockChanCard of this.blockChainCards){
-				// 	if (array[i].cardId === blockChanCard.cardId){
-				// 		array[i]["price"] = blockChanCard.price;
-				// 		break;
-				// 	}
-				// }
-				// for (const [index, blockChainCard] of this.blockChainCards.entries()){
-				// 	if (array[i].cardId === blockChainCard.cardId.trim()){
-				// 		console.log(array[i]);
-				// 		array[i]["price"] = blockChainCard.price;
-				// 		array[i]["tokenId"] = index;
-				// 		console.log("Found something");
-				// 		console.log(array[i]);
-				// 		break;
-				// 	}
-				// }
-				try{
-					let tokenId = await window.ConnectClass.getTokenIdbyCardId(array[i].cardId);
-					console.log(tokenId);
-					let metaData = await window.ConnectClass.getCardMeta(tokenId);
-					console.log(metaData);
-					let price = window.web3.utils.fromWei(metaData.price);
-					array[i].price = price;						
-					this.searchedCards.push(array[i]);
-				}catch(error){
-					console.log(error);
-				}
+					try{
+						let tokenId = await window.ConnectClass.getTokenIdbyCardId(array[i].cardId);
+						let metaData = await window.ConnectClass.getCardMeta(tokenId);
+						let price = window.web3.utils.fromWei(metaData.price);
+						array[i].price = price;						
+						this.searchedCards.push(array[i]);
+					}catch(error){
+						console.log(error);
+					}
 			}
 		}
-		this.notifyObservers();
-		localStorage.setItem("searchedCards", JSON.stringify(this.searchedCards));
 	}
+	
 
 	clearSearchedCards(){
 		this.searchedCards = [];
 		this.notifyObservers();
+	}
+
+	setSearchedCards(array){
+		array.forEach( card =>{
+			if(card.attack >0  && 
+				card.health > 0 &&
+				card.name &&
+				card.cardId) {
+					this.searchedCards.push(card);
+				}
+		})
+		this.notifyObservers();
+		localStorage.setItem("searchedCards", JSON.stringify(this.searchedCards));
 	}
 
 	getSearchedCards(){
@@ -295,22 +288,14 @@ class Model extends ObservableModel{
 		return this.filter;
 	}
 
-	// async setCardsInTheStore(){
-	// }
-
-	// getCardsInTheStore(){
-	// }
-
+	//	getCardsInBlockChain connects with the store and gets all the objects in the store
+	//	into the model.
 	async getCardsInBlockChain(){
-		console.log("Initalizing the cards from blockchain");
-		console.log(window.ConnectClass);
 		let cardArr = [];
 		// wait until this is done before proceeding
 		await window.ConnectClass.getStoreCards(window.ConnectClass.contract).then(async (res)=>{
 			for (const token of res) {
-				// console.log("handling tokenid : " + token);
 				// don't exit the for loop before this is done
-				console.log(token);
 				await this.getMetaData(token).then((res) => cardArr.push(res));
 			}
 			// console.log(cardArr);
@@ -318,7 +303,6 @@ class Model extends ObservableModel{
 			console.log("error in getCardsInBlockChain");
 			console.log(error);
 		});
-		console.log(cardArr);
 		this.blockChainCards = cardArr;
 		return cardArr;
 
@@ -328,47 +312,37 @@ class Model extends ObservableModel{
 	// Returns the promise of a cardArray containing the cards owned by the current user address
 	// also changes the attribute in the model for this
 	async getCardFromUserAccount(){
-		console.log("Init getFromUserAcc");
 		let cardArr = [];
 		// wait until this is done before proceeding
 		await window.ConnectClass.getAllCards().then(async (res)=>{
 			for (const token of res) {
-				// console.log("handling tokenid : " + token);
 				// don't exit the for loop before this is done
-				// console.log(token);
 				let metaData = await this.getMetaData(token);
 				let cardFromApi = await this.searchCardsById(metaData.cardId);
 				cardFromApi = cardFromApi[0];
-				// console.log(cardFromApi.name);
 				cardFromApi["price"] = metaData.price;
 				cardArr.push(cardFromApi);
-				// console.log("inside getCardsFromUserAccount)");
-				// console.log(metaData);
 			}
-			// console.log(cardArr);
 		}).catch((error) => {
 			console.log("error in getCardsFromUserAccount");
 			console.log(error);
 		});
-		console.log(cardArr);
 		this.setUsersCards(cardArr);
 		return cardArr;
 	}
 
+
+	// 	getMetaData recieves a token, which represents a specific object. 
+	//	It returns the corresponding metadata.
 	async getMetaData(token){
 		let toRet;
-		// console.log("starting getMetaData");
-		console.log("token in metadata " + token);
 		await window.ConnectClass.getCardMeta(token).then((metaData) => {
-			console.log("found metadata)");
 			toRet = {"price": window.web3.utils.fromWei(metaData.price), "cardId" : window.web3.utils.toUtf8(metaData.cardId)};
 		});
-		// console.log("finished getMetaData");
 		return toRet;
 	}
 
 	getblockChainCards(){
-		console.log(this.blockChainCards);
 		return this.blockChainCards;
 	}
 

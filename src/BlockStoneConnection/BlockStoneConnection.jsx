@@ -1,3 +1,4 @@
+
 // THIS FILE IS FOR TESTING PURPOSES ONLY
 
 
@@ -70,6 +71,8 @@ class BlockStoneConnection extends Component {
 
 
   render(){
+    return null ;
+    /*
     return(
       <div>
         <button onClick = {() => this.handleClick()}>ANROPAR CONNECT</button>
@@ -133,6 +136,7 @@ class BlockStoneConnection extends Component {
 
       </div>
     );
+    */
   }
 }
 
