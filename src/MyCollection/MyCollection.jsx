@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./MyCollection.css";
 import modelInstance from "../data/Model.js";
 import { Link } from "react-router-dom";
+// import ConnectClass from "../data/ConnectClass.js";
 
 class MyCollection extends Component{
 	constructor(props){
@@ -27,16 +28,23 @@ class MyCollection extends Component{
 		console.log(window.web3);
 		console.log("connect below ------------------------------------");
 		console.log(window.ConnectClass);
-		modelInstance.getCardFromUserAccount().then( () => {
-			console.log("hello");
-			// this.setState({
-			// 	usersCards:modelInstance.getUsersCards(),
-			// }, () => {
-			// 	this.setState({
-			// 		status:"done",
-			// 	})
-			// })
-		});
+		
+		// Due to us not having a way to ensure that the web3 and ConnectClass scripts have been
+		// fully initiated we have to wait a little bit for them to be initalized
+		// afterwards we can use them
+		setTimeout( () => {
+			modelInstance.getCardFromUserAccount().then( () => {
+				console.log("hello");
+				this.setState({
+					usersCards:modelInstance.getUsersCards(),
+				}, () => {
+					console.log("cards have been SETTTT");
+					this.setState({
+						status:"done",
+					})
+				})
+			});
+		}, 400);
 	}
 
 	
@@ -97,21 +105,39 @@ class MyCollection extends Component{
 	}
 	
 	render(){
+		// TODO: loading
+		let toDisplay;
+
+		switch (this.state.status){
+			case "loading":
+				toDisplay = <center><div className = "loader">loading</div></center>;
+				break
+			case "done":
+				toDisplay = (
+					<div>
+						{/*Removed the table from here. Unnecessary*/}
+						{this.displayAllCards()} 
+							
+						<center>
+						<br />
+						<p className="textExplain">
+							Or go back to the menu for other options
+						</p> 
+
+						<Link to = "/">
+							<button className="btn btn-dark" id="backButton">Go back to the menu</button>
+						</Link>
+						</center>
+					</div>
+					);
+				break;
+			default:
+				toDisplay = <p>Something went wrong</p>;
+				break;
+		}
 		return(
 			<div>
-				{/*Removed the table from here. Unnecessary*/}
-				{this.displayAllCards()} 
-					
-				<center>
-				<br />
-				<p className="textExplain">
-					Or go back to the menu for other options
-				</p> 
-
-				<Link to = "/">
-					<button className="btn btn-dark" id="backButton">Go back to the menu</button>
-				</Link>
-				</center>
+				{toDisplay}
 			</div>);
 
 
