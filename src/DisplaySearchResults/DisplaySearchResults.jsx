@@ -52,11 +52,13 @@ class SearchResults extends Component {
       this.setState({loading:true}, () =>
         modelInstance.searchCards(this.state.filter).then(
           results =>{ 
-            this.setState({
-              loading: false, 
-              // searchResult: results
+            modelInstance.setSearchedCards(results).then( () => {
+              this.setState({
+                loading: false, 
+                // searchResult: results
+              });
+              
             });
-            modelInstance.setSearchedCards(results);
           }
         ).catch(
           e => {
