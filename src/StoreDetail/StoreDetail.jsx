@@ -67,7 +67,7 @@ class StoreDetail extends Component{
 		let account = window.ConnectClass.account;
 		// console.log("price before web3: " + price);
 
-		let newPrice = web3.utils.toWei(price.toString());
+		let newPrice = window.web3.utils.toWei(price.toString());
 		console.log(newPrice);
 
 		return contract.methods.purchase(tokenId).send({from: account, value: newPrice})
