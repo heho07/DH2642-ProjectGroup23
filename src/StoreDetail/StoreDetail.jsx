@@ -58,19 +58,19 @@ class StoreDetail extends Component{
 			console.log("missing cardId");
 			return false;
 		}
-		// if (!price) {
-		// 	console.log("missing price");
-		// 	return false;
-		// }
-		// let contract = window.ConnectClass.contract;
-		// console.log(contract);
-		// let account = window.ConnectClass.account;
-		// // console.log("price before web3: " + price);
+		if (!price) {
+			console.log("missing price");
+			return false;
+		}
+		let contract = window.ConnectClass.contract;
+		console.log(contract);
+		let account = window.ConnectClass.account;
+		// console.log("price before web3: " + price);
 
-		// let newPrice = window.web3.utils.toWei(price.toString());
-		// console.log(newPrice);
+		let newPrice = window.web3.utils.toWei(price.toString());
+		console.log(newPrice);
 
-		window.ConnectClass.purchaseCard("CS2_boar", 2.5);
+		window.ConnectClass.purchaseCard(cardId, newPrice);
 	}
 
 
