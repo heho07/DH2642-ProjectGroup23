@@ -146,7 +146,7 @@ class SearchResults extends Component {
               }
                             
                 return(
-                  <div className = "col-sm-4 teststyle">
+                  <div className = "col-sm-4 teststyle" key ={item.cardId}>
                     <center>
                       <img className="storeCardImage" src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://i.imgur.com/ZI9QakW.png"}}/>
                       <Link to = {"/storeDetail?id="+item.cardId}><button className="btn btn-dark"  onClick = {() => this.handleStoreCard(item)}>View this card</button></Link>
