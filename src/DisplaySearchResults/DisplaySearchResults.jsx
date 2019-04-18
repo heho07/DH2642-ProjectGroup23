@@ -52,7 +52,7 @@ class SearchResults extends Component {
       this.setState({loading:true}, () =>
         modelInstance.searchCards(this.state.filter).then(
           results =>{ 
-            modelInstance.setSearchedCards(results).then( () => {
+            modelInstance.compareToBlockChain(results).then( () => {
               this.setState({
                 loading: false, 
                 // searchResult: results
