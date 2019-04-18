@@ -292,21 +292,21 @@ class VersusMode extends Component{
 						<br/>
 					</div>
 					*/}
-					
-					<center>
-						<Link to = "/ChooseDifficulty"><button className="btn btn-dark infoButton" title = "Can't take the heat? Better retreat and change difficulty">Retreat</button></Link>
-						
-						<button className = "btn btn-dark infoButton" onClick = {() => this.fight()}>Fight</button>
+					<div className ="btndiv">
+						<center>
+							<Link to = "/ChooseDifficulty"><button className="btn btn-dark infoButton" title = "Can't take the heat? Better retreat and change difficulty">Retreat</button></Link>
+							
+							<button className = "btn btn-dark infoButton" onClick = {() => this.fight()}>Fight</button>
 
-						<button className="btn btn-dark infoButton" onClick = {
-							() => window.open(
-								"http://localhost:3000/PopUp",
-								"_blank",
-								"height=500,width=300"
-								)}> How to play
-						</button>
-					</center>
-					
+							<button className="btn btn-dark infoButton" onClick = {
+								() => window.open(
+									"http://localhost:3000/PopUp",
+									"_blank",
+									"height=500,width=300"
+									)}> How to play
+							</button>
+						</center>
+					</div>
 					<h1 className="text-center"> {this.state.gamestate} </h1>
 
 					<div style={{width:window.innerWidth*0.99, height:window.innerHeight*0.95, "minHeight":"15%"}}>

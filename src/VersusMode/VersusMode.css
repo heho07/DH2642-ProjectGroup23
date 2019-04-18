@@ -62,7 +62,11 @@
     display:flex;
     justify-content: space-between;
         width: 180px;
+}
 
+.btndiv {
+    padding-top: 1.25%;
+    padding-bottom: 1.25%;
 }
 
 .statInfo{
