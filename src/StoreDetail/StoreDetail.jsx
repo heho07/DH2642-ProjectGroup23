@@ -62,13 +62,8 @@ class StoreDetail extends Component{
 			console.log("missing price");
 			return false;
 		}
-		let contract = window.ConnectClass.contract;
-		console.log(contract);
-		//let account = window.ConnectClass.account;
-		// console.log("price before web3: " + price);
-
+		
 		let newPrice = window.web3.utils.toWei(price.toString());
-		console.log(newPrice);
 
 		window.ConnectClass.purchaseCard(cardId, newPrice);
 	}
