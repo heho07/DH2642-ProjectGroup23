@@ -227,7 +227,7 @@ class Model extends ObservableModel{
 					console.log(tokenId);
 					let metaData = await window.ConnectClass.getCardMeta(tokenId);
 					console.log(metaData);
-					let price = metaData.price;
+					let price = window.web3.utils.fromWei(metaData.price);
 					array[i].price = price;						
 					this.searchedCards.push(array[i]);
 				}catch(error){
