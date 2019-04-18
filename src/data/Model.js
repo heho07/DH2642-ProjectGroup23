@@ -126,7 +126,7 @@ class Model extends ObservableModel{
 		this.usersCards = cardArray;
 		console.log("called setUsersCards with cardArray");
 		console.log(cardArray);
-		localStorage.setItem("usersCards", JSON.stringify(this.searchedCards));
+		localStorage.setItem("usersCards", JSON.stringify(this.usersCards));
 	}
 
 	getOpponentsCards(){
