@@ -126,6 +126,8 @@ class BlockStoneConnection extends Component {
         <button onClick = {() => {
           window.ConnectClass.getTokenIdbyCardId("EX1_011").then(res => console.log(res))}}
           >get token id of EX1_011</button>
+        <button onClick = {() => modelInstance.getCardFromUserAccount().then(modelInstance.getUsersCards())}>set modelUserCards to account userCards</button>
+
       </div>
     );
   }
