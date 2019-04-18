@@ -123,6 +123,9 @@ class BlockStoneConnection extends Component {
         <button onClick = {() => modelInstance.getblockChainCards()}>view blockchaincards in model</button>
         <button onClick = {() => this.usersCardsFromBlockChain()}>Get users cards from blockchain</button>
         <button onClick = {() => this.testFunc()}>testFunc</button>
+        <button onClick = {() => {
+          window.ConnectClass.getTokenIdbyCardId("EX1_011").then(res => console.log(res))}}
+          >get token id of EX1_011</button>
       </div>
     );
   }

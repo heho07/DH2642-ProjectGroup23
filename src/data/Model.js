@@ -263,6 +263,7 @@ class Model extends ObservableModel{
 			for (const token of res) {
 				// console.log("handling tokenid : " + token);
 				// don't exit the for loop before this is done
+				console.log(token);
 				await this.getMetaData(token).then((res) => cardArr.push(res));
 			}
 			// console.log(cardArr);
@@ -279,7 +280,9 @@ class Model extends ObservableModel{
 	async getMetaData(token){
 		let toRet;
 		// console.log("starting getMetaData");
-		await window.ConnectClass.getCardMeta(window.ConnectClass.contract, token).then((metaData) => {
+		console.log("token in metadata " + token);
+		await window.ConnectClass.getCardMeta(token).then((metaData) => {
+			console.log("found metadata)");
 			toRet = {"price": window.web3.utils.fromWei(metaData.price), "cardId" : window.web3.utils.toUtf8(metaData.nameId)};
 		});
 		// console.log("finished getMetaData");

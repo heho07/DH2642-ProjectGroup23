@@ -58,10 +58,10 @@ class StoreDetail extends Component{
 			console.log("missing cardId");
 			return false;
 		}
-		if (!price) {
-			console.log("missing price");
-			return false;
-		}
+		// if (!price) {
+		// 	console.log("missing price");
+		// 	return false;
+		// }
 		// let contract = window.ConnectClass.contract;
 		// console.log(contract);
 		// let account = window.ConnectClass.account;
@@ -70,7 +70,7 @@ class StoreDetail extends Component{
 		// let newPrice = window.web3.utils.toWei(price.toString());
 		// console.log(newPrice);
 
-		window.ConnectClass.purchaseCard(cardId, price);
+		window.ConnectClass.purchaseCard("CS2_boar", 2.5);
 	}
 
 

@@ -178,6 +178,7 @@ getCardsNum(contract, addr) {
 
 // Get all the tokenIds store has
 getStoreCards(contract) {
+  console.log("Calling getStoreCards with storeAddr: " + this.storeAddr);
   return contract.methods.getOwnersAllTokens(this.storeAddr).call()
 }
 
