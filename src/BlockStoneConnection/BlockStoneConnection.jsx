@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+//import React, { Component } from "react";
+import {Component} from "react";
 //import * as Connect from "../connect.js";
 
 // importing the modelInstance directly (as opposed to passing it as a prop)
@@ -67,6 +68,8 @@ class BlockStoneConnection extends Component {
 
 
   render(){
+    return null ;
+    /*
     return(
       <div>
         <button onClick = {() => this.handleClick()}>ANROPAR CONNECT</button>
@@ -130,6 +133,7 @@ class BlockStoneConnection extends Component {
 
       </div>
     );
+    */
   }
 }
 
