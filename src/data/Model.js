@@ -201,7 +201,7 @@ class Model extends ObservableModel{
 	}
 
 
-	setSearchedCards(array){
+	async setSearchedCards(array){
 		console.log("adding card to searchedCards");
 		for (var i = array.length - 1; i >= 0; i--) {
 			if(array[i].attack !== undefined && array[i].health !== undefined  && array[i].name && array[i].attack > 0 && array[i].health > 0
@@ -212,17 +212,27 @@ class Model extends ObservableModel{
 				// 		break;
 				// 	}
 				// }
-				for (const [index, blockChainCard] of this.blockChainCards.entries()){
-					if (array[i].cardId === blockChainCard.cardId.trim()){
-						console.log(array[i]);
-						array[i]["price"] = blockChainCard.price;
-						array[i]["tokenId"] = index;
-						console.log("Found something");
-						console.log(array[i]);
-						break;
-					}
+				// for (const [index, blockChainCard] of this.blockChainCards.entries()){
+				// 	if (array[i].cardId === blockChainCard.cardId.trim()){
+				// 		console.log(array[i]);
+				// 		array[i]["price"] = blockChainCard.price;
+				// 		array[i]["tokenId"] = index;
+				// 		console.log("Found something");
+				// 		console.log(array[i]);
+				// 		break;
+				// 	}
+				// }
+				try{
+					let tokenId = await window.ConnectClass.getTokenIdbyCardId(array[i].cardId);
+					console.log(tokenId);
+					let metaData = await window.ConnectClass.getCardMeta(tokenId);
+					console.log(metaData);
+					let price = metaData.price;
+					array[i].price = price;						
+					this.searchedCards.push(array[i]);
+				}catch(error){
+					console.log(error);
 				}
-				this.searchedCards.push(array[i]);
 			}
 		}
 		this.notifyObservers();
