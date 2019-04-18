@@ -103,7 +103,6 @@ class StoreDetail extends Component{
 											<br/>
 											<button className="purchaseButton btn btn-dark" onClick = {() => this.placePurchase(card.cardId, card.price)}>Purchase card</button> <br />
 											<p>Price: {card.price}</p>
-											<p>TokenId: {card.tokenId}</p>
 										</td>
 									</tr>
 								</tbody>
