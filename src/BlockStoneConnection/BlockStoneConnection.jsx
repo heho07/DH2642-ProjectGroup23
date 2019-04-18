@@ -52,6 +52,19 @@ class BlockStoneConnection extends Component {
     window.ConnectClass.getInfo(window.ConnectClass.contract, window.ConnectClass.account).then(res => console.log(res));
   }
 
+  usersCardsFromBlockChain(){
+    let cardIdArray = [];
+    window.ConnectClass.getAllCards().then( async (tokenIdArray) => {
+      console.log(tokenIdArray);
+      for (const tokenId of tokenIdArray){
+        await window.ConnectClass.getCardMeta(tokenId).then( (metaData) => {
+          cardIdArray.push(metaData);
+        });
+      }
+      console.log(cardIdArray);
+    });
+  }
+
 
   render(){
     return(
@@ -108,6 +121,7 @@ class BlockStoneConnection extends Component {
 
         <button onClick = {() => this.getCardsFromBlockChain()}>get cards from blockchain to model</button>
         <button onClick = {() => modelInstance.getblockChainCards()}>view blockchaincards in model</button>
+        <button onClick = {() => this.usersCardsFromBlockChain()}>Get users cards from blockchain</button>
         <button onClick = {() => this.testFunc()}>testFunc</button>
       </div>
     );

@@ -53,34 +53,24 @@ class StoreDetail extends Component{
 
 
 	//TODO: basically everything connecting to blockchain here should be moved to ConnectClass.js
-	placePurchase(tokenId, price){
-		if (!tokenId) {
-			console.log("missing tokenId");
+	placePurchase(cardId, price){
+		if (!cardId) {
+			console.log("missing cardId");
 			return false;
 		}
 		if (!price) {
 			console.log("missing price");
 			return false;
 		}
-		let contract = window.ConnectClass.contract;
-		console.log(contract);
-		let account = window.ConnectClass.account;
-		// console.log("price before web3: " + price);
+		// let contract = window.ConnectClass.contract;
+		// console.log(contract);
+		// let account = window.ConnectClass.account;
+		// // console.log("price before web3: " + price);
 
-		let newPrice = window.web3.utils.toWei(price.toString());
-		console.log(newPrice);
+		// let newPrice = window.web3.utils.toWei(price.toString());
+		// console.log(newPrice);
 
-		return contract.methods.purchase(tokenId).send({from: account, value: newPrice})
-			.on('transactionHash', (hash) => console.log(hash))
-			.on('confirmation', (confirmationNumber, receipt) => {
-				console.log(confirmationNumber);
-				console.log(receipt);
-			})
-			.on('receipt', (receipt) => {
-				console.log(receipt);
-			})
-			.on('error', (err) => console.error)
-			.catch(error => console.log(error));
+		window.ConnectClass.purchaseCard(cardId, price);
 	}
 
 
@@ -115,7 +105,7 @@ class StoreDetail extends Component{
 										<p className="mb-0 "> <b>Artist: </b>{card.artist} </p>
 										<p className="mb-0 "> <b>Description: </b> <i>{card.flavor}</i></p>
 										<br/>
-									    <button className="purchaseButton btn btn-dark" onClick = {() => this.placePurchase(card.tokenId, card.price)}>Purchase card</button> <br />
+									    <button className="purchaseButton btn btn-dark" onClick = {() => this.placePurchase(card.cardId, card.price)}>Purchase card</button> <br />
 									    <p>Price: {card.price}</p>
 									    <p>TokenId: {card.tokenId}</p>
 								    </td>

@@ -182,20 +182,45 @@ getStoreCards(contract) {
 }
 
 // Get all the tokenIds one account has
-getAllCards(contract, account) {
+getAllCards() {
+  let contract = this.contract;
+  let account = this.account;
   return contract.methods.getOwnersAllTokens(account).call()
 }
 
 // Get the tokenId by cardId, which needs to be parsed into bytes32 by
 // `web3.utils.padRight(web3.utils.asciiToHex(card.cardId), 32);`
-getTokenIdbyCardId(contract, cardId) {
-  return contract.methods.cardIdToTokenId(cardId).call()
+getTokenIdbyCardId(cardId) {
+  let changedCardId = web3.utils.padRight(web3.utils.asciiToHex(cardId), 32)
+  let contract = this.contract;
+  console.log("Getting getTokenIdbyCardId with the following cardId and contract");
+  console.log(changedCardId);
+  console.log(contract);
+  return contract.methods.cardIdToTokenId(changedCardId).call()
 }
 
 // Get the metadata of a specific tokenId
-getCardMeta(contract, tokenid) {
+getCardMeta(tokenid) {
+  let contract = this.contract;
   // Return a promise with resolve value [price(uint256), nameId(string)]
   return contract.methods.idToMeta(tokenid).call()
+}
+
+purchaseCard(cardId, price){
+  this.getTokenIdbyCardId(cardId).then( (tokenId) => {
+    return this.contract.methods.purchase(tokenId).send({from: this.account, value: price})
+        .on('transactionHash', (hash) => console.log(hash))
+        .on('confirmation', (confirmationNumber, receipt) => {
+          console.log(confirmationNumber);
+          console.log(receipt);
+        })
+        .on('receipt', (receipt) => {
+          console.log(receipt);
+        })
+        .on('error', (err) => console.error)
+        .catch(error => console.log(error));
+        }
+    );
 }
 
 bindEvent(contract, account) {

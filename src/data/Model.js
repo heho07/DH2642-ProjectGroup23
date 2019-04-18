@@ -12,7 +12,7 @@ const httpOptions = {
 class Model extends ObservableModel{
 
 	// the Model inherits everything from the ObservableModel file (from Lab4) so that we easily can add obsevers to the model
-	constructor(parameter){
+	constructor(){
 		// super(); needs to be called before we define attributes to the class. This is due to the way JS inheritance works. 
 		// super(); means the Model inherits stuff from ObservableModel (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)
 		super();
@@ -87,6 +87,10 @@ class Model extends ObservableModel{
 
 	getUsersCards(){
 		return this.usersCards;
+	}
+
+	setUsersCards(cardArray){
+		this.usersCards = cardArray;
 	}
 
 	getOpponentsCards(){
