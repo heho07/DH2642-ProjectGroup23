@@ -202,47 +202,46 @@ class Model extends ObservableModel{
 	}
 
 
-	async setSearchedCards(array){
-		console.log("adding card to searchedCards");
+	async compareToBlockChain(array){
+		console.log("Comparing to the blockchain");
+		
 		for (var i = array.length - 1; i >= 0; i--) {
 			if(array[i].attack !== undefined && array[i].health !== undefined  && array[i].name && array[i].attack > 0 && array[i].health > 0
 				&& array[i].cardId && array[i].cardId !== undefined && array[i].name !== undefined){
-				// for (const blockChanCard of this.blockChainCards){
-				// 	if (array[i].cardId === blockChanCard.cardId){
-				// 		array[i]["price"] = blockChanCard.price;
-				// 		break;
-				// 	}
-				// }
-				// for (const [index, blockChainCard] of this.blockChainCards.entries()){
-				// 	if (array[i].cardId === blockChainCard.cardId.trim()){
-				// 		console.log(array[i]);
-				// 		array[i]["price"] = blockChainCard.price;
-				// 		array[i]["tokenId"] = index;
-				// 		console.log("Found something");
-				// 		console.log(array[i]);
-				// 		break;
-				// 	}
-				// }
-				try{
-					let tokenId = await window.ConnectClass.getTokenIdbyCardId(array[i].cardId);
-					console.log(tokenId);
-					let metaData = await window.ConnectClass.getCardMeta(tokenId);
-					console.log(metaData);
-					let price = window.web3.utils.fromWei(metaData.price);
-					array[i].price = price;						
-					this.searchedCards.push(array[i]);
-				}catch(error){
-					console.log(error);
-				}
+					try{
+						let tokenId = await window.ConnectClass.getTokenIdbyCardId(array[i].cardId);
+						console.log(tokenId);
+						let metaData = await window.ConnectClass.getCardMeta(tokenId);
+						console.log(metaData);
+						let price = window.web3.utils.fromWei(metaData.price);
+						array[i].price = price;						
+						this.searchedCards.push(array[i]);
+					}catch(error){
+						console.log(error);
+					}
 			}
 		}
-		this.notifyObservers();
-		localStorage.setItem("searchedCards", JSON.stringify(this.searchedCards));
+			
+	
 	}
 
 	clearSearchedCards(){
 		this.searchedCards = [];
 		this.notifyObservers();
+	}
+
+	setSearchedCards(array){
+		console.log("setSeachedCards: ", array);
+		array.forEach( card =>{
+			if(card.attack >0  && 
+				card.health > 0 &&
+				card.name &&
+				card.cardId) {
+					this.searchedCards.push(card);
+				}
+		})
+		this.notifyObservers();
+		localStorage.setItem("searchedCards", JSON.stringify(this.searchedCards));
 	}
 
 	getSearchedCards(){
