@@ -13,14 +13,14 @@ class Model extends ObservableModel{
 
 	// the Model inherits everything from the ObservableModel file (from Lab4) so that we easily can add obsevers to the model
 	constructor(){
-		// super(); needs to be called before we define attributes to the class. This is due to the way JS inheritance works. 
+		// super(); needs to be called before we define attributes to the class. This is due to the way JS inheritance works.
 		// super(); means the Model inherits stuff from ObservableModel (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super)
 		super();
 		this.usersCards = [];
 		this.opponentsCards = [];
 		this.storedCards = {};
 		this.cardsFromStore = [];
-		
+
 		// Checking the localStorage for filter
 	    if (localStorage.getItem("filter") != null) {
 	      try{
@@ -36,7 +36,7 @@ class Model extends ObservableModel{
 	    else{
 	      this.filter = "";
 	    }
-		
+
 	    // Checking the localStorage for searchResults
 	    if (localStorage.getItem("searchedCards") != null) {
 	      try{
@@ -56,13 +56,13 @@ class Model extends ObservableModel{
 	    this.blockChainCards = [];
 	    // calling the method that gets card info from the blockchain when the model initialized
 	    // this.getCardsInBlockChain();
-	    
+
 	}
 
 	// Checks if the card is already in the usersCards array
 	// otherwise adds it
 	// This method is very likely subject to change, more or less a copy from the dinnerPlanner methods
-	// Could possibly be used to add to cart, or something. Adding to the users selection should probably be done via blockchain 
+	// Could possibly be used to add to cart, or something. Adding to the users selection should probably be done via blockchain
 	addCardToDeck(obj, destination){
 		let cards = null;
 		if (destination === "user") {
@@ -127,7 +127,7 @@ class Model extends ObservableModel{
 		let counter = 0;
 		let addBoolean = true;
 		while(toRet.length < 10){
-			currentObject = objectArray[Math.floor(Math.random()*objectArray.length)]; 
+			currentObject = objectArray[Math.floor(Math.random()*objectArray.length)];
 			try{
 				if ( currentObject.attack !== undefined && currentObject.health !== undefined  && currentObject.name !== undefined && (currentObject.attack > 0 && currentObject.health > 0)) {
 					if (toRet.length === 0) {
@@ -148,7 +148,7 @@ class Model extends ObservableModel{
 				addBoolean = true;
 			}
 			catch (error) {
-				console.log(error);	
+				console.log(error);
 			}
 			counter++;
 			if (counter > 1000) {
@@ -199,12 +199,12 @@ class Model extends ObservableModel{
 	getCard(id) {
 		return this.storedCard;
 	}
-	  
+
 
 	setSearchedCards(array){
 		console.log("adding card to searchedCards");
 		for (var i = array.length - 1; i >= 0; i--) {
-			if(array[i].attack !== undefined && array[i].health !== undefined  && array[i].name && array[i].attack > 0 && array[i].health > 0 
+			if(array[i].attack !== undefined && array[i].health !== undefined  && array[i].name && array[i].attack > 0 && array[i].health > 0
 				&& array[i].cardId && array[i].cardId !== undefined && array[i].name !== undefined){
 				// for (const blockChanCard of this.blockChainCards){
 				// 	if (array[i].cardId === blockChanCard.cardId){
@@ -274,7 +274,7 @@ class Model extends ObservableModel{
 		console.log(cardArr);
 		this.blockChainCards = cardArr;
 		return cardArr;
-		
+
 	}
 
 	async getMetaData(token){
@@ -283,7 +283,7 @@ class Model extends ObservableModel{
 		console.log("token in metadata " + token);
 		await window.ConnectClass.getCardMeta(token).then((metaData) => {
 			console.log("found metadata)");
-			toRet = {"price": window.web3.utils.fromWei(metaData.price), "cardId" : window.web3.utils.toUtf8(metaData.nameId)};
+			toRet = {"price": window.web3.utils.fromWei(metaData.price), "cardId" : window.web3.utils.toUtf8(metaData.cardId)};
 		});
 		// console.log("finished getMetaData");
 		return toRet;
