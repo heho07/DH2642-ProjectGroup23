@@ -50,7 +50,7 @@ class MyCollection extends Component{
         	img = "https://images.weserv.nl/?url=" + obj.img.replace("http://", "");
       	}
 		return (
-			<div className = "col-sm-4">
+			<div className = "col-sm-4" key ={obj.cardId}>
 				<center>
 					<img src = {img} alt = {img} onError={e=>{e.target.onerror=null; e.target.src = "https://i.imgur.com/ZI9QakW.png"}}/>
 				</center>
