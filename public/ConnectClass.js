@@ -4,7 +4,6 @@
 // and need to be called with this.METHODNAME
 class ConnectClass{
   constructor(){
-    console.log("initalizing ConnectClass");
     this.contractAddress = "0x0DA5b794A99cAABB2369d51c52ae651536d30d72";
     this.chainID = 4;
     this.storeAddr = '0x000000000000000000000000000000000000bEEF';
@@ -109,7 +108,6 @@ getNetIdAndAccount() {
     }
   })
   .then(([netId, netName]) => {
-    console.log(netId, netName);
     if (netId != chainID) {
       return Promise.reject(`Should be on the ${chainName[chainID]} testnet!!!`);
     }
@@ -180,9 +178,6 @@ getAllCards() {
 getTokenIdbyCardId(cardId) {
   let changedCardId = web3.utils.padRight(web3.utils.asciiToHex(cardId), 32)
   let contract = this.contract;
-  console.log("Getting getTokenIdbyCardId with the following cardId and contract");
-  console.log(changedCardId);
-  console.log(contract);
   return contract.methods.cardIdToTokenId(changedCardId).call()
 }
 
