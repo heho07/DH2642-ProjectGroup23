@@ -7,7 +7,7 @@ class StoreDetail extends Component{
 
 	constructor(props) {
 		super(props);
-		// we access the id from the URL 
+		// we access the id from the URL
 		let url = this.props.location.search;
 		this.state = {
 			cardId:queryString.parse(url).id,
@@ -66,12 +66,10 @@ class StoreDetail extends Component{
 		console.log(contract);
 		let account = window.ConnectClass.account;
 		// console.log("price before web3: " + price);
-		
-		let newPrice = new window.web3.utils.BN(price);
-		// console.log(newPrice);
+
+		let newPrice = web3.utils.toWei(price.toString());
 		console.log(newPrice);
-		// console.log("price after web3: " + price);
-	
+
 		return contract.methods.purchase(tokenId).send({from: account, value: newPrice})
 			.on('transactionHash', (hash) => console.log(hash))
 			.on('confirmation', (confirmationNumber, receipt) => {
@@ -99,13 +97,13 @@ class StoreDetail extends Component{
 			}
 			let img = "https://images.weserv.nl/?url=" + card.img.replace("http://", "");
 			toReturn = (
-			/* Returns a div that contains the necessary info on a specific card. 
+			/* Returns a div that contains the necessary info on a specific card.
 				The Purchase button will take the user to a pop up where cards can
 				be bought via the blockchain.  */
 				<div className= "row">
 					<div className ="col-sm-12" >
 						<center>
-							<h1 >{card.name}</h1>	
+							<h1 >{card.name}</h1>
 							<p className="mb-0 " > {card.rarity} {card.race}</p>
 							<table>
 								<tr>
@@ -122,8 +120,8 @@ class StoreDetail extends Component{
 									    <p>TokenId: {card.tokenId}</p>
 								    </td>
 								</tr>
-							</table>	
-						</center>	
+							</table>
+						</center>
 					</div>
 				</div>
 			);
