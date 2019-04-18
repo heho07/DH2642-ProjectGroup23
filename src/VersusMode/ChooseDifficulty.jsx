@@ -28,8 +28,18 @@ class ChooseDifficulty extends Component{
 					for (var i = result.length - 1; i >= 0; i--) {
 						modelInstance.addCardToDeck(result[i], destination);
 					}
-				}).then(() => this.props.history.push('/VersusMode'));
-	}
+				}).then(() => {
+					modelInstance.getCardFromUserAccount().then( () => {
+						console.log("hello");
+						this.setState({
+							usersCards:modelInstance.getUsersCards(),
+						}, () => {
+							console.log("cards have been SETTTT");
+							this.props.history.push('/VersusMode')
+						})
+					});
+			});
+		}
 // 
 	// creates the input buttons that the user can use to decide the difficulty
 	difficultySetting(quality, iterationNumber){

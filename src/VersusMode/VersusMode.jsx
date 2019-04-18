@@ -30,7 +30,7 @@ class VersusMode extends Component{
 	// When this component is instaniated we add it to the list of observers in the model
 	componentDidMount(){
 		modelInstance.addObserver(this);
-
+		
 		this.saveOriginalHealth();
 	}
 

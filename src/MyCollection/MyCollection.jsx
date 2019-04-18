@@ -24,10 +24,6 @@ class MyCollection extends Component{
 
 
 	componentDidMount(){
-		console.log("web3 below ----------------------");
-		console.log(window.web3);
-		console.log("connect below ------------------------------------");
-		console.log(window.ConnectClass);
 		
 		// Due to us not having a way to ensure that the web3 and ConnectClass scripts have been
 		// fully initiated we have to wait a little bit for them to be initalized
