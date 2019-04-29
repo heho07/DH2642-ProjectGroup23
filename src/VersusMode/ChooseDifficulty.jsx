@@ -91,15 +91,18 @@ class ChooseDifficulty extends Component{
 					<div className = "row">
 						{difficulties.map((item, i) => {
 							return (
+
 									<div className = "col-sm-4" key = {"difficulty: " + item}>
 										{this.difficultySetting(item)}
 									</div>
+
 								);
 
 						})}
-					</div>
 					
-				</div>
+	
+						</div>
+					</div>
 		return (<div>{toReturn}</div>	);
 
 	}

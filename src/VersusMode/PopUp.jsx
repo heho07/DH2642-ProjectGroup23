@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 
 class PopUp extends Component{
+	constructor(props) {
+		super(props);
+	}
 
 	render(){
 		return (
@@ -12,6 +15,7 @@ class PopUp extends Component{
 					<p>However, notice that your card will be damaged by the opponetns <b>attack</b> value.</p>
 					<p>Whenever a card is attacked, its <b>health</b> will diminish until it is defeated.</p>
 					<p> Good luck.</p>
+					<button className="btn btn-dark" onClick = {() => this.props.addCard()}>Demo</button>										
 				</div>
 			);
 	}

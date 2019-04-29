@@ -304,7 +304,7 @@ class VersusMode extends Component{
 							<button className = "btn btn-dark infoButton" onClick = {() => this.fight()}>Fight</button>
 
 							<Popup trigger = {<button className = "btn btn-dark infoButton">How to play</button>} position ="bottom center">
-								<PopUp/>
+								<PopUp addCard = {() => this.addCardsToDeck("Legendary", "user")}/>
 							</Popup>
 							
 						</center>
